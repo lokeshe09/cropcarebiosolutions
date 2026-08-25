@@ -6,18 +6,12 @@ import {
   MessageSquare, 
   Send, 
   CheckCircle2, 
-  Sparkles, 
-  Clock, 
-  Sprout, 
-  ShieldCheck, 
   ExternalLink,
-  HelpCircle
 } from 'lucide-react';
 import { PageId } from '../types';
 import { PageHeader } from '../components/PageHeader';
 import { PageFooterBanner } from '../components/PageFooterBanner';
 import { PRODUCTS_DATA } from '../data/productsData';
-import { AnimatedCard } from '../components/AnimatedCard';
 
 interface ContactPageProps {
   onNavigate: (page: PageId) => void;
@@ -70,11 +64,11 @@ export const ContactPage: React.FC<ContactPageProps> = ({
   };
 
   return (
-    <div className="space-y-12">
+    <div className="space-y-12 bg-[#FAFBF9]">
       {/* 1. Page Header */}
       <PageHeader
-        badge="Agronomic Advisory & Quotations"
-        title="CONTACT &"
+        badge="Agronomic Advisory &amp; Quotations"
+        title="CONTACT &amp;"
         highlightText="QUOTATION REQUEST"
         subtitle="Speak directly with our technical team, request bulk pricing for FPOs, or get a customized IPM trap quote for your farm."
         currentPage="contact"
@@ -83,67 +77,67 @@ export const ContactPage: React.FC<ContactPageProps> = ({
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
         
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start text-left">
           
           {/* Left Column: Contact Cards & Instant Channels */}
-          <AnimatedCard delay={0.1} distance={28} className="lg:col-span-5 space-y-6">
+          <div className="lg:col-span-5 space-y-6">
             
-            <div className="p-8 rounded-[36px] bg-white/50 backdrop-blur-2xl border border-white/80 shadow-xl space-y-6">
+            <div className="p-8 rounded-3xl bg-white border border-gray-300 shadow-xl space-y-6">
               
               <div className="space-y-2">
-                <span className="text-[10px] font-bold uppercase tracking-widest text-[#606C38] bg-[#E9EDC9] px-3 py-1 rounded-full border border-[#606C38]/20">
+                <span className="text-xs font-black uppercase tracking-widest text-[#073B20] bg-[#E8F5E9] px-3.5 py-1 rounded-full border border-[#C8E6C9]">
                   Direct Support Lines
                 </span>
-                <h3 className="text-2xl font-serif font-bold text-[#283618]">
+                <h3 className="text-2xl font-black text-[#073B20]">
                   Crop Care Bio Solutions
                 </h3>
-                <p className="text-xs text-[#555] font-light">
-                  “Caring for Farmers. Caring for Nature.”
+                <p className="text-xs text-[#34443B] font-medium">
+                  &ldquo;Caring for Farmers. Caring for Nature.&rdquo;
                 </p>
               </div>
 
               {/* Contact item: Phone */}
-              <div className="flex items-start gap-4 p-4 rounded-2xl bg-white/70 border border-white/90 shadow-2xs">
-                <div className="w-10 h-10 rounded-xl bg-[#E9EDC9] text-[#606C38] flex items-center justify-center shrink-0">
+              <div className="flex items-start gap-4 p-4 rounded-2xl bg-[#F4F9F4] border border-[#D5E7D5]">
+                <div className="w-10 h-10 rounded-xl bg-[#E8F5E9] text-[#073B20] flex items-center justify-center shrink-0">
                   <Phone className="w-5 h-5" />
                 </div>
                 <div>
-                  <span className="text-[10px] font-bold uppercase tracking-wider text-[#888] block">
-                    Customer & Agronomist Helpline
+                  <span className="text-xs font-black uppercase tracking-wider text-[#59675F] block">
+                    Customer &amp; Agronomist Helpline
                   </span>
-                  <a href="tel:+919448000000" className="text-sm font-bold text-[#283618] hover:text-[#606C38] transition-colors">
+                  <a href="tel:+919448000000" className="text-sm font-black text-[#073B20] hover:text-[#126B35] transition-colors">
                     +91 94480 00000 / +91 80000 00000
                   </a>
-                  <p className="text-[11px] text-[#666] mt-0.5">Mon–Sat: 8:00 AM – 7:00 PM IST</p>
+                  <p className="text-xs text-[#59675F] mt-0.5">Mon–Sat: 8:00 AM – 7:00 PM IST</p>
                 </div>
               </div>
 
               {/* Contact item: Email */}
-              <div className="flex items-start gap-4 p-4 rounded-2xl bg-white/70 border border-white/90 shadow-2xs">
-                <div className="w-10 h-10 rounded-xl bg-[#FEFAE0] text-[#BC6C25] flex items-center justify-center shrink-0">
+              <div className="flex items-start gap-4 p-4 rounded-2xl bg-amber-50/60 border border-amber-200">
+                <div className="w-10 h-10 rounded-xl bg-amber-100 text-amber-800 flex items-center justify-center shrink-0">
                   <Mail className="w-5 h-5" />
                 </div>
                 <div>
-                  <span className="text-[10px] font-bold uppercase tracking-wider text-[#888] block">
-                    Sales & Dealer Inquiries
+                  <span className="text-xs font-black uppercase tracking-wider text-amber-900 block">
+                    Sales &amp; Dealer Inquiries
                   </span>
-                  <a href="mailto:info@cropcarebiosolutions.com" className="text-sm font-bold text-[#283618] hover:text-[#606C38] transition-colors">
+                  <a href="mailto:info@cropcarebiosolutions.com" className="text-sm font-black text-[#073B20] hover:text-[#126B35] transition-colors">
                     info@cropcarebiosolutions.com
                   </a>
-                  <p className="text-[11px] text-[#666] mt-0.5">24-hour turnaround for quotes</p>
+                  <p className="text-xs text-[#59675F] mt-0.5">24-hour turnaround for quotes</p>
                 </div>
               </div>
 
               {/* Contact item: Location */}
-              <div className="flex items-start gap-4 p-4 rounded-2xl bg-white/70 border border-white/90 shadow-2xs">
-                <div className="w-10 h-10 rounded-xl bg-[#E9EDC9] text-[#283618] flex items-center justify-center shrink-0">
+              <div className="flex items-start gap-4 p-4 rounded-2xl bg-[#F4F9F4] border border-[#D5E7D5]">
+                <div className="w-10 h-10 rounded-xl bg-[#E8F5E9] text-[#073B20] flex items-center justify-center shrink-0">
                   <MapPin className="w-5 h-5" />
                 </div>
                 <div>
-                  <span className="text-[10px] font-bold uppercase tracking-wider text-[#888] block">
-                    Manufacturing & Synthesis Center
+                  <span className="text-xs font-black uppercase tracking-wider text-[#59675F] block">
+                    Manufacturing &amp; Synthesis Center
                   </span>
-                  <p className="text-xs text-[#283618] font-medium leading-snug">
+                  <p className="text-xs text-[#073B20] font-bold leading-snug">
                     Crop Care Bio Solutions Agricultural Complex,<br />
                     Industrial Bio-Chemical Park, Karnataka / All-India Distribution.
                   </p>
@@ -155,36 +149,37 @@ export const ContactPage: React.FC<ContactPageProps> = ({
                 href={generateWhatsAppUrl()}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full py-4 px-5 rounded-full text-xs font-bold uppercase tracking-wider text-white bg-[#25D366] hover:bg-[#1ebc59] shadow-lg shadow-[#25D366]/25 transition-all flex items-center justify-center gap-2 cursor-pointer"
+                className="w-full py-4 px-5 rounded-full text-xs font-black uppercase tracking-wider text-white bg-[#25D366] hover:bg-[#1ebc59] shadow-lg transition-all flex items-center justify-center gap-2 cursor-pointer"
               >
-                <MessageSquare className="w-4 h-4" />
+                <MessageSquare className="w-4 h-4 fill-white" />
                 <span>Instant WhatsApp Inquiry</span>
                 <ExternalLink className="w-3.5 h-3.5" />
               </a>
 
             </div>
 
-          </AnimatedCard>
+          </div>
 
           {/* Right Column: Interactive Quotation Form */}
-          <AnimatedCard delay={0.2} distance={28} className="lg:col-span-7">
-            <div className="p-8 sm:p-10 rounded-[36px] bg-white/50 backdrop-blur-2xl border border-white/80 shadow-2xl space-y-6">
+          <div className="lg:col-span-7">
+            <div className="p-8 sm:p-10 rounded-3xl bg-white border border-gray-300 shadow-xl space-y-6">
               
               {submitted ? (
-                <div className="py-12 text-center space-y-4 animate-in fade-in duration-300">
-                  <div className="w-16 h-16 rounded-full bg-[#E9EDC9] text-[#606C38] flex items-center justify-center mx-auto shadow-md">
+                <div className="py-12 text-center space-y-4">
+                  <div className="w-16 h-16 rounded-full bg-[#E8F5E9] text-[#073B20] flex items-center justify-center mx-auto shadow-md">
                     <CheckCircle2 className="w-8 h-8" />
                   </div>
-                  <h3 className="text-2xl font-serif font-bold text-[#283618]">
+                  <h3 className="text-2xl font-black text-[#073B20]">
                     Inquiry Submitted Successfully!
                   </h3>
-                  <p className="text-xs sm:text-sm text-[#555] max-w-md mx-auto font-light leading-relaxed">
-                    Thank you, <strong className="font-semibold text-[#283618]">{formData.name || 'valued partner'}</strong>. Our agronomy team will review your requirements for <span className="text-[#606C38] font-semibold">{formData.productOfInterest || 'our bio solutions'}</span> and contact you within 24 hours.
+                  <p className="text-xs sm:text-sm text-[#34443B] max-w-md mx-auto font-medium leading-relaxed">
+                    Thank you, <strong className="font-bold text-[#073B20]">{formData.name || 'valued partner'}</strong>. Our agronomy team will review your requirements for <span className="text-[#126B35] font-bold">{formData.productOfInterest || 'our bio solutions'}</span> and contact you within 24 hours.
                   </p>
                   <div className="pt-4">
                     <button
+                      type="button"
                       onClick={() => setSubmitted(false)}
-                      className="px-6 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider text-[#283618] bg-white/80 hover:bg-[#E9EDC9] border border-white/90 shadow-xs cursor-pointer"
+                      className="px-6 py-2.5 rounded-full text-xs font-black uppercase tracking-wider text-white bg-[#073B20] hover:bg-[#126B35] shadow-xs cursor-pointer"
                     >
                       Submit Another Request
                     </button>
@@ -194,10 +189,10 @@ export const ContactPage: React.FC<ContactPageProps> = ({
                 <form onSubmit={handleSubmit} className="space-y-4">
                   
                   <div>
-                    <span className="text-[10px] font-bold uppercase tracking-widest text-[#606C38]">
+                    <span className="text-xs font-black uppercase tracking-widest text-[#126B35]">
                       Custom Price Estimate
                     </span>
-                    <h3 className="text-xl sm:text-2xl font-serif font-bold text-[#283618]">
+                    <h3 className="text-xl sm:text-2xl font-black text-[#073B20]">
                       Request Product or Farm Quote
                     </h3>
                   </div>
@@ -206,7 +201,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     
                     <div className="space-y-1">
-                      <label className="block text-xs font-bold uppercase tracking-wider text-[#283618]">
+                      <label className="block text-xs font-black uppercase tracking-wider text-[#073B20]">
                         Your Name *
                       </label>
                       <input
@@ -215,12 +210,12 @@ export const ContactPage: React.FC<ContactPageProps> = ({
                         placeholder="e.g. Ramesh Kumar"
                         value={formData.name}
                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                        className="w-full px-4 py-3 rounded-2xl glass-input text-xs sm:text-sm text-[#283618] border border-[#606C38]/20 focus:border-[#606C38]"
+                        className="w-full px-4 py-3 rounded-2xl bg-gray-50 text-xs sm:text-sm text-[#073B20] border border-gray-300 focus:border-[#073B20] focus:bg-white outline-none font-medium"
                       />
                     </div>
 
                     <div className="space-y-1">
-                      <label className="block text-xs font-bold uppercase tracking-wider text-[#283618]">
+                      <label className="block text-xs font-black uppercase tracking-wider text-[#073B20]">
                         Phone Number *
                       </label>
                       <input
@@ -229,7 +224,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({
                         placeholder="e.g. +91 98765 43210"
                         value={formData.phone}
                         onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                        className="w-full px-4 py-3 rounded-2xl glass-input text-xs sm:text-sm text-[#283618] border border-[#606C38]/20 focus:border-[#606C38]"
+                        className="w-full px-4 py-3 rounded-2xl bg-gray-50 text-xs sm:text-sm text-[#073B20] border border-gray-300 focus:border-[#073B20] focus:bg-white outline-none font-medium"
                       />
                     </div>
 
@@ -238,7 +233,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     
                     <div className="space-y-1">
-                      <label className="block text-xs font-bold uppercase tracking-wider text-[#283618]">
+                      <label className="block text-xs font-black uppercase tracking-wider text-[#073B20]">
                         Email Address
                       </label>
                       <input
@@ -246,12 +241,12 @@ export const ContactPage: React.FC<ContactPageProps> = ({
                         placeholder="e.g. farmer@domain.com"
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                        className="w-full px-4 py-3 rounded-2xl glass-input text-xs sm:text-sm text-[#283618] border border-[#606C38]/20 focus:border-[#606C38]"
+                        className="w-full px-4 py-3 rounded-2xl bg-gray-50 text-xs sm:text-sm text-[#073B20] border border-gray-300 focus:border-[#073B20] focus:bg-white outline-none font-medium"
                       />
                     </div>
 
                     <div className="space-y-1">
-                      <label className="block text-xs font-bold uppercase tracking-wider text-[#283618]">
+                      <label className="block text-xs font-black uppercase tracking-wider text-[#073B20]">
                         State / District *
                       </label>
                       <input
@@ -260,7 +255,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({
                         placeholder="e.g. Maharashtra, Nashik"
                         value={formData.location}
                         onChange={(e) => setFormData({ ...formData, location: e.target.value })}
-                        className="w-full px-4 py-3 rounded-2xl glass-input text-xs sm:text-sm text-[#283618] border border-[#606C38]/20 focus:border-[#606C38]"
+                        className="w-full px-4 py-3 rounded-2xl bg-gray-50 text-xs sm:text-sm text-[#073B20] border border-gray-300 focus:border-[#073B20] focus:bg-white outline-none font-medium"
                       />
                     </div>
 
@@ -270,13 +265,13 @@ export const ContactPage: React.FC<ContactPageProps> = ({
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     
                     <div className="space-y-1">
-                      <label className="block text-xs font-bold uppercase tracking-wider text-[#283618]">
+                      <label className="block text-xs font-black uppercase tracking-wider text-[#073B20]">
                         I Am A:
                       </label>
                       <select
                         value={formData.farmerType}
                         onChange={(e) => setFormData({ ...formData, farmerType: e.target.value })}
-                        className="w-full px-4 py-3 rounded-2xl glass-input text-xs sm:text-sm text-[#283618] border border-[#606C38]/20 focus:border-[#606C38] cursor-pointer"
+                        className="w-full px-4 py-3 rounded-2xl bg-gray-50 text-xs sm:text-sm text-[#073B20] border border-gray-300 focus:border-[#073B20] focus:bg-white outline-none font-medium cursor-pointer"
                       >
                         <option value="Farmer / Grower">Individual Farmer / Grower</option>
                         <option value="Commercial Orchard / Plantation">Commercial Orchard / Plantation Manager</option>
@@ -287,13 +282,13 @@ export const ContactPage: React.FC<ContactPageProps> = ({
                     </div>
 
                     <div className="space-y-1">
-                      <label className="block text-xs font-bold uppercase tracking-wider text-[#283618]">
+                      <label className="block text-xs font-black uppercase tracking-wider text-[#073B20]">
                         Product / Solution of Interest
                       </label>
                       <select
                         value={formData.productOfInterest}
                         onChange={(e) => setFormData({ ...formData, productOfInterest: e.target.value })}
-                        className="w-full px-4 py-3 rounded-2xl glass-input text-xs sm:text-sm text-[#283618] border border-[#606C38]/20 focus:border-[#606C38] cursor-pointer"
+                        className="w-full px-4 py-3 rounded-2xl bg-gray-50 text-xs sm:text-sm text-[#073B20] border border-gray-300 focus:border-[#073B20] focus:bg-white outline-none font-medium cursor-pointer"
                       >
                         <option value="">-- Select Specific Product --</option>
                         {PRODUCTS_DATA.map((p) => (
@@ -308,7 +303,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({
 
                   {/* Acreage / Land Area */}
                   <div className="space-y-1">
-                    <label className="block text-xs font-bold uppercase tracking-wider text-[#283618]">
+                    <label className="block text-xs font-black uppercase tracking-wider text-[#073B20]">
                       Acreage / Farm Size (Optional)
                     </label>
                     <input
@@ -316,13 +311,13 @@ export const ContactPage: React.FC<ContactPageProps> = ({
                       placeholder="e.g. 5 Acres Tomato or 1000 Coconut Palms"
                       value={formData.acreage}
                       onChange={(e) => setFormData({ ...formData, acreage: e.target.value })}
-                      className="w-full px-4 py-3 rounded-2xl glass-input text-xs sm:text-sm text-[#283618] border border-[#606C38]/20 focus:border-[#606C38]"
+                      className="w-full px-4 py-3 rounded-2xl bg-gray-50 text-xs sm:text-sm text-[#073B20] border border-gray-300 focus:border-[#073B20] focus:bg-white outline-none font-medium"
                     />
                   </div>
 
                   {/* Message */}
                   <div className="space-y-1">
-                    <label className="block text-xs font-bold uppercase tracking-wider text-[#283618]">
+                    <label className="block text-xs font-black uppercase tracking-wider text-[#073B20]">
                       Specific Requirements / Notes
                     </label>
                     <textarea
@@ -330,14 +325,14 @@ export const ContactPage: React.FC<ContactPageProps> = ({
                       placeholder="Tell us about your pest symptoms, crop stages, or required delivery timelines..."
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                      className="w-full px-4 py-3 rounded-2xl glass-input text-xs sm:text-sm text-[#283618] border border-[#606C38]/20 focus:border-[#606C38]"
+                      className="w-full px-4 py-3 rounded-2xl bg-gray-50 text-xs sm:text-sm text-[#073B20] border border-gray-300 focus:border-[#073B20] focus:bg-white outline-none font-medium"
                     />
                   </div>
 
                   {/* Submit Button */}
                   <button
                     type="submit"
-                    className="w-full py-4 px-6 rounded-full text-xs sm:text-sm font-bold uppercase tracking-wider text-white bg-[#606C38] hover:bg-[#283618] shadow-lg shadow-[#606C38]/25 transition-all duration-300 hover:scale-[1.01] flex items-center justify-center gap-2 cursor-pointer"
+                    className="w-full py-4 px-6 rounded-full text-xs sm:text-sm font-black uppercase tracking-wider text-white bg-[#073B20] hover:bg-[#126B35] shadow-lg transition-all flex items-center justify-center gap-2 cursor-pointer"
                   >
                     <span>Submit Official Quote Request</span>
                     <Send className="w-4 h-4" />
@@ -347,7 +342,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({
               )}
 
             </div>
-          </AnimatedCard>
+          </div>
 
         </div>
 
