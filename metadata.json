@@ -1,0 +1,6 @@
+{
+  "name": "Crop Care Bio Solutions",
+  "description": "Eco-friendly pest management solutions, pheromone lures, and insect traps empowering farmers and protecting nature.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
