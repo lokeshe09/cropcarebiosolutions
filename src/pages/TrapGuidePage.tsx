@@ -371,9 +371,9 @@ export const TrapGuidePage: React.FC<TrapGuidePageProps> = ({
 
       {/* Page Footer Navigation */}
       <PageFooterBanner
-        nextPageId="calculator"
-        nextPageTitle="Acreage & Dose Calculator"
-        nextPageDescription="Calculate your farm's required trap units, lure replacements, and estimated chemical savings in seconds."
+        nextPageId="contact"
+        nextPageTitle="Agronomic Advisory & Quotations"
+        nextPageDescription="Speak directly with our technical team, request bulk pricing for FPOs, or get a customized trap quote for your farm."
         onNavigate={onNavigate}
       />
     </div>

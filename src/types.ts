@@ -1,11 +1,9 @@
 export type PageId = 
   | 'home'
-  | 'why-us'
   | 'about'
   | 'products'
   | 'pest-finder'
   | 'trap-guide'
-  | 'calculator'
   | 'contact';
 
 export interface Product {

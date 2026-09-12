@@ -9,12 +9,10 @@ import { ImageLightboxModal } from './components/ImageLightboxModal';
 
 // Dedicated Section Pages
 import { HomePage } from './pages/HomePage';
-import { WhyUsPage } from './pages/WhyUsPage';
 import { AboutPage } from './pages/AboutPage';
 import { ProductsPage } from './pages/ProductsPage';
 import { PestFinderPage } from './pages/PestFinderPage';
 import { TrapGuidePage } from './pages/TrapGuidePage';
-import { CalculatorPage } from './pages/CalculatorPage';
 import { ContactPage } from './pages/ContactPage';
 
 export function App() {
@@ -36,12 +34,10 @@ export function App() {
       const hash = window.location.hash.replace('#', '') as PageId;
       const validPages: PageId[] = [
         'home',
-        'why-us',
         'about',
         'products',
         'pest-finder',
         'trap-guide',
-        'calculator',
         'contact',
       ];
       if (validPages.includes(hash)) {
@@ -117,12 +113,6 @@ export function App() {
               />
             )}
 
-            {currentPage === 'why-us' && (
-              <WhyUsPage
-                onNavigate={handleNavigate}
-              />
-            )}
-
             {currentPage === 'about' && (
               <AboutPage
                 onNavigate={handleNavigate}
@@ -151,14 +141,6 @@ export function App() {
               <TrapGuidePage
                 onNavigate={handleNavigate}
                 onInquireItem={handleInquireProduct}
-                onZoomImage={handleOpenLightbox}
-              />
-            )}
-
-            {currentPage === 'calculator' && (
-              <CalculatorPage
-                onNavigate={handleNavigate}
-                onPreFillInquiry={handlePreFillInquiry}
                 onZoomImage={handleOpenLightbox}
               />
             )}

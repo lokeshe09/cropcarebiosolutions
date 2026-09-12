@@ -152,10 +152,10 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
               </button>
               <button
                 type="button"
-                onClick={() => onNavigate('calculator')}
+                onClick={() => onNavigate('pest-finder')}
                 className="w-full py-4 px-6 rounded-full text-center text-xs font-black uppercase tracking-wider text-white bg-white/15 hover:bg-white/25 border border-white/30 transition-all cursor-pointer"
               >
-                Calculate Trap Requirements
+                Explore Crop Pest Solutions
               </button>
             </div>
           </div>

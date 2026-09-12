@@ -114,11 +114,6 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                 </button>
               </li>
               <li>
-                <button type="button" onClick={() => nav('why-us')} className="hover:text-[#8BE52A] transition-colors cursor-pointer text-left">
-                  Why Bio Solutions
-                </button>
-              </li>
-              <li>
                 <button type="button" onClick={() => nav('about')} className="hover:text-[#8BE52A] transition-colors cursor-pointer text-left">
                   About &amp; Quality Lab
                 </button>
@@ -136,11 +131,6 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               <li>
                 <button type="button" onClick={() => nav('trap-guide')} className="hover:text-[#8BE52A] transition-colors cursor-pointer text-left">
                   Trap Specs &amp; Gallery
-                </button>
-              </li>
-              <li>
-                <button type="button" onClick={() => nav('calculator')} className="hover:text-[#8BE52A] transition-colors cursor-pointer text-left">
-                  Acreage Dose Calculator
                 </button>
               </li>
               <li>

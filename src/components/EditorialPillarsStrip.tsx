@@ -122,10 +122,10 @@ export const EditorialPillarsStrip: React.FC<EditorialPillarsStripProps> = ({ on
               <div className="shrink-0 relative z-10">
                 <button
                   type="button"
-                  onClick={() => onNavigate('calculator')}
+                  onClick={() => onNavigate('contact')}
                   className="px-6 py-3.5 rounded-full text-xs font-black text-[#04170D] bg-[#8BE52A] hover:bg-[#9cf53b] transition-all flex items-center gap-2 cursor-pointer shadow-lg active:scale-95"
                 >
-                  <span>Estimate Your Savings</span>
+                  <span>Contact Our Agronomists</span>
                   <ArrowRight className="w-4 h-4 text-[#04170D]" />
                 </button>
               </div>

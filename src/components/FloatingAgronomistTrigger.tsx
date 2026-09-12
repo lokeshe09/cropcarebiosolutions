@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { 
   MessageCircle, 
   Phone, 
-  Calculator, 
+  FileText, 
   X, 
   Sparkles, 
   ChevronRight,
@@ -100,17 +100,17 @@ export const FloatingAgronomistTrigger: React.FC<FloatingAgronomistTriggerProps>
                 type="button"
                 onClick={() => {
                   setIsOpen(false);
-                  onNavigate('calculator');
+                  onNavigate('contact');
                 }}
                 className="w-full flex items-center justify-between p-3 rounded-2xl bg-[#F8FAF7] hover:bg-gray-100 border border-gray-200/80 text-[#0B2412] transition-all group cursor-pointer"
               >
                 <div className="flex items-center gap-2.5">
-                  <div className="w-8 h-8 rounded-lg bg-amber-500 text-white flex items-center justify-center shrink-0">
-                    <Calculator className="w-4 h-4" />
+                  <div className="w-8 h-8 rounded-lg bg-emerald-700 text-white flex items-center justify-center shrink-0">
+                    <FileText className="w-4 h-4" />
                   </div>
                   <div className="text-left">
-                    <div className="text-xs font-bold text-[#0B2412]">Calculate Acreage Dose</div>
-                    <div className="text-[10px] text-gray-500 font-medium">Get exact trap quantities</div>
+                    <div className="text-xs font-bold text-[#0B2412]">Get Farm Quotation</div>
+                    <div className="text-[10px] text-gray-500 font-medium">Custom dosage &amp; pricing estimate</div>
                   </div>
                 </div>
                 <ChevronRight className="w-4 h-4 text-gray-400 group-hover:translate-x-1 transition-transform" />
@@ -177,11 +177,11 @@ export const FloatingAgronomistTrigger: React.FC<FloatingAgronomistTriggerProps>
 
         <button
           type="button"
-          onClick={() => onNavigate('calculator')}
-          className="flex-1 flex items-center justify-center gap-1.5 py-2.5 px-2 rounded-xl bg-[#0B2412] active:bg-[#143D1F] text-white text-xs font-bold transition-colors shadow-sm"
+          onClick={() => onNavigate('contact')}
+          className="flex-1 flex items-center justify-center gap-1.5 py-2.5 px-2 rounded-xl bg-[#0B2412] active:bg-[#143D1F] text-white text-xs font-bold transition-colors shadow-sm cursor-pointer"
         >
-          <Calculator className="w-3.5 h-3.5 text-[#A3E635]" />
-          <span>Dose Calc</span>
+          <FileText className="w-3.5 h-3.5 text-[#A3E635]" />
+          <span>Get Quote</span>
         </button>
       </div>
     </>

@@ -266,10 +266,10 @@ export const ChemicalVsBioComparison: React.FC<ChemicalVsBioComparisonProps> = (
           </span>
           <button
             type="button"
-            onClick={() => onNavigate('calculator')}
+            onClick={() => onNavigate('contact')}
             className="px-6 py-3 rounded-full bg-white hover:bg-[#E8F5E9] text-[#04170D] font-black text-xs transition-all cursor-pointer flex items-center gap-2 shadow-lg active:scale-95"
           >
-            <span>Open Comprehensive Acreage Calculator</span>
+            <span>Request Farm Bio-Conversion Quote</span>
             <ArrowRight className="w-4 h-4 text-[#04170D]" />
           </button>
         </div>

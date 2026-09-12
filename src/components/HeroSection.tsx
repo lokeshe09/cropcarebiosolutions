@@ -11,7 +11,6 @@ import orchardPanoramicBg from '../assets/images/orchard_panoramic_bg_1787649127
 interface HeroSectionProps {
   onExploreProducts: () => void;
   onOpenContact: () => void;
-  onOpenCalculator?: () => void;
 }
 
 export const HeroSection: React.FC<HeroSectionProps> = ({ 

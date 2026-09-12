@@ -274,10 +274,10 @@ export const InteractiveCropMatcher: React.FC<InteractiveCropMatcherProps> = ({ 
 
             <button
               type="button"
-              onClick={() => onNavigate('calculator')}
+              onClick={() => onNavigate('contact')}
               className="w-full py-2.5 px-3 rounded-xl bg-[#073B20] hover:bg-[#126B35] text-white text-xs font-black transition-all shadow-md flex items-center justify-center gap-1.5 cursor-pointer mt-2 active:scale-98"
             >
-              <span>Calculate My Acreage Cost</span>
+              <span>Request Farm Dosage &amp; Quote</span>
               <ChevronRight className="w-3.5 h-3.5 text-white" />
             </button>
           </div>

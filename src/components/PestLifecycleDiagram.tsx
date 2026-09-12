@@ -952,10 +952,10 @@ export const PestLifecycleDiagram: React.FC<PestLifecycleDiagramProps> = ({
                   {onNavigate && (
                     <button
                       type="button"
-                      onClick={() => onNavigate('calculator')}
+                      onClick={() => onNavigate('contact')}
                       className="flex-1 sm:flex-none px-3.5 py-2 rounded-xl text-xs font-bold bg-[#E8F5E9] hover:bg-[#C8E6C9] text-[#164E24] transition-colors cursor-pointer text-center"
                     >
-                      Dose Calculator
+                      Request Quotation
                     </button>
                   )}
                   {onExploreProducts && (

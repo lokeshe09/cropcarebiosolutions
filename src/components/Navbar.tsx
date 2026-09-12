@@ -211,32 +211,6 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
               Crop Solutions
             </button>
 
-            {/* How It Works */}
-            <button
-              type="button"
-              onClick={() => handleLinkClick('why-us')}
-              className={`px-3.5 py-1.5 text-[13px] xl:text-[13.5px] font-bold transition-all duration-200 relative whitespace-nowrap cursor-pointer rounded-full ${
-                currentPage === 'why-us'
-                  ? 'text-[#073B20] bg-white shadow-xs border border-gray-200'
-                  : 'text-[#34443B] hover:text-[#073B20] hover:bg-white/80'
-              }`}
-            >
-              How It Works
-            </button>
-
-            {/* Dose Calculator */}
-            <button
-              type="button"
-              onClick={() => handleLinkClick('calculator')}
-              className={`px-3.5 py-1.5 text-[13px] xl:text-[13.5px] font-bold transition-all duration-200 relative whitespace-nowrap cursor-pointer rounded-full ${
-                currentPage === 'calculator'
-                  ? 'text-[#073B20] bg-white shadow-xs border border-gray-200'
-                  : 'text-[#34443B] hover:text-[#073B20] hover:bg-white/80'
-              }`}
-            >
-              Dose Calculator
-            </button>
-
             {/* Gallery */}
             <button
               type="button"
@@ -329,24 +303,10 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
           </button>
           <button
             type="button"
-            onClick={() => handleLinkClick('why-us')}
-            className={`w-full text-left px-4 py-2.5 rounded-2xl text-sm font-bold transition-colors ${currentPage === 'why-us' ? 'bg-[#E8F5E9] text-[#073B20]' : 'text-[#34443B] hover:bg-gray-50'}`}
-          >
-            How It Works (Biocontrol Timeline)
-          </button>
-          <button
-            type="button"
             onClick={() => handleLinkClick('trap-guide')}
             className={`w-full text-left px-4 py-2.5 rounded-2xl text-sm font-bold transition-colors ${currentPage === 'trap-guide' ? 'bg-[#E8F5E9] text-[#073B20]' : 'text-[#34443B] hover:bg-gray-50'}`}
           >
             Gallery &amp; Field Hardware
-          </button>
-          <button
-            type="button"
-            onClick={() => handleLinkClick('calculator')}
-            className={`w-full text-left px-4 py-2.5 rounded-2xl text-sm font-bold transition-colors ${currentPage === 'calculator' ? 'bg-[#E8F5E9] text-[#073B20]' : 'text-[#34443B] hover:bg-gray-50'}`}
-          >
-            Acreage Dose Calculator
           </button>
           <button
             type="button"

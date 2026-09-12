@@ -59,10 +59,10 @@ export const QuickDoseEstimator: React.FC<QuickDoseEstimatorProps> = ({ onNaviga
 
           <button
             type="button"
-            onClick={() => onNavigate('calculator')}
+            onClick={() => onNavigate('contact')}
             className="inline-flex items-center gap-1.5 text-xs font-black text-[#8BE52A] hover:text-[#9cf53b] cursor-pointer shrink-0 px-4 py-2 rounded-full bg-white/15 border border-white/30 hover:bg-white/25 transition-all"
           >
-            <span>Open Advanced Farm Tool</span>
+            <span>Request Custom Farm Dosing</span>
             <ArrowRight className="w-4 h-4 text-[#8BE52A]" />
           </button>
         </div>

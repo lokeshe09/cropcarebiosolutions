@@ -5,7 +5,7 @@ import { AnimatedCard } from './AnimatedCard';
 
 export const WelcomeVisionSection: React.FC = () => {
   return (
-    <section id="why-us" className="py-20 relative overflow-hidden bg-[#FAF9F6]/60">
+    <section id="vision" className="py-20 relative overflow-hidden bg-[#FAF9F6]/60">
       {/* Soft background ambient blurs */}
       <div className="absolute top-1/2 left-0 w-80 h-80 rounded-full bg-[#E9EDC9] filter blur-[100px] opacity-40 pointer-events-none" />
       <div className="absolute bottom-0 right-0 w-80 h-80 rounded-full bg-[#FEFAE0] filter blur-[100px] opacity-50 pointer-events-none" />

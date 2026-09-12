@@ -37,7 +37,6 @@ export const HomePage: React.FC<HomePageProps> = ({
       <HeroSection 
         onExploreProducts={() => onNavigate('products')}
         onOpenContact={() => onNavigate('contact')}
-        onOpenCalculator={() => onNavigate('calculator')}
       />
 
       {/* 2. Editorial Horizontal Trust & Certification Strip */}
