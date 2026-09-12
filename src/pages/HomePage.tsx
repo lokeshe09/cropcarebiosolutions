@@ -6,7 +6,7 @@ import { EditorialPillarsStrip } from '../components/EditorialPillarsStrip';
 import { AgriculturalNarrativeSection } from '../components/AgriculturalNarrativeSection';
 import { RealFieldGallerySection } from '../components/RealFieldGallerySection';
 import { InteractiveCropMatcher } from '../components/InteractiveCropMatcher';
-import { PestLifecycleDiagram } from '../components/PestLifecycleDiagram';
+import { PestDisruptionDiagram } from '../components/PestDisruptionDiagram';
 import { ProductsSection } from '../components/ProductsSection';
 import { HowItWorksTimeline } from '../components/HowItWorksTimeline';
 import { ChemicalVsBioComparison } from '../components/ChemicalVsBioComparison';
@@ -61,9 +61,9 @@ export const HomePage: React.FC<HomePageProps> = ({
         <InteractiveCropMatcher onNavigate={onNavigate} />
       </section>
 
-      {/* 7. Interactive SVG Pest Lifecycle & Mating Disruption Diagram */}
+      {/* 7. Interactive SVG Pest Stages & Mating Disruption Diagram */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <PestLifecycleDiagram 
+        <PestDisruptionDiagram 
           onNavigate={onNavigate}
           onExploreProducts={() => onNavigate('products')}
         />

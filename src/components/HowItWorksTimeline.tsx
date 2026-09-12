@@ -115,7 +115,7 @@ export const HowItWorksTimeline: React.FC<HowItWorksTimelineProps> = ({ onNaviga
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-white/20">
             <div>
               <span className="text-xs font-mono uppercase text-[#8BE52A] tracking-widest block font-bold">
-                CHRONOLOGICAL BIOCONTROL LIFECYCLE
+                CHRONOLOGICAL BIOCONTROL TIMELINE
               </span>
               <h3 className="text-xl sm:text-2xl font-black text-white">
                 Sustained 60-Day Protection Pathway

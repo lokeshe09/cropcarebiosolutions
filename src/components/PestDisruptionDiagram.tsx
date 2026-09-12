@@ -21,7 +21,7 @@ import {
 } from 'lucide-react';
 import { PageId } from '../types';
 
-export interface PestLifecycleStage {
+export interface PestStage {
   id: 'adult' | 'egg' | 'larva' | 'pupa';
   name: string;
   scientificStage: string;
@@ -47,7 +47,7 @@ export interface PestProfile {
   recommendedLure: string;
   lureActivePeriod: string;
   damageType: string;
-  stages: PestLifecycleStage[];
+  stages: PestStage[];
 }
 
 const PEST_PROFILES: PestProfile[] = [
@@ -119,7 +119,7 @@ const PEST_PROFILES: PestProfile[] = [
         description: 'Mature maggots exit fallen fruit and burrow 2–5cm into soil to pupate in protective shells.',
         cropDamageDetails: 'Serves as an overwintering and inter-seasonal reservoir for the next devastating outbreak.',
         chemicalDrawback: 'Soil drenching chemicals destroy beneficial soil biology, earthworms, and mycorrhizae.',
-        bioTrapMechanism: 'Breaking the cycle eliminates soil pupation buildup, securing subsequent seasons from recurring attacks.',
+        bioTrapMechanism: 'Breaking pest reproduction eliminates soil pupation buildup, securing subsequent seasons from recurring attacks.',
         trapEfficacy: 'Long-Term Population Collapse',
         farmerAction: 'Combine with deep inter-row soil tillage and keep traps active continuously between seasons.',
         targetIcon: 'Layers',
@@ -347,7 +347,7 @@ const PEST_PROFILES: PestProfile[] = [
         description: 'Caterpillar forms a cocoon inside double cotton seeds, diapausing throughout the dry winter.',
         cropDamageDetails: 'Survives ginning and storage to infest the following spring crop in massive numbers.',
         chemicalDrawback: 'Diapausing pupae inside stored cotton seeds are impervious to field sprays.',
-        bioTrapMechanism: 'Breaking the seasonal summer breeding cycle stops diapause formation in ginning sheds.',
+        bioTrapMechanism: 'Breaking seasonal summer reproduction stops diapause formation in ginning sheds.',
         trapEfficacy: 'Eradicates Off-Season Reservoir',
         farmerAction: 'Proper ginning waste destruction and off-season pheromone trap monitoring in seed godowns.',
         targetIcon: 'Layers',
@@ -357,12 +357,12 @@ const PEST_PROFILES: PestProfile[] = [
   }
 ];
 
-interface PestLifecycleDiagramProps {
+interface PestDisruptionDiagramProps {
   onNavigate?: (page: PageId) => void;
   onExploreProducts?: () => void;
 }
 
-export const PestLifecycleDiagram: React.FC<PestLifecycleDiagramProps> = ({
+export const PestDisruptionDiagram: React.FC<PestDisruptionDiagramProps> = ({
   onNavigate,
   onExploreProducts
 }) => {
@@ -427,7 +427,7 @@ export const PestLifecycleDiagram: React.FC<PestLifecycleDiagramProps> = ({
             <span>Interactive Biocontrol Science</span>
           </div>
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#164E24] tracking-tight">
-            Pest Lifecycle & Mating Disruption Engine
+            Pest Stages &amp; Mating Disruption Engine
           </h2>
           <p className="text-xs sm:text-sm text-[#4B5563] leading-relaxed">
             Explore how species-specific pheromone traps intercept pest reproduction at the critical <strong className="text-[#164E24]">Adult Stage</strong>, halting egg deposition and eliminating 100% of internal fruit damage before it begins.
@@ -457,12 +457,12 @@ export const PestLifecycleDiagram: React.FC<PestLifecycleDiagramProps> = ({
             {isPlayingSimulation ? (
               <>
                 <Pause className="w-3.5 h-3.5 text-amber-600" />
-                <span>Pause Cycle</span>
+                <span>Pause Simulation</span>
               </>
             ) : (
               <>
                 <Play className="w-3.5 h-3.5 text-[#2E7D32]" />
-                <span>Simulate Cycle</span>
+                <span>Simulate Stages</span>
               </>
             )}
           </button>
@@ -518,14 +518,14 @@ export const PestLifecycleDiagram: React.FC<PestLifecycleDiagramProps> = ({
       {/* Main Interactive Diagram & Diagnostic Split View */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
         
-        {/* Left Column: Interactive SVG Lifecycle Engine (7 cols) */}
+        {/* Left Column: Interactive SVG Disruption Engine (7 cols) */}
         <div className="lg:col-span-6 flex flex-col items-center justify-center p-4 sm:p-6 rounded-3xl bg-white/60 backdrop-blur-xl border border-white/90 shadow-inner relative">
           
           {/* Quick status banner */}
           <div className="w-full flex items-center justify-between text-xs mb-3 px-2">
             <div className="flex items-center gap-1.5 font-bold text-[#164E24]">
               <Activity className="w-4 h-4 text-[#2E7D32]" />
-              <span>Interactive Orbital Cycle (Click Node to Inspect)</span>
+              <span>Interactive Stages &amp; Disruption (Click Node to Inspect)</span>
             </div>
             <div className="text-[11px] text-[#6B7280] font-medium bg-[#E8F5E9] px-2.5 py-0.5 rounded-full border border-[#C8E6C9] text-[#164E24]">
               Active: <span className="font-bold">{currentStage.name.split(' ')[0]}</span>
@@ -680,7 +680,7 @@ export const PestLifecycleDiagram: React.FC<PestLifecycleDiagramProps> = ({
                       y="8"
                       className="fill-[#4B5563] text-[9px] font-medium"
                     >
-                      Cycle Repeats
+                      Pest Multiplies
                     </text>
                     <text
                       textAnchor="middle"
