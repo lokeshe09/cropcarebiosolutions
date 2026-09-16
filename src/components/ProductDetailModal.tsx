@@ -32,53 +32,49 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
 
   const handleWhatsAppInquiry = () => {
     const text = encodeURIComponent(
-      `Hello Crop Care Bio Solutions! I am interested in inquiring about ${product.name} (Pest: ${product.pestCommonName}). Please provide pricing, trap recommendations, and technical specifications.`
+      `Hello Crop Care Bio Solutions! I am interested in inquiring about ${product.name} (Pest: ${product.pestCommonName}). Please provide pricing and technical specifications.`
     );
-    window.open(`https://wa.me/919448000000?text=${text}`, '_blank');
+    window.open(`https://wa.me/919876543210?text=${text}`, '_blank');
   };
 
   return (
-    <div className="fixed inset-0 z-50 overflow-y-auto bg-black/50 backdrop-blur-md flex items-center justify-center p-3 sm:p-4 md:p-6 animate-in fade-in duration-200">
+    <div className="fixed inset-0 z-50 overflow-y-auto bg-stone-900/60 backdrop-blur-xs flex items-center justify-center p-3 sm:p-4 md:p-6">
       
       {/* Click outside backdrop */}
       <div className="fixed inset-0" onClick={onClose} />
 
       {/* Modal Container */}
       <div 
-        className="relative w-full max-w-4xl rounded-[32px] bg-[#FAF9F6] border border-white/90 shadow-2xl p-6 sm:p-8 z-10 max-h-[90vh] overflow-y-auto space-y-6"
+        className="relative w-full max-w-4xl rounded-2xl bg-white border border-stone-300 shadow-2xl p-6 sm:p-8 z-10 max-h-[92vh] overflow-y-auto space-y-6 text-left"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Top Bar with Close Button */}
-        <div className="flex items-start justify-between gap-4 border-b border-[#606C38]/10 pb-4">
+        <div className="flex items-start justify-between gap-4 border-b border-stone-200 pb-4">
           <div>
             <div className="flex flex-wrap items-center gap-2 mb-1.5">
-              <span className="text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-[#E9EDC9] text-[#283618] border border-[#606C38]/20">
+              <span className="text-[11px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded bg-emerald-100 text-emerald-800 border border-emerald-200">
                 {product.category.toUpperCase().replace('_', ' ')}
               </span>
               {product.badge && (
-                <span className="text-[10px] font-semibold px-2.5 py-0.5 rounded-full bg-[#FEFAE0] text-[#BC6C25] border border-[#DDA15E]/30">
+                <span className="text-[11px] font-medium px-2.5 py-0.5 rounded bg-amber-50 text-amber-800 border border-amber-200">
                   {product.badge}
                 </span>
               )}
-              {product.isomericPurity && (
-                <span className="text-[10px] font-semibold px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200">
-                  {product.isomericPurity}
-                </span>
-              )}
             </div>
-            <h2 className="text-xl sm:text-2xl font-serif font-bold text-[#283618] leading-tight">
+            <h2 className="text-xl sm:text-2xl font-bold text-stone-900 leading-tight">
               {product.name}
             </h2>
-            {product.scientificName && (
-              <p className="text-xs text-[#606C38] italic mt-0.5">
-                Target Pest: {product.pestCommonName} ({product.scientificName})
+            {product.pestCommonName && (
+              <p className="text-xs text-stone-600 mt-0.5">
+                Target Pest: <span className="font-semibold text-stone-800">{product.pestCommonName}</span>
+                {product.scientificName && <span className="italic ml-1">({product.scientificName})</span>}
               </p>
             )}
           </div>
 
           <button
             onClick={onClose}
-            className="p-2.5 rounded-full text-[#666] hover:text-[#283618] hover:bg-white/80 border border-white/80 transition-colors shrink-0 shadow-2xs cursor-pointer"
+            className="p-2 rounded-lg text-stone-500 hover:text-stone-900 hover:bg-stone-100 border border-stone-200 transition-colors shrink-0 cursor-pointer"
             aria-label="Close details"
           >
             <X className="w-5 h-5" />
@@ -89,11 +85,11 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {/* 1. Lure Image */}
           <div className="space-y-1.5">
-            <span className="text-[10px] font-bold uppercase tracking-wider text-[#606C38] block">
-              Manufactured Lure Pouch:
+            <span className="text-xs font-semibold uppercase tracking-wider text-stone-700 block">
+              Pheromone Lure Pouch:
             </span>
             <div 
-              className="cursor-pointer"
+              className="cursor-pointer border border-stone-200 rounded-xl overflow-hidden bg-stone-50"
               onClick={() => product.imageUrl && onZoomImage && onZoomImage(product.imageUrl, product.name)}
             >
               <SafeImage
@@ -108,11 +104,11 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
 
           {/* 2. Paired Trap Hardware */}
           <div className="space-y-1.5">
-            <span className="text-[10px] font-bold uppercase tracking-wider text-[#BC6C25] block">
-              Compatible Field Trapping Hardware:
+            <span className="text-xs font-semibold uppercase tracking-wider text-stone-700 block">
+              Compatible Field Trap:
             </span>
             <div 
-              className="cursor-pointer"
+              className="cursor-pointer border border-stone-200 rounded-xl overflow-hidden bg-stone-50"
               onClick={() => product.trapImageUrl && onZoomImage && onZoomImage(product.trapImageUrl, `${product.name} Compatible Trap`)}
             >
               <SafeImage
@@ -126,53 +122,52 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
           </div>
         </div>
 
-        {/* Quick Specs Strip */}
+        {/* Quick Specs Grid */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-          <div className="p-3.5 rounded-[20px] bg-white/70 border border-white/90 shadow-2xs">
-            <div className="flex items-center gap-1.5 text-xs text-[#606C38] font-semibold mb-0.5">
-              <Clock className="w-3.5 h-3.5" />
-              <span>Field Longevity</span>
+          <div className="p-3.5 rounded-lg bg-stone-50 border border-stone-200">
+            <div className="flex items-center gap-1.5 text-xs text-stone-600 font-semibold mb-0.5">
+              <Clock className="w-3.5 h-3.5 text-emerald-800" />
+              <span>Field Life</span>
             </div>
-            <p className="text-xs font-medium text-[#283618]">{product.fieldLife}</p>
+            <p className="text-xs font-bold text-stone-900">{product.fieldLife}</p>
           </div>
 
-          <div className="p-3.5 rounded-[20px] bg-white/70 border border-white/90 shadow-2xs">
-            <div className="flex items-center gap-1.5 text-xs text-[#BC6C25] font-semibold mb-0.5">
-              <Calendar className="w-3.5 h-3.5" />
-              <span>Pouch Shelf Life</span>
+          <div className="p-3.5 rounded-lg bg-stone-50 border border-stone-200">
+            <div className="flex items-center gap-1.5 text-xs text-stone-600 font-semibold mb-0.5">
+              <Calendar className="w-3.5 h-3.5 text-amber-800" />
+              <span>Shelf Life</span>
             </div>
-            <p className="text-xs font-medium text-[#283618]">{product.shelfLife}</p>
+            <p className="text-xs font-bold text-stone-900">{product.shelfLife}</p>
           </div>
 
-          <div className="p-3.5 rounded-[20px] bg-white/70 border border-white/90 shadow-2xs">
-            <div className="flex items-center gap-1.5 text-xs text-[#283618] font-semibold mb-0.5">
-              <Layers className="w-3.5 h-3.5 text-[#606C38]" />
+          <div className="p-3.5 rounded-lg bg-stone-50 border border-stone-200">
+            <div className="flex items-center gap-1.5 text-xs text-stone-600 font-semibold mb-0.5">
+              <Layers className="w-3.5 h-3.5 text-stone-700" />
               <span>Monitoring</span>
             </div>
-            <p className="text-xs font-medium text-[#283618]">{product.monitoringDensity || '4–6 / acre'}</p>
+            <p className="text-xs font-bold text-stone-900">{product.monitoringDensity || '4–6 / acre'}</p>
           </div>
 
-          <div className="p-3.5 rounded-[20px] bg-white/70 border border-white/90 shadow-2xs">
-            <div className="flex items-center gap-1.5 text-xs text-[#BC6C25] font-semibold mb-0.5">
-              <ShieldCheck className="w-3.5 h-3.5 text-[#BC6C25]" />
+          <div className="p-3.5 rounded-lg bg-stone-50 border border-stone-200">
+            <div className="flex items-center gap-1.5 text-xs text-stone-600 font-semibold mb-0.5">
+              <ShieldCheck className="w-3.5 h-3.5 text-emerald-800" />
               <span>Mass Trapping</span>
             </div>
-            <p className="text-xs font-medium text-[#283618]">{product.massTrappingDensity || product.trapsPerAcre}</p>
+            <p className="text-xs font-bold text-stone-900">{product.massTrappingDensity || product.trapsPerAcre}</p>
           </div>
         </div>
 
         {/* Target Crops */}
-        <div className="space-y-3">
-          <h3 className="text-sm font-serif font-bold text-[#283618] flex items-center gap-2">
-            <Sparkles className="w-4 h-4 text-[#606C38]" />
-            Target Crops & Horticultural Applications
+        <div className="space-y-2.5">
+          <h3 className="text-sm font-bold text-stone-900 flex items-center gap-2">
+            <Sparkles className="w-4 h-4 text-emerald-800" />
+            Target Crops
           </h3>
-
           <div className="flex flex-wrap gap-1.5">
             {product.targetCrops.map((crop) => (
               <span
                 key={crop}
-                className="px-3 py-1 rounded-full text-xs font-medium bg-[#FEFAE0] text-[#283618] border border-[#DDA15E]/30"
+                className="px-2.5 py-1 rounded text-xs font-medium bg-stone-100 text-stone-800 border border-stone-200"
               >
                 {crop}
               </span>
@@ -180,35 +175,35 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
           </div>
         </div>
 
-        {/* Application Protocol */}
+        {/* How to Apply (From PDF) */}
         <div className="space-y-3">
-          <h3 className="text-sm font-serif font-bold text-[#283618] flex items-center gap-2">
-            <CheckCircle2 className="w-4 h-4 text-[#606C38]" />
-            Standard Field Deployment Protocol
+          <h3 className="text-sm font-bold text-stone-900 flex items-center gap-2">
+            <CheckCircle2 className="w-4 h-4 text-emerald-800" />
+            How to Apply
           </h3>
-          <ul className="space-y-2">
+          <ol className="space-y-2">
             {product.applicationInstructions.map((step, idx) => (
-              <li key={idx} className="flex items-start gap-2.5 text-xs text-[#555]">
-                <span className="w-5 h-5 rounded-full bg-[#E9EDC9] text-[#283618] font-bold flex items-center justify-center shrink-0 text-[11px] border border-[#606C38]/20">
+              <li key={idx} className="flex items-start gap-2.5 text-xs text-stone-700">
+                <span className="w-5 h-5 rounded bg-emerald-100 text-emerald-900 font-bold flex items-center justify-center shrink-0 text-[11px] border border-emerald-200">
                   {idx + 1}
                 </span>
-                <span className="pt-0.5">{step}</span>
+                <span className="pt-0.5 leading-relaxed">{step}</span>
               </li>
             ))}
-          </ul>
+          </ol>
         </div>
 
-        {/* Storage & Safe Disposal */}
-        <div className="space-y-3">
-          <h3 className="text-sm font-serif font-bold text-[#283618] flex items-center gap-2">
-            <ShieldAlert className="w-4 h-4 text-[#BC6C25]" />
-            Storage & Quality Preservation Protocol
+        {/* How to Storage & Disposal it (From PDF) */}
+        <div className="space-y-2.5">
+          <h3 className="text-sm font-bold text-stone-900 flex items-center gap-2">
+            <ShieldAlert className="w-4 h-4 text-amber-800" />
+            How to Storage &amp; Disposal it
           </h3>
-          <div className="p-4 rounded-[20px] bg-[#FEFAE0]/70 border border-[#DDA15E]/30 space-y-2">
+          <div className="p-4 rounded-xl bg-amber-50/50 border border-amber-200/80 space-y-2">
             {product.storageAndDisposal.map((rule, idx) => (
-              <div key={idx} className="flex items-start gap-2 text-xs text-[#555]">
-                <span className="text-[#BC6C25] font-bold">•</span>
-                <span>{rule}</span>
+              <div key={idx} className="flex items-start gap-2 text-xs text-stone-700">
+                <span className="text-amber-800 font-bold">•</span>
+                <span className="leading-relaxed">{rule}</span>
               </div>
             ))}
           </div>
@@ -216,14 +211,14 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
 
         {/* Recommended Trap Types */}
         <div className="space-y-2">
-          <h3 className="text-sm font-serif font-bold text-[#283618]">Recommended Compatible Traps</h3>
+          <h3 className="text-sm font-bold text-stone-900">Recommended Traps</h3>
           <div className="flex flex-wrap gap-2">
             {product.recommendedTraps.map((trap) => (
               <span
                 key={trap}
-                className="px-3.5 py-1.5 rounded-full text-xs font-semibold bg-white/70 text-[#283618] border border-white/90 shadow-2xs flex items-center gap-1.5"
+                className="px-3 py-1.5 rounded-lg text-xs font-semibold bg-stone-100 text-stone-800 border border-stone-200 flex items-center gap-1.5"
               >
-                <Check className="w-3 h-3 text-[#606C38]" />
+                <Check className="w-3.5 h-3.5 text-emerald-800" />
                 {trap}
               </span>
             ))}
@@ -231,23 +226,23 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
         </div>
 
         {/* Footer Actions */}
-        <div className="pt-4 border-t border-[#606C38]/10 flex flex-col sm:flex-row items-center justify-between gap-3">
+        <div className="pt-4 border-t border-stone-200 flex flex-col sm:flex-row items-center justify-between gap-3">
           <button
             onClick={() => {
               onClose();
               onSelectForInquiry(product.name);
             }}
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full text-xs font-bold uppercase tracking-wider text-white bg-[#606C38] hover:bg-[#283618] shadow-md shadow-[#606C38]/20 transition-all cursor-pointer"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg text-xs font-bold uppercase tracking-wider text-white bg-[#073B20] hover:bg-[#126B35] shadow-xs transition-colors cursor-pointer"
           >
             <Send className="w-4 h-4" />
-            <span>Request Commercial Quotation</span>
+            <span>Inquire About This Product</span>
           </button>
 
           <button
             onClick={handleWhatsAppInquiry}
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-full text-xs font-semibold text-[#283618] bg-white/70 hover:bg-[#E9EDC9] border border-white/90 transition-colors shadow-2xs cursor-pointer"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3 rounded-lg text-xs font-semibold text-stone-800 bg-stone-100 hover:bg-stone-200 border border-stone-300 transition-colors cursor-pointer"
           >
-            <PhoneCall className="w-4 h-4 text-[#606C38]" />
+            <PhoneCall className="w-4 h-4 text-emerald-800" />
             <span>Chat on WhatsApp</span>
           </button>
         </div>

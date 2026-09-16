@@ -20,44 +20,40 @@ export const PageHeader: React.FC<PageHeaderProps> = ({
   onNavigate,
 }) => {
   return (
-    <div className="pt-28 pb-10 sm:pb-12 text-center max-w-4xl mx-auto px-4 relative z-10 space-y-4">
-      {/* Breadcrumbs */}
-      <div className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-white border border-gray-300 text-xs text-[#34443B] font-bold shadow-xs">
+    <div className="pt-10 sm:pt-14 pb-8 sm:pb-10 text-center max-w-4xl mx-auto px-4 relative z-10 space-y-3 sm:space-y-4">
+      {/* Clean Minimal Breadcrumb */}
+      <nav aria-label="Breadcrumb" className="flex items-center justify-center gap-2 text-xs text-stone-500 font-medium">
         <button
+          type="button"
           onClick={() => onNavigate('home')}
-          className="hover:text-[#073B20] flex items-center gap-1 cursor-pointer font-bold transition-colors"
+          className="hover:text-stone-900 transition-colors cursor-pointer flex items-center gap-1"
         >
-          <Home className="w-3.5 h-3.5 text-[#073B20]" />
+          <Home className="w-3.5 h-3.5" />
           <span>Home</span>
         </button>
-        <ChevronRight className="w-3.5 h-3.5 text-gray-400" />
-        <span className="text-[#073B20] font-black capitalize">
+        <ChevronRight className="w-3.5 h-3.5 text-stone-300" />
+        <span className="text-stone-800 font-semibold capitalize">
           {currentPage.replace('-', ' ')}
         </span>
+      </nav>
+
+      {/* Refined Category Eyebrow */}
+      <div className="text-xs font-semibold tracking-wider uppercase text-emerald-800">
+        {badge}
       </div>
 
-      {/* Category Eyebrow Badge */}
-      <div className="flex justify-center">
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#E8F5E9] border border-[#C8E6C9] shadow-xs">
-          <Sparkles className="w-3.5 h-3.5 text-[#126B35]" />
-          <span className="text-xs font-black text-[#073B20] tracking-[0.2em] uppercase">
-            {badge}
-          </span>
-        </div>
-      </div>
-
-      {/* Main Page Title with absolute contrast */}
-      <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black text-[#073B20] leading-[1.1] tracking-tight">
+      {/* Main Page Title */}
+      <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-stone-900 tracking-tight leading-tight">
         {title}{' '}
         {highlightText && (
-          <span className="text-[#126B35] font-black block sm:inline">
+          <span className="text-[#073B20] block sm:inline">
             {highlightText}
           </span>
         )}
       </h1>
 
       {/* Page Subtitle */}
-      <p className="text-sm sm:text-base text-[#34443B] max-w-2xl mx-auto font-medium leading-relaxed">
+      <p className="text-sm sm:text-base text-stone-600 max-w-2xl mx-auto leading-relaxed">
         {subtitle}
       </p>
     </div>
