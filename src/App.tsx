@@ -1,185 +1,155 @@
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
-import { PageId, Product } from './types';
-import { Navbar } from './components/Navbar';
-import { Footer } from './components/Footer';
-import { FloatingAgronomistTrigger } from './components/FloatingAgronomistTrigger';
-import { ProductDetailModal } from './components/ProductDetailModal';
-import { ImageLightboxModal } from './components/ImageLightboxModal';
-
-// Dedicated Section Pages
+import { useCallback, useEffect, useState } from 'react';
+import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
+import type { PageId, Product } from './types';
+import { PAGE_TITLES } from './data/site';
+import { Navbar } from './components/layout/Navbar';
+import { Footer } from './components/layout/Footer';
+import { ProductSheet } from './components/product/ProductSheet';
+import { Lightbox } from './components/ui/Lightbox';
+import { WhatsAppTab } from './components/layout/WhatsAppTab';
 import { HomePage } from './pages/HomePage';
 import { AboutPage } from './pages/AboutPage';
 import { ProductsPage } from './pages/ProductsPage';
-import { PestFinderPage } from './pages/PestFinderPage';
-import { TrapGuidePage } from './pages/TrapGuidePage';
+import { TrapsPage } from './pages/TrapsPage';
+import { CropSolutionsPage } from './pages/CropSolutionsPage';
 import { ContactPage } from './pages/ContactPage';
 
-export function App() {
-  const [currentPage, setCurrentPage] = useState<PageId>('home');
-  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
-  
-  // Quotation pre-fill state
-  const [preFilledProduct, setPreFilledProduct] = useState<string>('');
-  const [preFilledAcreage, setPreFilledAcreage] = useState<string>('');
+const PAGES: PageId[] = ['home', 'about', 'products', 'traps', 'crop-solutions', 'contact'];
 
-  // Lightbox Modal state
-  const [lightboxOpen, setLightboxOpen] = useState<boolean>(false);
-  const [lightboxSrc, setLightboxSrc] = useState<string>('');
-  const [lightboxAlt, setLightboxAlt] = useState<string>('');
+/** Hashes used by the earlier version of the site, kept working. */
+const LEGACY_HASHES: Record<string, PageId> = {
+  'trap-guide': 'traps',
+  'pest-finder': 'crop-solutions',
+};
 
-  // Handle URL hash routing
+const readHash = (): PageId => {
+  const hash = window.location.hash.replace(/^#\/?/, '');
+  if (PAGES.includes(hash as PageId)) return hash as PageId;
+  return LEGACY_HASHES[hash] ?? 'home';
+};
+
+export default function App() {
+  // Resolved before first paint, so a deep link renders its page directly
+  // instead of mounting home and transitioning away from it.
+  const [page, setPage] = useState<PageId>(readHash);
+  const [sheetProduct, setSheetProduct] = useState<Product | null>(null);
+  const [quoteProduct, setQuoteProduct] = useState('');
+  const [lightbox, setLightbox] = useState<{ src: string; alt: string } | null>(null);
+  const reduceMotion = useReducedMotion();
+
   useEffect(() => {
-    const handleHashChange = () => {
-      const hash = window.location.hash.replace('#', '') as PageId;
-      const validPages: PageId[] = [
-        'home',
-        'about',
-        'products',
-        'pest-finder',
-        'trap-guide',
-        'contact',
-      ];
-      if (validPages.includes(hash)) {
-        setCurrentPage(hash);
-      }
-    };
-
-    handleHashChange();
-    window.addEventListener('hashchange', handleHashChange);
-    return () => window.removeEventListener('hashchange', handleHashChange);
+    const sync = () => setPage(readHash());
+    sync();
+    window.addEventListener('hashchange', sync);
+    return () => window.removeEventListener('hashchange', sync);
   }, []);
 
-  const handleNavigate = (page: PageId) => {
-    setCurrentPage(page);
-    window.location.hash = page;
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
+  /* Keep the tab title in step with the route, for history and bookmarks. */
+  useEffect(() => {
+    document.title =
+      page === 'home'
+        ? 'Crop Care Bio Solutions — Pheromone Lures & Insect Traps'
+        : `${PAGE_TITLES[page]} — Crop Care Bio Solutions`;
+  }, [page]);
 
-  const handleOpenProductModal = (product: Product) => {
-    setSelectedProduct(product);
-  };
+  const navigate = useCallback(
+    (next: PageId) => {
+      window.location.hash = next;
+      setPage(next);
+      window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
+    },
+    [reduceMotion],
+  );
 
-  const handleCloseProductModal = () => {
-    setSelectedProduct(null);
-  };
+  const requestQuote = useCallback(
+    (productName: string) => {
+      setQuoteProduct(productName);
+      navigate('contact');
+    },
+    [navigate],
+  );
 
-  const handleInquireProduct = (productName: string) => {
-    setPreFilledProduct(productName);
-    handleNavigate('contact');
-  };
-
-  const handlePreFillInquiry = (productName: string, acreage: string) => {
-    setPreFilledProduct(productName);
-    setPreFilledAcreage(acreage);
-    handleNavigate('contact');
-  };
-
-  const handleOpenLightbox = (src: string, alt: string) => {
-    setLightboxSrc(src);
-    setLightboxAlt(alt);
-    setLightboxOpen(true);
-  };
-
-  const handleCloseLightbox = () => {
-    setLightboxOpen(false);
-  };
+  const openZoom = useCallback((src: string, alt: string) => setLightbox({ src, alt }), []);
+  const closeSheet = useCallback(() => setSheetProduct(null), []);
 
   return (
-    <div className="min-h-screen bg-[#FAF9F6] text-[#3C3C3C] flex flex-col font-sans selection:bg-[#606C38] selection:text-white relative">
-      
-      {/* Sticky Global Glassmorphic Navbar */}
-      <Navbar
-        currentPage={currentPage}
-        onNavigate={handleNavigate}
-      />
+    <div className="flex min-h-screen flex-col bg-paper">
+      <a
+        href="#main"
+        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[200] focus:rounded-full focus:bg-pine focus:px-5 focus:py-3 focus:text-sm focus:text-paper"
+      >
+        Skip to content
+      </a>
 
-      {/* Main Content Area with Smooth Page Transitions */}
-      <main className="flex-1">
-        <AnimatePresence mode="wait">
+      <Navbar currentPage={page} onNavigate={navigate} />
+
+      <main id="main" className="flex-1">
+        <AnimatePresence mode="wait" initial={false}>
           <motion.div
-            key={currentPage}
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -12 }}
-            transition={{ duration: 0.25, ease: 'easeOut' }}
+            key={page}
+            initial={reduceMotion ? false : { opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={reduceMotion ? undefined : { opacity: 0 }}
+            transition={{ duration: 0.22, ease: 'easeOut' }}
           >
-            {currentPage === 'home' && (
+            {page === 'home' && (
               <HomePage
-                onNavigate={handleNavigate}
-                onSelectProduct={handleOpenProductModal}
-                onInquireProduct={handleInquireProduct}
-                onZoomImage={handleOpenLightbox}
+                onNavigate={navigate}
+                onOpenProduct={setSheetProduct}
+                onZoom={openZoom}
               />
             )}
 
-            {currentPage === 'about' && (
-              <AboutPage
-                onNavigate={handleNavigate}
-              />
-            )}
+            {page === 'about' && <AboutPage onNavigate={navigate} />}
 
-            {currentPage === 'products' && (
+            {page === 'products' && (
               <ProductsPage
-                onNavigate={handleNavigate}
-                onSelectProduct={handleOpenProductModal}
-                onInquireProduct={handleInquireProduct}
-                onZoomImage={handleOpenLightbox}
+                onNavigate={navigate}
+                onOpenProduct={setSheetProduct}
+                onRequestQuote={requestQuote}
               />
             )}
 
-            {currentPage === 'pest-finder' && (
-              <PestFinderPage
-                onNavigate={handleNavigate}
-                onSelectProduct={handleOpenProductModal}
-                onInquireProduct={handleInquireProduct}
-                onZoomImage={handleOpenLightbox}
+            {page === 'traps' && (
+              <TrapsPage
+                onNavigate={navigate}
+                onRequestQuote={requestQuote}
+                onZoom={openZoom}
               />
             )}
 
-            {currentPage === 'trap-guide' && (
-              <TrapGuidePage
-                onNavigate={handleNavigate}
-                onInquireItem={handleInquireProduct}
-                onZoomImage={handleOpenLightbox}
+            {page === 'crop-solutions' && (
+              <CropSolutionsPage
+                onNavigate={navigate}
+                onOpenProduct={setSheetProduct}
+                onRequestQuote={requestQuote}
               />
             )}
 
-            {currentPage === 'contact' && (
-              <ContactPage
-                onNavigate={handleNavigate}
-                preFilledProduct={preFilledProduct}
-                preFilledAcreage={preFilledAcreage}
-              />
+            {page === 'contact' && (
+              <ContactPage onNavigate={navigate} prefillProduct={quoteProduct} />
             )}
           </motion.div>
         </AnimatePresence>
       </main>
 
-      {/* Global Comprehensive Footer */}
-      <Footer onNavigate={handleNavigate} />
+      <Footer onNavigate={navigate} />
 
-      {/* Persistent Floating Agronomist & Mobile Action Bar */}
-      <FloatingAgronomistTrigger onNavigate={handleNavigate} />
+      <WhatsAppTab />
 
-      {/* Product Detail Modal */}
-      <ProductDetailModal
-        product={selectedProduct}
-        onClose={handleCloseProductModal}
-        onSelectForInquiry={handleInquireProduct}
-        onZoomImage={handleOpenLightbox}
+      <ProductSheet
+        product={sheetProduct}
+        onClose={closeSheet}
+        onRequestQuote={requestQuote}
+        onZoom={openZoom}
       />
 
-      {/* Full-Screen Image Lightbox Modal */}
-      <ImageLightboxModal
-        isOpen={lightboxOpen}
-        imageSrc={lightboxSrc}
-        imageAlt={lightboxAlt}
-        onClose={handleCloseLightbox}
+      <Lightbox
+        open={lightbox !== null}
+        src={lightbox?.src ?? ''}
+        alt={lightbox?.alt ?? ''}
+        onClose={() => setLightbox(null)}
       />
-
     </div>
   );
 }
-
-export default App;

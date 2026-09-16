@@ -1,269 +1,190 @@
-import React from 'react';
-import { 
-  Target, 
-  Eye, 
-  Heart, 
-  Sprout, 
-  Leaf, 
-  Lightbulb, 
-  Users, 
-  ArrowRight,
-  ShieldCheck,
-  CheckCircle2
-} from 'lucide-react';
-import { PageId } from '../types';
-import { PageHeader } from '../components/PageHeader';
-import { PageFooterBanner } from '../components/PageFooterBanner';
+import type { PageId } from '../types';
+import { ABOUT, WE_STAND_FOR } from '../data/site';
+import { PageIntro } from '../components/layout/PageIntro';
+import { PageHandoff } from '../components/layout/PageHandoff';
+import { SectionHeading } from '../components/ui/SectionHeading';
+import { Reveal } from '../components/ui/Reveal';
+import { Button } from '../components/ui/Button';
+import agronomist from '../assets/images/agronomist_field_inspection_1787652581807.webp';
+import harvest from '../assets/images/export_mango_harvest_1787652565787.webp';
+import farmer from '../assets/images/indian_farmer_field_1787640498872.webp';
 
 interface AboutPageProps {
   onNavigate: (page: PageId) => void;
 }
 
-export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
+export function AboutPage({ onNavigate }: AboutPageProps) {
   return (
-    <div className="space-y-12 bg-stone-50/50 pb-8">
-      {/* 1. Page Header */}
-      <PageHeader
-        badge="About Us"
-        title="Crop Care Bio Solutions"
-        highlightText="Caring for Farmers. Caring for Nature."
-        subtitle="Manufacturer and exporter of eco-friendly pest management solutions, specializing in pheromone lures and insect traps."
-        currentPage="about"
+    <>
+      <PageIntro
+        breadcrumb="About"
+        eyebrow="About us"
+        title="Caring for farmers. Caring for nature."
+        lead={ABOUT.welcome}
         onNavigate={onNavigate}
       />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-14">
-        
-        {/* 2. Welcome Banner (Directly from PDF Page 2) */}
-        <div className="p-8 sm:p-10 rounded-2xl bg-white border border-stone-200 shadow-xs text-left space-y-3">
-          <span className="text-xs font-bold uppercase tracking-wider text-emerald-800">
-            Welcome
-          </span>
-          <h2 className="text-2xl sm:text-3xl font-bold text-stone-900 leading-snug">
-            Welcome to Crop Care Bio Solutions
-          </h2>
-          <p className="text-lg text-emerald-900 font-medium leading-relaxed">
-            &ldquo;Empowering farmers everywhere and honoring the Earth that gives life to us.&rdquo;
-          </p>
-        </div>
+      {/* About the company */}
+      <section className="bg-paper py-16 lg:py-24">
+        <div className="mx-auto max-w-[1320px] px-5 sm:px-8">
+          <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
+            <Reveal className="lg:col-span-5">
+              <figure className="sticky top-28">
+                <img
+                  src={farmer}
+                  alt="A farmer walking through a standing crop"
+                  className="aspect-[4/5] w-full object-cover"
+                />
+              </figure>
+            </Reveal>
 
-        {/* 3. About the Company (Word-for-Word from PDF Page 2) */}
-        <div className="p-8 sm:p-10 rounded-2xl bg-white border border-stone-200 shadow-xs text-left space-y-6">
-          <div className="space-y-2">
-            <span className="text-xs font-bold uppercase tracking-wider text-emerald-800">
-              Company Overview
-            </span>
-            <h2 className="text-2xl sm:text-3xl font-bold text-stone-900">
-              About the Company
-            </h2>
-          </div>
+            <div className="lg:col-span-7">
+              <SectionHeading index="01" eyebrow="Crop Care Bio Solutions" title="About the Company" />
 
-          <div className="space-y-4 text-base text-stone-700 leading-relaxed max-w-4xl">
-            <p>
-              <strong className="text-stone-900 font-semibold">Crop Care Bio Solutions</strong> is a manufacturer and exporter of eco-friendly pest management solutions, specializing in pheromone lures and insect traps designed to help farmers protect their crops naturally and effectively.
-            </p>
-            <p>
-              At Crop Care Bio Solutions, we care deeply for both farmers and nature. Every product we create is simple, effective, and affordable — developed with a passion to empower farmers through science that works with nature, not against it.
-            </p>
-            <p>
-              Our goal is not just to sell products, but to build awareness, trust, and confidence among farmers, helping them adopt sustainable and nature-friendly farming practices that preserve soil, water, and the environment for future generations.
-            </p>
-          </div>
+              <div className="mt-10 space-y-6 text-[17px] leading-relaxed text-ink-2">
+                {ABOUT.company.map((paragraph) => (
+                  <p key={paragraph.slice(0, 40)}>{paragraph}</p>
+                ))}
+              </div>
 
-          <div className="pt-4 border-t border-stone-100 flex flex-wrap items-center gap-6 text-xs text-stone-600">
-            <span className="flex items-center gap-1.5">
-              <CheckCircle2 className="w-4 h-4 text-emerald-700" /> Manufacturer &amp; Exporter
-            </span>
-            <span className="flex items-center gap-1.5">
-              <CheckCircle2 className="w-4 h-4 text-emerald-700" /> Pheromone Lures &amp; Traps
-            </span>
-            <span className="flex items-center gap-1.5">
-              <CheckCircle2 className="w-4 h-4 text-emerald-700" /> Preserving Soil &amp; Water
-            </span>
+              <dl className="mt-12 grid gap-px overflow-hidden border border-line bg-line sm:grid-cols-3">
+                <div className="bg-paper p-6">
+                  <dt className="eyebrow">What we do</dt>
+                  <dd className="mt-2.5 text-[15px] text-pine">Manufacturer &amp; exporter</dd>
+                </div>
+                <div className="bg-paper p-6">
+                  <dt className="eyebrow">What we make</dt>
+                  <dd className="mt-2.5 text-[15px] text-pine">Pheromone lures &amp; insect traps</dd>
+                </div>
+                <div className="bg-paper p-6">
+                  <dt className="eyebrow">What it protects</dt>
+                  <dd className="mt-2.5 text-[15px] text-pine">Soil, water and the harvest</dd>
+                </div>
+              </dl>
+            </div>
           </div>
         </div>
+      </section>
 
-        {/* 4. Mission & Vision (Word-for-Word from PDF Page 2) */}
-        <div className="space-y-6">
-          <div className="text-left space-y-1">
-            <span className="text-xs font-bold uppercase tracking-wider text-emerald-800">
-              Strategic Purpose
-            </span>
-            <h2 className="text-2xl sm:text-3xl font-bold text-stone-900">
-              Mission &amp; Vision 🌱🌍
-            </h2>
-          </div>
+      {/* Mission & Vision */}
+      <section className="bg-pine py-20 text-paper lg:py-28">
+        <div className="mx-auto max-w-[1320px] px-5 sm:px-8">
+          <SectionHeading index="02" eyebrow="Crop Care Bio Solutions" title="Mission & Vision" tone="dark" />
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-left">
-            
-            {/* Mission Card */}
-            <div className="p-8 rounded-xl bg-white border border-stone-200 shadow-xs space-y-4 hover:border-emerald-300 transition-colors">
-              <div className="w-10 h-10 rounded-lg bg-emerald-50 text-emerald-800 flex items-center justify-center">
-                <Target className="w-5 h-5 text-emerald-800" />
-              </div>
-              <div>
-                <span className="text-xs font-bold uppercase tracking-wider text-emerald-800">
-                  Mission
-                </span>
-                <h3 className="text-xl font-bold text-stone-900 mt-1 mb-2">
-                  Empowering Farmers in Harmony with Nature
-                </h3>
-              </div>
-              <p className="text-sm text-stone-600 leading-relaxed">
-                At Crop Care Bio Solutions, our mission is to empower farmers with eco-friendly, safe, and effective crop protection solutions that work in harmony with nature. We strive to reduce chemical dependency, preserve soil and water, and provide scientifically-backed, affordable products that help every farmer cultivate healthy and productive crops.
+          <div className="mt-14 grid gap-px overflow-hidden border border-white/12 bg-white/12 lg:grid-cols-2">
+            <article className="bg-pine p-8 lg:p-12">
+              <p className="font-mono text-[12px] uppercase tracking-[0.18em] text-clay-soft">
+                Mission
               </p>
-            </div>
+              <p className="mt-5 text-[16px] leading-relaxed text-paper/70">{ABOUT.mission}</p>
+            </article>
 
-            {/* Vision Card */}
-            <div className="p-8 rounded-xl bg-white border border-stone-200 shadow-xs space-y-4 hover:border-emerald-300 transition-colors">
-              <div className="w-10 h-10 rounded-lg bg-amber-50 text-amber-800 flex items-center justify-center">
-                <Eye className="w-5 h-5 text-amber-800" />
-              </div>
-              <div>
-                <span className="text-xs font-bold uppercase tracking-wider text-amber-800">
-                  Vision
-                </span>
-                <h3 className="text-xl font-bold text-stone-900 mt-1 mb-2">
-                  A Greener, Healthier Planet
-                </h3>
-              </div>
-              <p className="text-sm text-stone-600 leading-relaxed">
-                Our vision is to create a future where farmers thrive, nature flourishes, and every crop grows in harmony with the Earth. We aim to be a trusted partner for farmers worldwide, promoting sustainability, nurturing communities, and contributing to a greener, healthier planet for generations to come.
+            <article className="bg-pine p-8 lg:p-12">
+              <p className="font-mono text-[12px] uppercase tracking-[0.18em] text-clay-soft">
+                Vision
               </p>
-            </div>
-
+              <p className="mt-5 text-[16px] leading-relaxed text-paper/70">{ABOUT.vision}</p>
+            </article>
           </div>
         </div>
+      </section>
 
-        {/* 5. We Stand For (Word-for-Word from PDF Page 2) */}
-        <div className="space-y-6">
-          <div className="text-left space-y-1">
-            <span className="text-xs font-bold uppercase tracking-wider text-emerald-800">
-              Core Principles
-            </span>
-            <h2 className="text-2xl sm:text-3xl font-bold text-stone-900">
-              We Stand For
-            </h2>
-            <p className="text-sm text-stone-600">
-              The 5 foundational values that guide our research, manufacturing, and farmer relationships.
-            </p>
-          </div>
+      {/* We stand for */}
+      <section className="bg-paper py-20 lg:py-28">
+        <div className="mx-auto max-w-[1320px] px-5 sm:px-8">
+          <SectionHeading
+            index="03"
+            eyebrow="Crop Care Bio Solutions"
+            title="We Stand For"
+          />
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 text-left">
-            
-            {/* Pillar 1 */}
-            <div className="p-6 rounded-xl bg-white border border-stone-200 shadow-xs space-y-3">
-              <div className="w-10 h-10 rounded-lg bg-emerald-50 text-emerald-800 flex items-center justify-center">
-                <Heart className="w-5 h-5" />
+          <div className="mt-14 grid gap-12 lg:grid-cols-12 lg:gap-16">
+            <ol className="lg:col-span-7">
+              {WE_STAND_FOR.map((value, index) => (
+                <Reveal
+                  as="li"
+                  key={value.title}
+                  delay={index * 0.05}
+                  className="group border-t border-line last:border-b"
+                >
+                  <div className="flex gap-6 py-7 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-1.5 sm:gap-10">
+                    <span className="pt-1.5 font-mono text-[12px] text-ink-3 transition-colors group-hover:text-clay">
+                      {String(index + 1).padStart(2, '0')}
+                    </span>
+                    <div>
+                      <h3 className="font-display text-[clamp(1.3rem,2.2vw,1.65rem)] text-pine">
+                        {value.title}
+                      </h3>
+                      <p className="mt-2.5 max-w-lg text-[15px] leading-relaxed text-ink-2">
+                        {value.body}
+                      </p>
+                    </div>
+                  </div>
+                </Reveal>
+              ))}
+            </ol>
+
+            <Reveal className="lg:col-span-5">
+              <div className="grid gap-4">
+                <img
+                  src={agronomist}
+                  alt="An agronomist inspecting a trap in the field"
+                  className="aspect-[4/3] w-full object-cover"
+                />
+                <img
+                  src={harvest}
+                  alt="Harvested fruit, clean and unblemished"
+                  className="aspect-[4/3] w-full object-cover"
+                />
               </div>
-              <h3 className="text-base font-bold text-stone-900">
-                Crop Care Bio Solutions
-              </h3>
-              <p className="text-sm font-semibold text-emerald-800">
-                Caring for Farmers. Caring for Nature.
-              </p>
-              <p className="text-xs text-stone-600 leading-relaxed">
-                Dedicated to balanced solutions that protect farmers&apos; livelihoods while preserving biodiversity.
-              </p>
-            </div>
-
-            {/* Pillar 2 */}
-            <div className="p-6 rounded-xl bg-white border border-stone-200 shadow-xs space-y-3">
-              <div className="w-10 h-10 rounded-lg bg-emerald-50 text-emerald-800 flex items-center justify-center">
-                <Sprout className="w-5 h-5" />
-              </div>
-              <h3 className="text-base font-bold text-stone-900">
-                Farmer First
-              </h3>
-              <p className="text-sm text-stone-600 leading-relaxed">
-                Every decision begins with the farmer’s needs and ends with their satisfaction.
-              </p>
-            </div>
-
-            {/* Pillar 3 */}
-            <div className="p-6 rounded-xl bg-white border border-stone-200 shadow-xs space-y-3">
-              <div className="w-10 h-10 rounded-lg bg-emerald-50 text-emerald-800 flex items-center justify-center">
-                <Leaf className="w-5 h-5" />
-              </div>
-              <h3 className="text-base font-bold text-stone-900">
-                Care for Nature
-              </h3>
-              <p className="text-sm text-stone-600 leading-relaxed">
-                Dedicated to working with nature, not against it. Safe for non-target fauna, honeybees, and soil microbes.
-              </p>
-            </div>
-
-            {/* Pillar 4 */}
-            <div className="p-6 rounded-xl bg-white border border-stone-200 shadow-xs space-y-3">
-              <div className="w-10 h-10 rounded-lg bg-emerald-50 text-emerald-800 flex items-center justify-center">
-                <Lightbulb className="w-5 h-5" />
-              </div>
-              <h3 className="text-base font-bold text-stone-900">
-                Eco-Innovation
-              </h3>
-              <p className="text-sm text-stone-600 leading-relaxed">
-                Sustainable, effective, and residue-free technologies that protect crops and the environment.
-              </p>
-            </div>
-
-            {/* Pillar 5 */}
-            <div className="p-6 rounded-xl bg-white border border-stone-200 shadow-xs space-y-3 md:col-span-2 lg:col-span-2">
-              <div className="w-10 h-10 rounded-lg bg-emerald-50 text-emerald-800 flex items-center justify-center">
-                <Users className="w-5 h-5" />
-              </div>
-              <h3 className="text-base font-bold text-stone-900">
-                Trust &amp; Togetherness
-              </h3>
-              <p className="text-sm text-stone-600 leading-relaxed">
-                Growing together with farmers, partners, and communities through trust, respect, and shared success.
-              </p>
-            </div>
-
+            </Reveal>
           </div>
         </div>
+      </section>
 
-        {/* 6. Closing Message (Word-for-Word from PDF Page 2) */}
-        <div className="p-8 sm:p-12 rounded-2xl bg-[#073B20] text-white border border-emerald-900 text-center space-y-6">
-          <div className="max-w-3xl mx-auto space-y-3">
-            <span className="text-xs font-bold uppercase tracking-wider text-emerald-300">
-              Closing Message 🌾
-            </span>
-            <blockquote className="text-2xl sm:text-3xl font-serif font-bold text-white tracking-tight leading-snug">
-              &ldquo;Every harvest tells a story of hope — written by farmers, nurtured by nature.&rdquo;
+      {/* Closing message */}
+      <section className="bg-paper-3 py-20 lg:py-28">
+        <div className="mx-auto max-w-[1320px] px-5 sm:px-8">
+          <Reveal className="mx-auto max-w-3xl text-center">
+            <p className="eyebrow">Closing Message</p>
+            <blockquote className="mt-8">
+              <p className="font-display text-[clamp(1.7rem,4vw,2.9rem)] leading-[1.16] text-pine">
+                &ldquo;{ABOUT.closing}&rdquo;
+              </p>
             </blockquote>
-            <p className="text-sm text-emerald-200">
-              Crop Care Bio Solutions &bull; Empowering Farmers Everywhere
-            </p>
-          </div>
+          </Reveal>
+        </div>
+      </section>
 
-          <div className="flex flex-wrap items-center justify-center gap-4 pt-2">
-            <button
-              type="button"
-              onClick={() => onNavigate('contact')}
-              className="px-6 py-3 rounded-lg text-sm font-semibold text-stone-950 bg-emerald-400 hover:bg-emerald-300 shadow-xs transition-colors cursor-pointer inline-flex items-center gap-2"
-            >
-              <span>Contact Us</span>
-              <ArrowRight className="w-4 h-4" />
-            </button>
-            <button
-              type="button"
-              onClick={() => onNavigate('products')}
-              className="px-6 py-3 rounded-lg text-sm font-semibold text-white bg-white/10 hover:bg-white/20 border border-white/20 shadow-xs transition-colors cursor-pointer"
-            >
-              Explore Pheromone Lures
-            </button>
+      {/* Reserved: content supplied by the company. */}
+      <section className="bg-paper-2 py-16 lg:py-20">
+        <div className="mx-auto max-w-[1320px] px-5 sm:px-8">
+          <div className="flex flex-col gap-6 border border-dashed border-line-strong p-8 sm:flex-row sm:items-center sm:justify-between lg:p-12">
+            <div className="max-w-2xl">
+              <p className="eyebrow text-clay">In preparation</p>
+              <h2 className="mt-4 font-display text-[clamp(1.5rem,3vw,2.1rem)] text-pine">
+                Pheromone Longevity &amp; Safe Application Guide
+              </h2>
+              <p className="mt-3 text-[15px] leading-relaxed text-ink-2">
+                A practical guide to how long a lure stays active, what shortens it, and how
+                to handle and store lures safely on the farm. Being written now.
+              </p>
+            </div>
+
+            <Button variant="outline" size="sm" onClick={() => onNavigate('contact')} withArrow>
+              Ask our team meanwhile
+            </Button>
           </div>
         </div>
+      </section>
 
-      </div>
-
-      {/* Page Footer Navigation */}
-      <PageFooterBanner
-        nextPageId="products"
-        nextPageTitle="Pheromone Lures"
-        nextPageDescription="Browse the 12 species-specific pheromone lures with field life specs, target crops, and application instructions."
+      <PageHandoff
+        nextPage="products"
+        label="Next"
+        title="Pheromone Lures"
+        description="Twelve species-specific lures, with field life, target crops, how to apply them and how to store them."
         onNavigate={onNavigate}
       />
-    </div>
+    </>
   );
-};
+}

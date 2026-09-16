@@ -1,121 +1,110 @@
-export type PageId = 
+export type PageId =
   | 'home'
   | 'about'
   | 'products'
-  | 'pest-finder'
-  | 'trap-guide'
+  | 'traps'
+  | 'crop-solutions'
   | 'contact';
 
+export type ProductFamily =
+  | 'fruit-flies'
+  | 'moths-borers'
+  | 'palm-weevils'
+  | 'synergist';
+
+/**
+ * A pheromone lure. Every field here comes from the client's product sheet —
+ * nothing is inferred. Optional fields are omitted when the sheet does not
+ * state a value rather than filled with a plausible guess.
+ */
 export interface Product {
   id: string;
+  /** Short catalogue name, e.g. "Melon Fly Lure". */
   name: string;
+  /** Latin binomial, italicised wherever it is rendered. */
   scientificName?: string;
+  /** How farmers refer to the pest. */
   pestCommonName: string;
-  category: 'vegetables' | 'fruits' | 'plantation' | 'field_crops' | 'enhancers';
-  shortDescription: string;
-  fullDescription: string;
-  fieldLife: string;
-  shelfLife: string;
+  /** Two-to-four letter trade code, e.g. "MF". */
+  code: string;
+  family: ProductFamily;
+  /** The full product description, exactly as supplied. Cards show the
+   *  opening paragraph rather than a separate marketing line. */
+  description: string[];
+  fieldLife?: string;
+  shelfLife?: string;
+  trapsPerAcre?: string;
+  /** Flat list, used for chips and crop search. */
   targetCrops: string[];
-  targetCropDetails?: {
-    cucurbits?: string[];
-    fruiting?: string[];
-    additional?: string[];
-    other?: string[];
-  };
-  applicationInstructions: string[];
-  storageAndDisposal: string[];
-  trapsPerAcre: string;
-  monitoringDensity?: string;
-  massTrappingDensity?: string;
+  /** Grouped presentation where the sheet groups them. */
+  cropGroups?: { label: string; crops: string[] }[];
+  /** Free-text note shown under the crop list. */
+  cropNote?: string;
+  application: string[];
+  storage: string[];
   recommendedTraps: string[];
+  /** Only set where the client has confirmed the compound. */
   activeIngredient?: string;
-  chemicalStructure?: string;
-  casNumber?: string;
-  isomericPurity?: string;
-  dispenserType?: string;
   modeOfAction?: string;
-  economicThreshold?: {
-    monitoringTrigger: string;
-    massTrappingTrigger: string;
-    criticalIntervention: string;
-  };
-  mrlStatus?: string;
-  beneficialSafety?: string;
-  badge?: string;
+  imageUrl: string;
   imageAlt: string;
-  iconName: string;
-  imageUrl?: string;
   trapImageUrl?: string;
-  trapTypeRef?: string;
+  /** Marks a companion product rather than a standalone lure. */
+  companionTo?: string;
 }
+
+export type TrapFamily =
+  | 'fruit-fly'
+  | 'funnel'
+  | 'water'
+  | 'delta'
+  | 'palm'
+  | 'solar';
 
 export interface TrapType {
   id: string;
   name: string;
-  category?: 'water_trap' | 'funnel_trap' | 'delta_trap' | 'fruit_fly_trap' | 'solar_trap' | 'sticky_trap' | 'bio_glue' | 'palm_trap';
+  family: TrapFamily;
   bestFor: string;
   suitableLures: string[];
   description: string;
   features: string[];
-  icon: string;
   imageUrl: string;
-  fieldSetupAdvice?: string;
+  setupAdvice?: string;
   recommendedHeight?: string;
-  dimensions?: string;
-  dosagePerAcre?: string;
-  servicingProtocol?: string;
-  aerodynamicProfile?: string;
+  trapsPerAcre?: string;
+  servicing?: string;
 }
 
 export interface BioToolItem {
   id: string;
   name: string;
-  category: 'sticky_sheets' | 'sticky_rolls' | 'sticky_pouches' | 'glue' | 'solar' | 'traps';
   tagline: string;
   description: string;
   targetPests: string[];
   suitableCrops: string[];
-  specs: {
-    color?: string;
-    dimensions?: string;
-    life?: string;
-    applicationRate?: string;
-  };
+  specs: { label: string; value: string }[];
   imageUrl: string;
   highlights: string[];
 }
 
-export interface CalculationResult {
-  acres: number;
-  productId: string;
-  monitoringTrapsNeeded: number;
-  massTrapsNeeded: number;
-  trapsNeeded: number;
-  luresPerSeason: number;
-  recommendedTrap: string;
-  replacementSchedule: string;
-  estimatedChemicalSavingsPercent: number;
-}
-
-export interface IPMProtocol {
+/** A crop family on the Crop Solutions page. */
+export interface CropSolution {
   id: string;
-  title: string;
-  subtitle: string;
-  step: string;
-  description: string;
-  keyAction: string;
-  standard: string;
+  name: string;
+  crops: string[];
+  threat: string;
+  symptoms: string;
+  lureIds: string[];
 }
 
-export interface InquiryFormData {
+export interface InquiryForm {
   name: string;
   phone: string;
   email: string;
-  stateOrRegion: string;
-  farmerType: 'individual_farmer' | 'dealer_distributor' | 'plantation_owner' | 'fpo_cooperative' | 'other';
-  selectedProduct: string;
+  location: string;
+  enquirerType: string;
+  product: string;
   acreage: string;
   message: string;
 }
-

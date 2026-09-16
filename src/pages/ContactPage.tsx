@@ -1,360 +1,375 @@
-import React, { useState, useEffect } from 'react';
-import { 
-  Phone, 
-  Mail, 
-  MapPin, 
-  MessageSquare, 
-  Send, 
-  CheckCircle2, 
-  ExternalLink,
-} from 'lucide-react';
-import { PageId } from '../types';
-import { PageHeader } from '../components/PageHeader';
-import { PageFooterBanner } from '../components/PageFooterBanner';
-import { PRODUCTS_DATA } from '../data/productsData';
+import { useEffect, useState } from 'react';
+import { Mail, MapPin, MessageCircle, Phone } from 'lucide-react';
+import type { InquiryForm, PageId } from '../types';
+import { PRODUCTS } from '../data/products';
+import { TRAPS } from '../data/traps';
+import { buildWhatsAppUrl, CONTACT, ENQUIRER_TYPES } from '../data/site';
+import { PageIntro } from '../components/layout/PageIntro';
+import { Reveal } from '../components/ui/Reveal';
 
 interface ContactPageProps {
   onNavigate: (page: PageId) => void;
-  preFilledProduct?: string;
-  preFilledAcreage?: string;
+  prefillProduct?: string;
 }
 
-export const ContactPage: React.FC<ContactPageProps> = ({
-  onNavigate,
-  preFilledProduct = '',
-  preFilledAcreage = '',
-}) => {
-  const [formData, setFormData] = useState({
-    name: '',
-    phone: '',
-    email: '',
-    location: '',
-    farmerType: 'Farmer / Grower',
-    productOfInterest: preFilledProduct,
-    acreage: preFilledAcreage,
-    message: '',
-  });
+const EMPTY: InquiryForm = {
+  name: '',
+  phone: '',
+  email: '',
+  location: '',
+  enquirerType: ENQUIRER_TYPES[0],
+  product: '',
+  acreage: '',
+  message: '',
+};
 
-  const [submitted, setSubmitted] = useState(false);
+type Errors = Partial<Record<keyof InquiryForm, string>>;
 
-  useEffect(() => {
-    if (preFilledProduct) {
-      setFormData((prev) => ({ ...prev, productOfInterest: preFilledProduct }));
-    }
-    if (preFilledAcreage) {
-      setFormData((prev) => ({ ...prev, acreage: preFilledAcreage }));
-    }
-  }, [preFilledProduct, preFilledAcreage]);
+const fieldClass =
+  'w-full border border-line-strong bg-paper px-4 py-3 text-[15px] text-ink placeholder:text-ink-3 focus:border-pine focus:outline-none';
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setSubmitted(true);
-  };
-
-  const generateWhatsAppUrl = () => {
-    const text = `Hello Crop Care Bio Solutions, I would like to inquire about:
-*Product/Solution*: ${formData.productOfInterest || 'Pheromone Lures & Traps'}
-*Farm Area*: ${formData.acreage || 'Not specified'}
-*Name*: ${formData.name || 'Farmer / Partner'}
-*Location*: ${formData.location || 'India'}
-*Type*: ${formData.farmerType}
-*Message*: ${formData.message || 'Please share pricing, dosage protocol and bulk supply details.'}`;
-
-    return `https://wa.me/919448000000?text=${encodeURIComponent(text)}`;
-  };
-
+function Field({
+  label,
+  htmlFor,
+  error,
+  required,
+  children,
+}: {
+  label: string;
+  htmlFor: string;
+  error?: string;
+  required?: boolean;
+  children: React.ReactNode;
+}) {
   return (
-    <div className="space-y-8 bg-stone-50/50 pb-8">
-      {/* 1. Page Header */}
-      <PageHeader
-        badge="Agronomic Advisory &amp; Quotations"
-        title="Contact &amp;"
-        highlightText="Quotation Request"
-        subtitle="Speak directly with our technical team, request bulk pricing for FPOs, or get a customized IPM trap quote for your farm."
-        currentPage="contact"
-        onNavigate={onNavigate}
-      />
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
-        
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start text-left">
-          
-          {/* Left Column: Contact Cards & Instant Channels */}
-          <div className="lg:col-span-5 space-y-6">
-            
-            <div className="p-6 sm:p-8 rounded-xl bg-white border border-stone-200 shadow-xs space-y-6">
-              
-              <div className="space-y-1.5">
-                <span className="text-xs font-semibold uppercase tracking-wider text-emerald-800">
-                  Direct Support Lines
-                </span>
-                <h3 className="text-xl sm:text-2xl font-bold text-stone-900">
-                  Crop Care Bio Solutions
-                </h3>
-                <p className="text-xs text-stone-600">
-                  &ldquo;Caring for Farmers. Caring for Nature.&rdquo;
-                </p>
-              </div>
-
-              {/* Contact item: Phone */}
-              <div className="flex items-start gap-3.5 p-4 rounded-lg bg-stone-50 border border-stone-200">
-                <div className="w-9 h-9 rounded-lg bg-emerald-50 text-emerald-800 flex items-center justify-center shrink-0">
-                  <Phone className="w-4 h-4" />
-                </div>
-                <div>
-                  <span className="text-xs font-semibold text-stone-500 block">
-                    Customer &amp; Agronomist Helpline
-                  </span>
-                  <a href="tel:+919448000000" className="text-sm font-bold text-stone-900 hover:text-[#073B20] transition-colors">
-                    +91 94480 00000 / +91 80000 00000
-                  </a>
-                  <p className="text-xs text-stone-500 mt-0.5">Mon–Sat: 8:00 AM – 7:00 PM IST</p>
-                </div>
-              </div>
-
-              {/* Contact item: Email */}
-              <div className="flex items-start gap-3.5 p-4 rounded-lg bg-stone-50 border border-stone-200">
-                <div className="w-9 h-9 rounded-lg bg-amber-50 text-amber-800 flex items-center justify-center shrink-0">
-                  <Mail className="w-4 h-4" />
-                </div>
-                <div>
-                  <span className="text-xs font-semibold text-stone-500 block">
-                    Sales &amp; Dealer Inquiries
-                  </span>
-                  <a href="mailto:info@cropcarebiosolutions.com" className="text-sm font-bold text-stone-900 hover:text-[#073B20] transition-colors">
-                    info@cropcarebiosolutions.com
-                  </a>
-                  <p className="text-xs text-stone-500 mt-0.5">24-hour turnaround for quotes</p>
-                </div>
-              </div>
-
-              {/* Contact item: Location */}
-              <div className="flex items-start gap-3.5 p-4 rounded-lg bg-stone-50 border border-stone-200">
-                <div className="w-9 h-9 rounded-lg bg-emerald-50 text-emerald-800 flex items-center justify-center shrink-0">
-                  <MapPin className="w-4 h-4" />
-                </div>
-                <div>
-                  <span className="text-xs font-semibold text-stone-500 block">
-                    Manufacturing &amp; Synthesis Center
-                  </span>
-                  <p className="text-xs text-stone-800 font-medium leading-relaxed mt-0.5">
-                    Crop Care Bio Solutions Agricultural Complex,<br />
-                    Industrial Bio-Chemical Park, Karnataka / All-India Distribution.
-                  </p>
-                </div>
-              </div>
-
-              {/* WhatsApp Quick Connect Button */}
-              <a
-                href={generateWhatsAppUrl()}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full py-3 px-4 rounded-lg text-xs font-semibold uppercase tracking-wider text-white bg-[#25D366] hover:bg-[#1ebc59] shadow-xs transition-colors flex items-center justify-center gap-2 cursor-pointer"
-              >
-                <MessageSquare className="w-4 h-4 fill-white" />
-                <span>Instant WhatsApp Inquiry</span>
-                <ExternalLink className="w-3.5 h-3.5" />
-              </a>
-
-            </div>
-
-          </div>
-
-          {/* Right Column: Interactive Quotation Form */}
-          <div className="lg:col-span-7">
-            <div className="p-6 sm:p-8 rounded-xl bg-white border border-stone-200 shadow-xs space-y-6">
-              
-              {submitted ? (
-                <div className="py-12 text-center space-y-4">
-                  <div className="w-14 h-14 rounded-full bg-emerald-50 text-emerald-800 flex items-center justify-center mx-auto shadow-xs">
-                    <CheckCircle2 className="w-7 h-7" />
-                  </div>
-                  <h3 className="text-xl sm:text-2xl font-bold text-stone-900">
-                    Inquiry Submitted Successfully!
-                  </h3>
-                  <p className="text-xs sm:text-sm text-stone-600 max-w-md mx-auto leading-relaxed">
-                    Thank you, <strong className="font-semibold text-stone-900">{formData.name || 'valued partner'}</strong>. Our agronomy team will review your requirements for <span className="text-emerald-800 font-semibold">{formData.productOfInterest || 'our bio solutions'}</span> and contact you within 24 hours.
-                  </p>
-                  <div className="pt-2">
-                    <button
-                      type="button"
-                      onClick={() => setSubmitted(false)}
-                      className="px-5 py-2.5 rounded-lg text-xs font-semibold uppercase tracking-wider text-white bg-[#073B20] hover:bg-[#126B35] shadow-xs cursor-pointer transition-colors"
-                    >
-                      Submit Another Request
-                    </button>
-                  </div>
-                </div>
-              ) : (
-                <form onSubmit={handleSubmit} className="space-y-4">
-                  
-                  <div className="space-y-1">
-                    <span className="text-xs font-semibold uppercase tracking-wider text-emerald-800">
-                      Custom Price Estimate
-                    </span>
-                    <h3 className="text-xl sm:text-2xl font-bold text-stone-900">
-                      Request Product or Farm Quote
-                    </h3>
-                  </div>
-
-                  {/* 2-Column Inputs */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    
-                    <div className="space-y-1.5">
-                      <label className="block text-xs font-semibold text-stone-700">
-                        Your Name *
-                      </label>
-                      <input
-                        type="text"
-                        required
-                        placeholder="e.g. Ramesh Kumar"
-                        value={formData.name}
-                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                        className="w-full px-3.5 py-2.5 rounded-lg bg-stone-50 text-xs sm:text-sm text-stone-900 border border-stone-300 focus:bg-white focus:border-[#073B20] focus:ring-1 focus:ring-[#073B20] outline-none transition-colors"
-                      />
-                    </div>
-
-                    <div className="space-y-1.5">
-                      <label className="block text-xs font-semibold text-stone-700">
-                        Phone Number *
-                      </label>
-                      <input
-                        type="tel"
-                        required
-                        placeholder="e.g. +91 98765 43210"
-                        value={formData.phone}
-                        onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                        className="w-full px-3.5 py-2.5 rounded-lg bg-stone-50 text-xs sm:text-sm text-stone-900 border border-stone-300 focus:bg-white focus:border-[#073B20] focus:ring-1 focus:ring-[#073B20] outline-none transition-colors"
-                      />
-                    </div>
-
-                  </div>
-
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    
-                    <div className="space-y-1.5">
-                      <label className="block text-xs font-semibold text-stone-700">
-                        Email Address
-                      </label>
-                      <input
-                        type="email"
-                        placeholder="e.g. farmer@domain.com"
-                        value={formData.email}
-                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                        className="w-full px-3.5 py-2.5 rounded-lg bg-stone-50 text-xs sm:text-sm text-stone-900 border border-stone-300 focus:bg-white focus:border-[#073B20] focus:ring-1 focus:ring-[#073B20] outline-none transition-colors"
-                      />
-                    </div>
-
-                    <div className="space-y-1.5">
-                      <label className="block text-xs font-semibold text-stone-700">
-                        State / District *
-                      </label>
-                      <input
-                        type="text"
-                        required
-                        placeholder="e.g. Maharashtra, Nashik"
-                        value={formData.location}
-                        onChange={(e) => setFormData({ ...formData, location: e.target.value })}
-                        className="w-full px-3.5 py-2.5 rounded-lg bg-stone-50 text-xs sm:text-sm text-stone-900 border border-stone-300 focus:bg-white focus:border-[#073B20] focus:ring-1 focus:ring-[#073B20] outline-none transition-colors"
-                      />
-                    </div>
-
-                  </div>
-
-                  {/* Farmer Type & Product Selection */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    
-                    <div className="space-y-1.5">
-                      <label className="block text-xs font-semibold text-stone-700">
-                        I Am A:
-                      </label>
-                      <select
-                        value={formData.farmerType}
-                        onChange={(e) => setFormData({ ...formData, farmerType: e.target.value })}
-                        className="w-full px-3.5 py-2.5 rounded-lg bg-stone-50 text-xs sm:text-sm text-stone-900 border border-stone-300 focus:bg-white focus:border-[#073B20] focus:ring-1 focus:ring-[#073B20] outline-none transition-colors cursor-pointer"
-                      >
-                        <option value="Farmer / Grower">Individual Farmer / Grower</option>
-                        <option value="Commercial Orchard / Plantation">Commercial Orchard / Plantation Manager</option>
-                        <option value="FPO / Agri Cooperative">FPO / Farmer Producer Company</option>
-                        <option value="Agri Retailer / Distributor">Agri Retailer / Distributor</option>
-                        <option value="Agronomist / Researcher">Agronomist / University Researcher</option>
-                      </select>
-                    </div>
-
-                    <div className="space-y-1.5">
-                      <label className="block text-xs font-semibold text-stone-700">
-                        Product / Solution of Interest
-                      </label>
-                      <select
-                        value={formData.productOfInterest}
-                        onChange={(e) => setFormData({ ...formData, productOfInterest: e.target.value })}
-                        className="w-full px-3.5 py-2.5 rounded-lg bg-stone-50 text-xs sm:text-sm text-stone-900 border border-stone-300 focus:bg-white focus:border-[#073B20] focus:ring-1 focus:ring-[#073B20] outline-none transition-colors cursor-pointer"
-                      >
-                        <option value="">-- Select Specific Product --</option>
-                        {PRODUCTS_DATA.map((p) => (
-                          <option key={p.id} value={p.name}>
-                            {p.name} ({p.pestCommonName})
-                          </option>
-                        ))}
-                      </select>
-                    </div>
-
-                  </div>
-
-                  {/* Acreage / Land Area */}
-                  <div className="space-y-1.5">
-                    <label className="block text-xs font-semibold text-stone-700">
-                      Acreage / Farm Size (Optional)
-                    </label>
-                    <input
-                      type="text"
-                      placeholder="e.g. 5 Acres Tomato or 1000 Coconut Palms"
-                      value={formData.acreage}
-                      onChange={(e) => setFormData({ ...formData, acreage: e.target.value })}
-                      className="w-full px-3.5 py-2.5 rounded-lg bg-stone-50 text-xs sm:text-sm text-stone-900 border border-stone-300 focus:bg-white focus:border-[#073B20] focus:ring-1 focus:ring-[#073B20] outline-none transition-colors"
-                    />
-                  </div>
-
-                  {/* Message */}
-                  <div className="space-y-1.5">
-                    <label className="block text-xs font-semibold text-stone-700">
-                      Specific Requirements / Notes
-                    </label>
-                    <textarea
-                      rows={3}
-                      placeholder="Tell us about your pest symptoms, crop stages, or required delivery timelines..."
-                      value={formData.message}
-                      onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                      className="w-full px-3.5 py-2.5 rounded-lg bg-stone-50 text-xs sm:text-sm text-stone-900 border border-stone-300 focus:bg-white focus:border-[#073B20] focus:ring-1 focus:ring-[#073B20] outline-none transition-colors"
-                    />
-                  </div>
-
-                  {/* Submit Button */}
-                  <button
-                    type="submit"
-                    className="w-full py-3 px-5 rounded-lg text-xs sm:text-sm font-semibold uppercase tracking-wider text-white bg-[#073B20] hover:bg-[#126B35] shadow-xs transition-colors flex items-center justify-center gap-2 cursor-pointer"
-                  >
-                    <span>Submit Official Quote Request</span>
-                    <Send className="w-4 h-4" />
-                  </button>
-
-                </form>
-              )}
-
-            </div>
-          </div>
-
-        </div>
-
-      </div>
-
-      {/* Page Footer Navigation */}
-      <PageFooterBanner
-        nextPageId="home"
-        nextPageTitle="Home Overview"
-        nextPageDescription="Return to the main overview, featured biological products, and farm metrics."
-        onNavigate={onNavigate}
-      />
+    <div>
+      <label htmlFor={htmlFor} className="eyebrow mb-2.5 block">
+        {label}
+        {required && <span className="ml-1 text-clay">*</span>}
+      </label>
+      {children}
+      {error && (
+        <p className="mt-2 text-[13px] text-clay" role="alert">
+          {error}
+        </p>
+      )}
     </div>
   );
-};
+}
+
+export function ContactPage({ onNavigate, prefillProduct = '' }: ContactPageProps) {
+  const [form, setForm] = useState<InquiryForm>({ ...EMPTY, product: prefillProduct });
+  const [errors, setErrors] = useState<Errors>({});
+
+  useEffect(() => {
+    if (prefillProduct) setForm((prev) => ({ ...prev, product: prefillProduct }));
+  }, [prefillProduct]);
+
+  const set = <K extends keyof InquiryForm>(key: K, value: InquiryForm[K]) => {
+    setForm((prev) => ({ ...prev, [key]: value }));
+    setErrors((prev) => ({ ...prev, [key]: undefined }));
+  };
+
+  const validate = (): boolean => {
+    const next: Errors = {};
+
+    if (!form.name.trim()) next.name = 'Please tell us your name.';
+    if (!form.phone.trim()) {
+      next.phone = 'We need a number to reach you on.';
+    } else if (form.phone.replace(/\D/g, '').length < 10) {
+      next.phone = 'That does not look like a complete phone number.';
+    }
+    if (form.email.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(form.email.trim())) {
+      next.email = 'Please check the email address.';
+    }
+
+    setErrors(next);
+    return Object.keys(next).length === 0;
+  };
+
+  /** One enquiry body, sent down whichever channel the visitor picks. */
+  const composeMessage = () =>
+    [
+      'Enquiry from the Crop Care Bio Solutions website',
+      '',
+      `Name: ${form.name}`,
+      `Phone: ${form.phone}`,
+      form.email && `Email: ${form.email}`,
+      form.location && `Location: ${form.location}`,
+      `I am a: ${form.enquirerType}`,
+      form.product && `Product of interest: ${form.product}`,
+      form.acreage && `Area under crop: ${form.acreage}`,
+      form.message && '',
+      form.message && `Message: ${form.message}`,
+    ]
+      .filter(Boolean)
+      .join('\n');
+
+  const sendOnWhatsApp = () => {
+    if (!validate()) return;
+    window.open(buildWhatsAppUrl(composeMessage()), '_blank', 'noopener,noreferrer');
+  };
+
+  const sendByEmail = () => {
+    if (!validate()) return;
+    const subject = form.product
+      ? `Enquiry — ${form.product}`
+      : 'Enquiry from the website';
+    window.location.href = `mailto:${CONTACT.email}?subject=${encodeURIComponent(
+      subject,
+    )}&body=${encodeURIComponent(composeMessage())}`;
+  };
+
+  const catalogue = [
+    ...PRODUCTS.map((product) => product.name),
+    ...TRAPS.map((trap) => trap.name),
+  ];
+
+  return (
+    <>
+      <PageIntro
+        breadcrumb="Contact"
+        eyebrow="Contact"
+        title="Tell us what you grow."
+        lead="Give us the crop, the acreage and what you are seeing in the field. Our team will come back with a protocol and a price."
+        onNavigate={onNavigate}
+      />
+
+      <section className="bg-paper py-14 lg:py-20">
+        <div className="mx-auto max-w-[1320px] px-5 sm:px-8">
+          <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
+            {/* Direct channels */}
+            <Reveal className="lg:col-span-4">
+              <div className="lg:sticky lg:top-28">
+                <h2 className="eyebrow">Reach us directly</h2>
+
+                <ul className="mt-6 space-y-px bg-line">
+                  <li>
+                    <a
+                      href={`tel:${CONTACT.phonePrimary.dial}`}
+                      className="flex items-start gap-4 bg-paper p-6 transition-colors hover:bg-paper-2"
+                    >
+                      <Phone className="mt-1 h-4 w-4 shrink-0 text-clay" aria-hidden />
+                      <span>
+                        <span className="eyebrow block">Phone</span>
+                        <span className="mt-1.5 block text-[16px] text-pine">
+                          {CONTACT.phonePrimary.display}
+                        </span>
+                        <span className="mt-1 block text-[13px] text-ink-3">
+                          {CONTACT.hours}
+                        </span>
+                      </span>
+                    </a>
+                  </li>
+
+                  <li>
+                    <a
+                      href={buildWhatsAppUrl(
+                        'Hello Crop Care Bio Solutions, I would like to enquire about your pheromone lures and traps.',
+                      )}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-start gap-4 bg-paper p-6 transition-colors hover:bg-paper-2"
+                    >
+                      <MessageCircle className="mt-1 h-4 w-4 shrink-0 text-clay" aria-hidden />
+                      <span>
+                        <span className="eyebrow block">WhatsApp</span>
+                        <span className="mt-1.5 block text-[16px] text-pine">
+                          Message our team
+                        </span>
+                        <span className="mt-1 block text-[13px] text-ink-3">
+                          Usually the quickest way to reach us
+                        </span>
+                      </span>
+                    </a>
+                  </li>
+
+                  <li>
+                    <a
+                      href={`mailto:${CONTACT.email}`}
+                      className="flex items-start gap-4 bg-paper p-6 transition-colors hover:bg-paper-2"
+                    >
+                      <Mail className="mt-1 h-4 w-4 shrink-0 text-clay" aria-hidden />
+                      <span>
+                        <span className="eyebrow block">Email</span>
+                        <span className="mt-1.5 block break-all text-[16px] text-pine">
+                          {CONTACT.email}
+                        </span>
+                      </span>
+                    </a>
+                  </li>
+
+                  <li className="flex items-start gap-4 bg-paper p-6">
+                    <MapPin className="mt-1 h-4 w-4 shrink-0 text-clay" aria-hidden />
+                    <span>
+                      <span className="eyebrow block">Address</span>
+                      <span className="mt-1.5 block text-[16px] leading-snug text-pine">
+                        {CONTACT.addressLines.map((line) => (
+                          <span key={line} className="block">
+                            {line}
+                          </span>
+                        ))}
+                      </span>
+                    </span>
+                  </li>
+                </ul>
+
+                <p className="mt-8 border-l-2 border-clay pl-4 text-[14px] leading-relaxed text-ink-2">
+                  Dealers and FPOs: ask for the bulk price list and the dealer margin
+                  structure when you write in.
+                </p>
+              </div>
+            </Reveal>
+
+            {/* Enquiry form */}
+            <Reveal delay={0.08} className="lg:col-span-8">
+              <form
+                noValidate
+                onSubmit={(event) => {
+                  event.preventDefault();
+                  sendOnWhatsApp();
+                }}
+                className="border border-line bg-paper-2 p-6 sm:p-9"
+              >
+                <h2 className="font-display text-[clamp(1.5rem,3vw,2.1rem)] text-pine">
+                  Request a quote
+                </h2>
+                <p className="mt-3 max-w-lg text-[15px] leading-relaxed text-ink-2">
+                  Fill this in and send it through whichever channel suits you. Nothing is
+                  stored on this website — it goes straight to our team.
+                </p>
+
+                <div className="mt-9 grid gap-5 sm:grid-cols-2">
+                  <Field label="Your name" htmlFor="name" error={errors.name} required>
+                    <input
+                      id="name"
+                      value={form.name}
+                      onChange={(event) => set('name', event.target.value)}
+                      aria-invalid={Boolean(errors.name)}
+                      autoComplete="name"
+                      className={fieldClass}
+                      placeholder="Full name"
+                    />
+                  </Field>
+
+                  <Field label="Phone" htmlFor="phone" error={errors.phone} required>
+                    <input
+                      id="phone"
+                      type="tel"
+                      value={form.phone}
+                      onChange={(event) => set('phone', event.target.value)}
+                      aria-invalid={Boolean(errors.phone)}
+                      autoComplete="tel"
+                      className={fieldClass}
+                      placeholder="+91"
+                    />
+                  </Field>
+
+                  <Field label="Email" htmlFor="email" error={errors.email}>
+                    <input
+                      id="email"
+                      type="email"
+                      value={form.email}
+                      onChange={(event) => set('email', event.target.value)}
+                      aria-invalid={Boolean(errors.email)}
+                      autoComplete="email"
+                      className={fieldClass}
+                      placeholder="Optional"
+                    />
+                  </Field>
+
+                  <Field label="District & state" htmlFor="location">
+                    <input
+                      id="location"
+                      value={form.location}
+                      onChange={(event) => set('location', event.target.value)}
+                      className={fieldClass}
+                      placeholder="Where is the farm?"
+                    />
+                  </Field>
+
+                  <Field label="I am a" htmlFor="enquirerType">
+                    <select
+                      id="enquirerType"
+                      value={form.enquirerType}
+                      onChange={(event) => set('enquirerType', event.target.value)}
+                      className={fieldClass}
+                    >
+                      {ENQUIRER_TYPES.map((type) => (
+                        <option key={type}>{type}</option>
+                      ))}
+                    </select>
+                  </Field>
+
+                  <Field label="Area under crop" htmlFor="acreage">
+                    <input
+                      id="acreage"
+                      value={form.acreage}
+                      onChange={(event) => set('acreage', event.target.value)}
+                      className={fieldClass}
+                      placeholder="e.g. 5 acres"
+                    />
+                  </Field>
+
+                  <div className="sm:col-span-2">
+                    <Field label="Product of interest" htmlFor="product">
+                      <input
+                        id="product"
+                        list="catalogue"
+                        value={form.product}
+                        onChange={(event) => set('product', event.target.value)}
+                        className={fieldClass}
+                        placeholder="Start typing a lure or trap name"
+                      />
+                      <datalist id="catalogue">
+                        {catalogue.map((name) => (
+                          <option key={name} value={name} />
+                        ))}
+                      </datalist>
+                    </Field>
+                  </div>
+
+                  <div className="sm:col-span-2">
+                    <Field label="What are you seeing in the field?" htmlFor="message">
+                      <textarea
+                        id="message"
+                        rows={5}
+                        value={form.message}
+                        onChange={(event) => set('message', event.target.value)}
+                        className={`${fieldClass} resize-y`}
+                        placeholder="Crop stage, the damage you are seeing, how much area is affected."
+                      />
+                    </Field>
+                  </div>
+                </div>
+
+                <div className="mt-8 flex flex-col gap-3 border-t border-line pt-7 sm:flex-row sm:items-center">
+                  <button
+                    type="submit"
+                    className="inline-flex shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-full bg-pine px-7 py-3.5 text-sm font-medium text-paper transition-colors hover:bg-pine-soft"
+                  >
+                    <MessageCircle className="h-4 w-4" aria-hidden />
+                    Send on WhatsApp
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={sendByEmail}
+                    className="inline-flex shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-full border border-line-strong px-7 py-3.5 text-sm font-medium text-ink transition-colors hover:border-pine hover:text-pine"
+                  >
+                    <Mail className="h-4 w-4" aria-hidden />
+                    Send by email
+                  </button>
+
+                  <p className="text-[13px] leading-snug text-ink-3 sm:ml-2">
+                    Opens WhatsApp or your mail app with the details filled in.
+                  </p>
+                </div>
+              </form>
+            </Reveal>
+          </div>
+        </div>
+      </section>
+    </>
+  );
+}

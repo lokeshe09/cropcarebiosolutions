@@ -1,248 +1,256 @@
-import React, { useState, useMemo } from 'react';
-import { PRODUCTS_DATA } from '../data/productsData';
-import { Product, PageId } from '../types';
-import { 
-  Search, 
-  Clock, 
-  Layers, 
-  Eye, 
-  Send, 
-  Sparkles, 
-  Leaf, 
-  CheckCircle2, 
-  Zap,
-  ZoomIn
-} from 'lucide-react';
-import { PageHeader } from '../components/PageHeader';
-import { PageFooterBanner } from '../components/PageFooterBanner';
-import { SafeImage } from '../components/SafeImage';
-import { AnimatedCard } from '../components/AnimatedCard';
+import { useMemo, useState } from 'react';
+import { Search, X } from 'lucide-react';
+import type { PageId, Product, ProductFamily } from '../types';
+import { PRODUCTS } from '../data/products';
+import { PageIntro } from '../components/layout/PageIntro';
+import { PageHandoff } from '../components/layout/PageHandoff';
+import { Figure } from '../components/ui/Figure';
+import { Reveal } from '../components/ui/Reveal';
 
 interface ProductsPageProps {
   onNavigate: (page: PageId) => void;
-  onSelectProduct: (product: Product) => void;
-  onInquireProduct: (productName: string) => void;
-  onZoomImage: (src: string, alt: string) => void;
+  onOpenProduct: (product: Product) => void;
+  onRequestQuote: (productName: string) => void;
 }
 
-export const ProductsPage: React.FC<ProductsPageProps> = ({
+const FAMILIES: { id: ProductFamily | 'all'; label: string }[] = [
+  { id: 'all', label: 'All lures' },
+  { id: 'fruit-flies', label: 'Fruit flies' },
+  { id: 'moths-borers', label: 'Moths & borers' },
+  { id: 'palm-weevils', label: 'Palm pests' },
+  { id: 'synergist', label: 'Companion' },
+];
+
+export function ProductsPage({
   onNavigate,
-  onSelectProduct,
-  onInquireProduct,
-  onZoomImage,
-}) => {
-  const [searchQuery, setSearchQuery] = useState<string>('');
+  onOpenProduct,
+  onRequestQuote,
+}: ProductsPageProps) {
+  const [query, setQuery] = useState('');
+  const [family, setFamily] = useState<ProductFamily | 'all'>('all');
 
-  const filteredProducts = useMemo(() => {
-    return PRODUCTS_DATA.filter((p) => {
-      const q = searchQuery.toLowerCase().trim();
-      if (!q) return true;
+  const results = useMemo(() => {
+    const needle = query.trim().toLowerCase();
 
-      return (
-        p.name.toLowerCase().includes(q) ||
-        p.pestCommonName.toLowerCase().includes(q) ||
-        (p.scientificName && p.scientificName.toLowerCase().includes(q)) ||
-        p.targetCrops.some((c) => c.toLowerCase().includes(q)) ||
-        p.shortDescription.toLowerCase().includes(q)
-      );
+    return PRODUCTS.filter((product) => {
+      if (family !== 'all' && product.family !== family) return false;
+      if (!needle) return true;
+
+      return [
+        product.name,
+        product.pestCommonName,
+        product.scientificName ?? '',
+        product.code,
+        product.description.join(' '),
+        ...product.targetCrops,
+      ]
+        .join(' ')
+        .toLowerCase()
+        .includes(needle);
     });
-  }, [searchQuery]);
+  }, [query, family]);
 
   return (
-    <div className="space-y-8 bg-stone-50/50 pb-8">
-      {/* 1. Header */}
-      <div className="pt-10 sm:pt-14 pb-2 text-center max-w-4xl mx-auto px-4 relative z-10 space-y-2">
-        <div className="text-xs font-semibold uppercase tracking-wider text-emerald-800">
-          Bio-Rational Semiochemicals
-        </div>
-        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-stone-900 tracking-tight">
-          Pheromone Lures
-        </h1>
-        <p className="text-base text-stone-600 max-w-2xl mx-auto">
-          Targeted attraction for smarter, residue-free pest management.
-        </p>
-      </div>
+    <>
+      <PageIntro
+        breadcrumb="Pheromone Lures"
+        eyebrow="Pheromone Lures"
+        title="Targeted Attraction for Smarter Pest Management"
+        onNavigate={onNavigate}
+        aside={
+          <label className="block">
+            <span className="sr-only">Search lures by name, pest or crop</span>
+            <span className="relative block">
+              <Search
+                className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-ink-3"
+                aria-hidden
+              />
+              <input
+                type="search"
+                value={query}
+                onChange={(event) => setQuery(event.target.value)}
+                placeholder="Search a pest or crop"
+                className="w-full rounded-full border border-line-strong bg-paper py-3.5 pl-11 pr-11 text-[14px] text-ink placeholder:text-ink-3 focus:border-pine focus:outline-none"
+              />
+              {query && (
+                <button
+                  type="button"
+                  onClick={() => setQuery('')}
+                  aria-label="Clear search"
+                  className="absolute right-3 top-1/2 grid h-7 w-7 -translate-y-1/2 place-items-center rounded-full text-ink-3 transition-colors hover:text-pine"
+                >
+                  <X className="h-4 w-4" />
+                </button>
+              )}
+            </span>
+          </label>
+        }
+      />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
-        
-        {/* 2. Direct Lures Top Bar with Quick Search */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 p-4 rounded-xl bg-white border border-stone-200 shadow-xs">
-          <div className="text-xs sm:text-sm text-stone-600 font-medium">
-            Showing <span className="text-[#073B20] font-bold">{filteredProducts.length}</span> Field-Tested Pheromone Lures
+      <section className="bg-paper pb-8 pt-8">
+        <div className="mx-auto max-w-[1320px] px-5 sm:px-8">
+          <div className="flex flex-wrap items-center justify-between gap-5">
+            <ul className="flex flex-wrap gap-2">
+              {FAMILIES.map((item) => {
+                const active = family === item.id;
+                return (
+                  <li key={item.id}>
+                    <button
+                      type="button"
+                      onClick={() => setFamily(item.id)}
+                      aria-pressed={active}
+                      className={`rounded-full border px-4 py-2 text-[13px] transition-colors ${
+                        active
+                          ? 'border-pine bg-pine text-paper'
+                          : 'border-line-strong text-ink-2 hover:border-pine hover:text-pine'
+                      }`}
+                    >
+                      {item.label}
+                    </button>
+                  </li>
+                );
+              })}
+            </ul>
+
+            <p className="tnum font-mono text-[11px] uppercase tracking-[0.14em] text-ink-3">
+              {results.length} {results.length === 1 ? 'product' : 'products'}
+            </p>
           </div>
+        </div>
+      </section>
 
-          <div className="relative w-full sm:w-80">
-            <Search className="w-4 h-4 text-stone-400 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" />
-            <input
-              type="text"
-              placeholder="Search by lure name or pest..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-9 pr-8 py-2 rounded-lg text-xs bg-stone-50 border border-stone-300 focus:bg-white focus:border-[#073B20] focus:ring-1 focus:ring-[#073B20] text-stone-900 placeholder-stone-400 outline-none transition-colors"
-            />
-            {searchQuery && (
+      <section className="bg-paper pb-16 lg:pb-24">
+        <div className="mx-auto max-w-[1320px] px-5 sm:px-8">
+          {results.length === 0 ? (
+            <div className="border border-dashed border-line-strong bg-paper-2 px-8 py-20 text-center">
+              <p className="font-display text-[22px] text-pine">
+                No lure matches &ldquo;{query}&rdquo;.
+              </p>
+              <p className="mt-3 text-[15px] text-ink-2">
+                Try a crop name — tomato, mango, cotton, coconut, paddy or cabbage.
+              </p>
               <button
-                onClick={() => setSearchQuery('')}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-stone-400 hover:text-stone-700 cursor-pointer"
+                type="button"
+                onClick={() => {
+                  setQuery('');
+                  setFamily('all');
+                }}
+                className="mt-6 rounded-full border border-line-strong px-5 py-2.5 text-[13px] text-pine transition-colors hover:border-pine"
               >
-                ✕
+                Reset
               </button>
-            )}
-          </div>
-        </div>
-
-        {/* 3. Products Grid */}
-        {filteredProducts.length === 0 ? (
-          <div className="p-12 text-center rounded-xl bg-white border border-stone-200 space-y-3">
-            <p className="text-base font-semibold text-stone-800">
-              No lures found matching &quot;{searchQuery}&quot;.
-            </p>
-            <p className="text-xs text-stone-500">
-              Try searching by crop name (e.g. Tomato, Cotton, Brinjal, Paddy) or reset filters.
-            </p>
-            <button
-              onClick={() => setSearchQuery('')}
-              className="px-4 py-2 rounded-lg text-xs font-semibold bg-[#073B20] text-white hover:bg-[#126B35] transition-colors cursor-pointer"
-            >
-              Reset Search
-            </button>
-          </div>
-        ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredProducts.map((product, idx) => (
-              <div
-                key={product.id}
-                id={`product-card-${product.id}`}
-                className="rounded-xl bg-white border border-stone-200 p-5 sm:p-6 flex flex-col justify-between group hover:border-stone-300 hover:shadow-md transition-all duration-200 shadow-xs"
-              >
-                <div className="space-y-4">
-                  
-                  {/* Category & Badge Header */}
-                  <div className="flex items-center justify-between gap-2">
-                    <span className="text-[11px] font-semibold uppercase tracking-wider px-2.5 py-0.5 rounded-md bg-emerald-50 text-emerald-800 border border-emerald-100">
-                      {product.category.replace('_', ' ')}
-                    </span>
-                    {product.badge && (
-                      <span className="text-[11px] font-medium px-2 py-0.5 rounded-md bg-stone-100 text-stone-700 border border-stone-200">
-                        {product.badge}
-                      </span>
-                    )}
-                  </div>
-
-                  {/* Lure Image with Zoom Lightbox Trigger */}
-                  <div 
-                    className="cursor-pointer rounded-lg overflow-hidden border border-stone-100 bg-stone-50"
-                    onClick={() => product.imageUrl && onZoomImage(product.imageUrl, product.name)}
-                  >
-                    <SafeImage
-                      src={product.imageUrl}
-                      alt={product.imageAlt || product.name}
-                      aspectRatio="aspect-[4/3]"
-                      enableZoom
-                      onZoom={onZoomImage}
-                    />
-                  </div>
-
-                  {/* Product Title & Pest Information */}
-                  <div>
-                    <h3 className="text-base font-bold text-stone-900 group-hover:text-[#073B20] transition-colors leading-snug line-clamp-2">
-                      {product.name}
-                    </h3>
-                    <p className="text-xs font-medium text-emerald-800 mt-1">
-                      Pest: <span className="font-semibold text-stone-800">{product.pestCommonName}</span>
-                    </p>
-                    {product.scientificName && (
-                      <p className="text-[11px] text-stone-500 italic mt-0.5">
-                        {product.scientificName}
-                      </p>
-                    )}
-                  </div>
-
-                  {/* Short Narrative */}
-                  <p className="text-xs text-stone-600 leading-relaxed line-clamp-2">
-                    {product.shortDescription}
-                  </p>
-
-                  {/* Key Metrics Quick Box */}
-                  <div className="grid grid-cols-2 gap-2 pt-1">
-                    <div className="p-2.5 rounded-lg bg-stone-50 border border-stone-200/80 text-left">
-                      <div className="flex items-center gap-1 text-[11px] text-stone-500 font-medium">
-                        <Clock className="w-3.5 h-3.5 text-emerald-700" />
-                        <span>Field Life</span>
+            </div>
+          ) : (
+            <ul className="grid gap-x-6 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
+              {results.map((product, index) => (
+                <Reveal as="li" key={product.id} delay={(index % 3) * 0.06}>
+                  <article className="group flex h-full flex-col">
+                    <button
+                      type="button"
+                      onClick={() => onOpenProduct(product)}
+                      className="block text-left"
+                      aria-label={`Open the protocol for ${product.name}`}
+                    >
+                      <div className="relative">
+                        <Figure
+                          src={product.imageUrl}
+                          alt={product.imageAlt}
+                          ratio="aspect-[4/3]"
+                        />
+                        <span className="absolute left-0 top-0 bg-paper px-3 py-1.5 font-mono text-[11px] tracking-[0.12em] text-clay">
+                          {product.code}
+                        </span>
                       </div>
-                      <span className="text-xs font-semibold text-stone-800 block truncate mt-0.5">
-                        {product.fieldLife.split('(')[0]}
-                      </span>
-                    </div>
+                    </button>
 
-                    <div className="p-2.5 rounded-lg bg-stone-50 border border-stone-200/80 text-left">
-                      <div className="flex items-center gap-1 text-[11px] text-stone-500 font-medium">
-                        <Layers className="w-3.5 h-3.5 text-amber-700" />
-                        <span>Trap Density</span>
-                      </div>
-                      <span className="text-xs font-semibold text-stone-800 block truncate mt-0.5">
-                        {product.trapsPerAcre}
-                      </span>
-                    </div>
-                  </div>
+                    <div className="mt-5 flex flex-1 flex-col border-t border-line pt-4">
+                      <p className="eyebrow">{product.pestCommonName}</p>
 
-                  {/* Target Crops Preview Chips */}
-                  <div className="space-y-1.5 pt-1">
-                    <span className="text-[11px] font-semibold text-stone-500 uppercase tracking-wider block">
-                      Target Crops:
-                    </span>
-                    <div className="flex flex-wrap gap-1.5">
-                      {product.targetCrops.slice(0, 4).map((crop) => (
-                        <span
-                          key={crop}
-                          className="px-2 py-0.5 rounded-md text-[11px] font-medium bg-stone-100 text-stone-700 border border-stone-200"
+                      <h2 className="mt-3 font-display text-[22px] leading-tight text-pine">
+                        <button
+                          type="button"
+                          onClick={() => onOpenProduct(product)}
+                          className="link-rule text-left"
                         >
-                          {crop}
-                        </span>
-                      ))}
-                      {product.targetCrops.length > 4 && (
-                        <span className="px-1.5 py-0.5 rounded-md text-[10px] font-medium text-stone-500 bg-stone-50 border border-stone-200">
-                          +{product.targetCrops.length - 4} more
-                        </span>
+                          {product.name}
+                        </button>
+                      </h2>
+
+                      {product.scientificName && (
+                        <p className="mt-1 font-display text-[14px] italic text-ink-3">
+                          {product.scientificName}
+                        </p>
                       )}
+
+                      <p className="mt-3 line-clamp-4 text-[14px] leading-relaxed text-ink-2">
+                        {product.description[0]}
+                      </p>
+
+                      <dl className="mt-5 grid grid-cols-2 gap-x-4 gap-y-3 border-t border-line pt-4 text-[13px]">
+                        {product.fieldLife && (
+                          <div>
+                            <dt className="eyebrow">Field life</dt>
+                            <dd className="mt-1.5 text-ink">
+                              {product.fieldLife.split(',')[0]}
+                            </dd>
+                          </div>
+                        )}
+                        {product.trapsPerAcre && (
+                          <div>
+                            <dt className="eyebrow">Traps</dt>
+                            <dd className="mt-1.5 text-ink">{product.trapsPerAcre}</dd>
+                          </div>
+                        )}
+                      </dl>
+
+                      <ul className="mt-5 flex flex-wrap gap-1.5">
+                        {product.targetCrops.slice(0, 3).map((crop) => (
+                          <li
+                            key={crop}
+                            className="border border-line bg-paper-2 px-2.5 py-1 text-[12px] text-ink-2"
+                          >
+                            {crop}
+                          </li>
+                        ))}
+                        {product.targetCrops.length > 3 && (
+                          <li className="px-1 py-1 text-[12px] text-ink-3">
+                            +{product.targetCrops.length - 3} more
+                          </li>
+                        )}
+                      </ul>
+
+                      <div className="mt-auto flex items-center gap-5 pt-6">
+                        <button
+                          type="button"
+                          onClick={() => onOpenProduct(product)}
+                          className="rounded-full bg-pine px-5 py-2.5 text-[13px] font-medium text-paper transition-colors hover:bg-pine-soft"
+                        >
+                          View protocol
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => onRequestQuote(product.name)}
+                          className="link-rule text-[13px] text-clay"
+                        >
+                          Request a quote
+                        </button>
+                      </div>
                     </div>
-                  </div>
+                  </article>
+                </Reveal>
+              ))}
+            </ul>
+          )}
+        </div>
+      </section>
 
-                </div>
-
-                {/* Bottom Action Buttons */}
-                <div className="pt-4 mt-4 border-t border-stone-100 flex items-center gap-2">
-                  <button
-                    onClick={() => onSelectProduct(product)}
-                    className="flex-1 inline-flex items-center justify-center gap-1.5 py-2 px-3 rounded-lg text-xs font-medium text-stone-700 bg-stone-100 hover:bg-stone-200 transition-colors cursor-pointer"
-                  >
-                    <Eye className="w-3.5 h-3.5 text-stone-600" />
-                    <span>View Protocol</span>
-                  </button>
-
-                  <button
-                    onClick={() => onInquireProduct(product.name)}
-                    className="flex-1 inline-flex items-center justify-center gap-1.5 py-2 px-3 rounded-lg text-xs font-semibold text-white bg-[#073B20] hover:bg-[#126B35] shadow-xs transition-colors cursor-pointer"
-                  >
-                    <Send className="w-3.5 h-3.5" />
-                    <span>Get Quote</span>
-                  </button>
-                </div>
-
-              </div>
-            ))}
-          </div>
-        )}
-
-      </div>
-
-      {/* Page Footer Navigation */}
-      <PageFooterBanner
-        nextPageId="trap-guide"
-        nextPageTitle="Insect Traps"
-        nextPageDescription="Explore field-grade insect traps, delta traps, funnel traps, and water traps engineered for optimal lure deployment."
+      <PageHandoff
+        nextPage="traps"
+        label="Next"
+        title="Insect Traps"
+        description="The housings the lures sit in — fruit fly traps, funnel traps, water traps, delta traps, palm traps and the solar light trap."
         onNavigate={onNavigate}
       />
-    </div>
+    </>
   );
-};
+}
