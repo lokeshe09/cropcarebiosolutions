@@ -50,8 +50,8 @@ export const ProductsPage: React.FC<ProductsPageProps> = ({
 
   return (
     <div className="space-y-10">
-      {/* 1. Header: Exactly as requested in PDF Point 3 */}
-      <div className="pt-10 sm:pt-14 pb-2 text-center max-w-4xl mx-auto px-4 space-y-2.5">
+      {/* 1. Header: Exactly as requested in PDF Point 3 (with navbar clearance) */}
+      <div className="pt-24 sm:pt-32 pb-4 text-center max-w-4xl mx-auto px-4 relative z-10 space-y-2.5">
         <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-[#073B20] tracking-tight">
           PHEROMONE LURES
         </h1>

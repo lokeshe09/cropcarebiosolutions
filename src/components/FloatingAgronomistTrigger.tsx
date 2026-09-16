@@ -41,11 +41,8 @@ export const FloatingAgronomistTrigger: React.FC<FloatingAgronomistTriggerProps>
           <div className="mb-3 w-80 rounded-3xl bg-white/95 backdrop-blur-3xl border border-white p-5 shadow-2xl shadow-emerald-950/20 space-y-4 animate-in fade-in slide-in-from-bottom-4 duration-300">
             <div className="flex items-center justify-between border-b border-gray-100 pb-3">
               <div className="flex items-center gap-2.5">
-                <div className="relative">
-                  <div className="w-9 h-9 rounded-xl bg-[#E8F5E9] text-[#1E562B] flex items-center justify-center font-bold">
-                    <UserCheck className="w-5 h-5" />
-                  </div>
-                  <span className="absolute -top-0.5 -right-0.5 w-2.5 h-2.5 bg-emerald-500 rounded-full ring-2 ring-white animate-pulse" />
+                <div className="w-9 h-9 rounded-xl bg-[#E8F5E9] text-[#1E562B] flex items-center justify-center font-bold">
+                  <UserCheck className="w-5 h-5" />
                 </div>
                 <div>
                   <h4 className="text-xs font-bold text-[#0B2412]">Agronomist Online</h4>
@@ -141,12 +138,8 @@ export const FloatingAgronomistTrigger: React.FC<FloatingAgronomistTriggerProps>
           onClick={() => setIsOpen(!isOpen)}
           className="flex items-center gap-3 px-5 py-3 rounded-full bg-[#0B2412] hover:bg-[#143D1F] text-white shadow-2xl shadow-emerald-950/40 border border-emerald-700/60 hover:scale-105 transition-all duration-300 cursor-pointer group"
         >
-          <div className="relative">
-            <div className="w-8 h-8 rounded-full bg-emerald-500/20 border border-emerald-400/40 flex items-center justify-center text-[#A3E635]">
-              <MessageCircle className="w-4 h-4" />
-            </div>
-            <span className="absolute 0 top-0 right-0 w-2.5 h-2.5 bg-[#A3E635] rounded-full animate-ping" />
-            <span className="absolute 0 top-0 right-0 w-2.5 h-2.5 bg-[#A3E635] rounded-full" />
+          <div className="w-8 h-8 rounded-full bg-emerald-500/20 border border-emerald-400/40 flex items-center justify-center text-[#A3E635]">
+            <MessageCircle className="w-4 h-4" />
           </div>
           <div className="text-left pr-1">
             <div className="text-xs font-extrabold text-white leading-tight">Talk to Agronomist</div>

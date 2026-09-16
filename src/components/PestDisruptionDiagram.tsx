@@ -494,7 +494,7 @@ export const PestDisruptionDiagram: React.FC<PestDisruptionDiagramProps> = ({
                       {pest.name}
                     </span>
                     {isSelected && (
-                      <span className="w-2 h-2 rounded-full bg-lime-400 animate-ping" />
+                      <span className="w-1.5 h-1.5 rounded-full bg-lime-400" />
                     )}
                   </div>
                   <p className={`text-[11px] italic line-clamp-1 ${isSelected ? 'text-emerald-100' : 'text-[#6B7280]'}`}>

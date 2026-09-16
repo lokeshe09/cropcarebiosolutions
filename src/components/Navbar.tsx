@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { ChevronDown, Menu, X, Phone, Sparkles, Layers, Bug, Sprout, ArrowRight, ShieldCheck, FlaskConical, Info } from 'lucide-react';
+import { ChevronDown, Menu, X, Sparkles, Layers, Bug, Sprout, ArrowRight, ShieldCheck, FlaskConical, Info } from 'lucide-react';
 import { PageId } from '../types';
 
 interface NavbarProps {
@@ -38,10 +38,6 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
     setMobileMenuOpen(false);
     setProductsDropdownOpen(false);
     window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
-  const handleWhatsAppCall = () => {
-    window.open('https://wa.me/919876543210?text=Hello%20Crop%20Care%20Bio%20Solutions!%20I%20am%20interested%20in%20your%20insect%20traps%20and%20pheromone%20lures.', '_blank');
   };
 
   return (
@@ -250,24 +246,6 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
             </button>
           </nav>
 
-          {/* Right Action: Call / WhatsApp Glass Button */}
-          <div className="hidden sm:flex items-center shrink-0">
-            <button
-              type="button"
-              onClick={handleWhatsAppCall}
-              id="nav-whatsapp-btn"
-              className="inline-flex items-center gap-2 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full text-xs sm:text-[13px] font-black text-white bg-[#073B20] hover:bg-[#126B35] shadow-md shadow-emerald-950/20 hover:shadow-lg transition-all duration-300 whitespace-nowrap cursor-pointer group active:scale-[0.98] border border-white/20"
-            >
-              <div className="w-2 h-2 rounded-full bg-[#8BE52A] animate-ping shrink-0" />
-              <div className="w-5 h-5 rounded-full bg-white/15 flex items-center justify-center shrink-0 group-hover:bg-[#25D366] transition-colors">
-                <svg viewBox="0 0 24 24" className="w-3.5 h-3.5 fill-current text-white" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.667-.699c.983.538 1.83.824 2.793.825h.001c3.181 0 5.767-2.586 5.768-5.766 0-3.18-2.587-5.766-5.769-5.766zm3.376 8.21c-.14.392-.711.758-1.025.795-.297.035-.67.049-1.074-.082-.249-.081-.568-.189-1.01-.38-1.874-.809-3.089-2.73-3.182-2.855-.094-.125-.768-1.021-.768-1.947s.484-1.381.656-1.57c.172-.188.375-.235.5-.235.125 0 .25.001.359.006.115.006.269-.044.422.325.156.375.531 1.296.578 1.39.047.094.078.204.016.329-.063.125-.094.203-.188.313-.094.109-.198.244-.282.329-.094.094-.192.196-.083.383.109.188.486.802 1.042 1.297.717.638 1.32.836 1.508.929.188.094.297.079.406-.047.109-.125.469-.547.594-.734.125-.188.25-.156.422-.094.172.062 1.094.516 1.281.609.188.094.313.141.359.219.047.078.047.453-.094.844z"/>
-                </svg>
-              </div>
-              <span className="tracking-tight">Call / WhatsApp</span>
-            </button>
-          </div>
-
           {/* Mobile Menu Hamburger */}
           <button
             type="button"
@@ -369,17 +347,6 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
           >
             Contact Us &amp; Agronomist Support
           </button>
-
-          <div className="pt-2">
-            <button
-              type="button"
-              onClick={handleWhatsAppCall}
-              className="w-full py-3 rounded-2xl text-xs font-black text-white bg-[#073B20] flex items-center justify-center gap-2 shadow-md"
-            >
-              <Phone className="w-4 h-4" />
-              <span>Call / WhatsApp +91 98765 43210</span>
-            </button>
-          </div>
         </div>
       )}
 

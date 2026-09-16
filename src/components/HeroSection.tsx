@@ -127,8 +127,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                 {/* Technical Pointer Annotation 01: Pheromone Lure Core */}
                 <div className="absolute top-[34%] left-[45%] z-20 pointer-events-none hidden sm:block">
                   <div className="relative">
-                    {/* Pulsing Pin */}
-                    <span className="absolute -top-1.5 -left-1.5 w-3 h-3 bg-[#8BE52A] rounded-full animate-ping opacity-75" />
+                    {/* Pin Marker */}
                     <span className="w-2 h-2 bg-[#8BE52A] rounded-full block ring-4 ring-black/70" />
                     
                     {/* SVG Pointer Line */}
