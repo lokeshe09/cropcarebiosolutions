@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { ChevronDown, Menu, X, Phone, Sparkles, Layers, Bug, Sprout, ArrowRight, ShieldCheck } from 'lucide-react';
+import { ChevronDown, Menu, X, Phone, Sparkles, Layers, Bug, Sprout, ArrowRight, ShieldCheck, FlaskConical, Info } from 'lucide-react';
 import { PageId } from '../types';
 
 interface NavbarProps {
@@ -11,6 +11,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [productsDropdownOpen, setProductsDropdownOpen] = useState(false);
+  const [activeIngredientsModalOpen, setActiveIngredientsModalOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -154,6 +155,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
                   </span>
                 </div>
 
+                {/* 1. Pheromone Lures */}
                 <button
                   type="button"
                   onClick={() => handleLinkClick('products')}
@@ -163,11 +165,12 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
                     <div className="w-6 h-6 rounded-lg bg-emerald-50 text-[#073B20] flex items-center justify-center">
                       <Sparkles className="w-3.5 h-3.5" />
                     </div>
-                    <span>All Pheromone Lures</span>
+                    <span>1. Pheromone Lures</span>
                   </div>
                   <ArrowRight className="w-3 h-3 opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all text-[#073B20]" />
                 </button>
 
+                {/* 2. Insect Traps */}
                 <button
                   type="button"
                   onClick={() => handleLinkClick('trap-guide')}
@@ -177,21 +180,30 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
                     <div className="w-6 h-6 rounded-lg bg-amber-50 text-amber-800 flex items-center justify-center">
                       <Layers className="w-3.5 h-3.5" />
                     </div>
-                    <span>Fruit Fly Traps</span>
+                    <span>2. Insect Traps</span>
                   </div>
                   <ArrowRight className="w-3 h-3 opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all text-[#073B20]" />
                 </button>
 
+                {/* 3. Active Ingredients */}
                 <button
                   type="button"
-                  onClick={() => handleLinkClick('products')}
+                  onClick={() => {
+                    setProductsDropdownOpen(false);
+                    setActiveIngredientsModalOpen(true);
+                  }}
                   className="w-full text-left px-3 py-2 rounded-xl text-xs font-bold text-[#34443B] hover:bg-[#F3F8F3] hover:text-[#073B20] transition-colors flex items-center justify-between group cursor-pointer"
                 >
                   <div className="flex items-center gap-2.5">
-                    <div className="w-6 h-6 rounded-lg bg-green-50 text-[#126B35] flex items-center justify-center">
-                      <Sprout className="w-3.5 h-3.5" />
+                    <div className="w-6 h-6 rounded-lg bg-blue-50 text-blue-700 flex items-center justify-center">
+                      <FlaskConical className="w-3.5 h-3.5" />
                     </div>
-                    <span>Funnel &amp; Sticky Traps</span>
+                    <div className="flex items-center gap-1.5">
+                      <span>3. Active Ingredients</span>
+                      <span className="text-[9px] font-extrabold px-1.5 py-0.5 rounded-full bg-amber-100 text-amber-800 uppercase tracking-tight">
+                        Soon
+                      </span>
+                    </div>
                   </div>
                   <ArrowRight className="w-3 h-3 opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all text-[#073B20]" />
                 </button>
@@ -287,19 +299,61 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
           >
             About Us
           </button>
+
+          {/* Product Categories */}
+          <div className="pt-2 pb-1 px-3 border-t border-gray-100">
+            <span className="text-[10px] font-black uppercase tracking-wider text-[#073B20]">
+              Product Categories
+            </span>
+          </div>
+
           <button
             type="button"
             onClick={() => handleLinkClick('products')}
-            className={`w-full text-left px-4 py-2.5 rounded-2xl text-sm font-bold transition-colors ${currentPage === 'products' ? 'bg-[#E8F5E9] text-[#073B20]' : 'text-[#34443B] hover:bg-gray-50'}`}
+            className={`w-full text-left px-4 py-2 rounded-2xl text-xs font-bold transition-colors flex items-center justify-between ${currentPage === 'products' ? 'bg-[#E8F5E9] text-[#073B20]' : 'text-[#34443B] hover:bg-gray-50'}`}
           >
-            Our Products (Pheromones &amp; Traps)
+            <div className="flex items-center gap-2">
+              <Sparkles className="w-3.5 h-3.5 text-[#073B20]" />
+              <span>1. Pheromone Lures</span>
+            </div>
+            <ArrowRight className="w-3 h-3 text-[#073B20]" />
           </button>
+
+          <button
+            type="button"
+            onClick={() => handleLinkClick('trap-guide')}
+            className={`w-full text-left px-4 py-2 rounded-2xl text-xs font-bold transition-colors flex items-center justify-between ${currentPage === 'trap-guide' ? 'bg-[#E8F5E9] text-[#073B20]' : 'text-[#34443B] hover:bg-gray-50'}`}
+          >
+            <div className="flex items-center gap-2">
+              <Layers className="w-3.5 h-3.5 text-amber-800" />
+              <span>2. Insect Traps</span>
+            </div>
+            <ArrowRight className="w-3 h-3 text-[#073B20]" />
+          </button>
+
+          <button
+            type="button"
+            onClick={() => {
+              setMobileMenuOpen(false);
+              setActiveIngredientsModalOpen(true);
+            }}
+            className="w-full text-left px-4 py-2 rounded-2xl text-xs font-bold transition-colors flex items-center justify-between text-[#34443B] hover:bg-gray-50"
+          >
+            <div className="flex items-center gap-2">
+              <FlaskConical className="w-3.5 h-3.5 text-blue-700" />
+              <span>3. Active Ingredients</span>
+            </div>
+            <span className="text-[9px] font-extrabold px-1.5 py-0.5 rounded-full bg-amber-100 text-amber-800 uppercase tracking-tight">
+              Soon
+            </span>
+          </button>
+
           <button
             type="button"
             onClick={() => handleLinkClick('pest-finder')}
             className={`w-full text-left px-4 py-2.5 rounded-2xl text-sm font-bold transition-colors ${currentPage === 'pest-finder' ? 'bg-[#E8F5E9] text-[#073B20]' : 'text-[#34443B] hover:bg-gray-50'}`}
           >
-            Crop &amp; Pest Solutions
+            Crop Solutions
           </button>
           <button
             type="button"
@@ -325,6 +379,66 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
               <Phone className="w-4 h-4" />
               <span>Call / WhatsApp +91 98765 43210</span>
             </button>
+          </div>
+        </div>
+      )}
+
+      {/* Active Ingredients Modal */}
+      {activeIngredientsModalOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in duration-200">
+          <div className="bg-white rounded-3xl max-w-md w-full p-6 sm:p-8 shadow-2xl border border-gray-200 space-y-6 relative">
+            <button
+              onClick={() => setActiveIngredientsModalOpen(false)}
+              className="absolute top-4 right-4 p-2 rounded-full hover:bg-gray-100 text-gray-500 hover:text-gray-900 transition-colors cursor-pointer"
+            >
+              <X className="w-5 h-5" />
+            </button>
+
+            <div className="w-12 h-12 rounded-2xl bg-blue-50 text-blue-700 flex items-center justify-center">
+              <FlaskConical className="w-6 h-6 text-blue-700" />
+            </div>
+
+            <div className="space-y-2">
+              <span className="text-xs font-black uppercase tracking-wider text-blue-700 bg-blue-50 px-3 py-1 rounded-full border border-blue-200 inline-block">
+                Category 3 &bull; Information Coming Soon
+              </span>
+              <h3 className="text-xl sm:text-2xl font-black text-[#073B20]">
+                Active Ingredients
+              </h3>
+              <p className="text-xs sm:text-sm text-[#4B5563] leading-relaxed">
+                Technical active compounds, isomer purity ratings, formulation intermediates, and custom synthesis specifications are currently being updated and will be published shortly.
+              </p>
+            </div>
+
+            <div className="p-4 rounded-2xl bg-[#F9FAF9] border border-gray-200 text-xs text-[#34443B] space-y-2">
+              <div className="flex items-center gap-2 font-bold text-[#073B20]">
+                <Info className="w-4 h-4 text-[#073B20]" />
+                <span>Need Technical Specifications Today?</span>
+              </div>
+              <p className="text-gray-600 leading-relaxed">
+                For commercial inquiries regarding bulk technical grade semiochemicals, certificate of analysis (COA), or contract synthesis, please connect directly with our technical laboratory team.
+              </p>
+            </div>
+
+            <div className="flex flex-col sm:flex-row gap-2.5 pt-2">
+              <button
+                type="button"
+                onClick={() => {
+                  setActiveIngredientsModalOpen(false);
+                  handleLinkClick('contact');
+                }}
+                className="flex-1 py-3 px-4 rounded-full text-xs font-black uppercase tracking-wider text-white bg-[#073B20] hover:bg-[#126B35] transition-colors text-center cursor-pointer"
+              >
+                Contact Technical Team
+              </button>
+              <button
+                type="button"
+                onClick={() => setActiveIngredientsModalOpen(false)}
+                className="py-3 px-5 rounded-full text-xs font-bold text-gray-600 hover:bg-gray-100 transition-colors text-center cursor-pointer"
+              >
+                Close
+              </button>
+            </div>
           </div>
         </div>
       )}

@@ -8,12 +8,8 @@ import {
   ShieldAlert, 
   Layers, 
   Sparkles, 
-  FileText, 
   Send, 
   PhoneCall, 
-  FlaskConical,
-  Activity,
-  Award,
   ShieldCheck,
   Check
 } from 'lucide-react';
@@ -164,105 +160,6 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
             <p className="text-xs font-medium text-[#283618]">{product.massTrappingDensity || product.trapsPerAcre}</p>
           </div>
         </div>
-
-        {/* Product Full Description */}
-        <div className="space-y-2">
-          <h3 className="text-sm font-serif font-bold text-[#283618] flex items-center gap-2">
-            <FileText className="w-4 h-4 text-[#606C38]" />
-            Agronomic & Biological Summary
-          </h3>
-          <p className="text-xs sm:text-sm text-[#555] leading-relaxed bg-white/60 p-4 rounded-[20px] border border-white/80 font-light">
-            {product.fullDescription}
-          </p>
-        </div>
-
-        {/* Semiochemical Profile & Technical Specifications */}
-        <div className="p-4 rounded-[24px] bg-white/80 border border-[#606C38]/20 shadow-2xs space-y-3">
-          <h3 className="text-sm font-serif font-bold text-[#283618] flex items-center gap-2">
-            <FlaskConical className="w-4 h-4 text-[#606C38]" />
-            Semiochemical & Technical Chemistry Profile
-          </h3>
-          
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
-            {product.activeIngredient && (
-              <div className="bg-[#FEFAE0]/50 p-2.5 rounded-[14px] border border-[#DDA15E]/20">
-                <span className="text-[#606C38] font-bold block text-[10px] uppercase">Active Semiochemical</span>
-                <span className="text-[#283618] font-medium">{product.activeIngredient}</span>
-              </div>
-            )}
-            {product.chemicalStructure && (
-              <div className="bg-[#FEFAE0]/50 p-2.5 rounded-[14px] border border-[#DDA15E]/20">
-                <span className="text-[#606C38] font-bold block text-[10px] uppercase">Formula / Structure</span>
-                <span className="text-[#283618] font-mono text-[11px]">{product.chemicalStructure}</span>
-              </div>
-            )}
-            {product.casNumber && (
-              <div className="bg-[#FAF9F6] p-2.5 rounded-[14px] border border-gray-200">
-                <span className="text-[#606C38] font-bold block text-[10px] uppercase">CAS Registry Number</span>
-                <span className="text-[#283618] font-mono text-[11px]">{product.casNumber}</span>
-              </div>
-            )}
-            {product.dispenserType && (
-              <div className="bg-[#FAF9F6] p-2.5 rounded-[14px] border border-gray-200">
-                <span className="text-[#606C38] font-bold block text-[10px] uppercase">Dispenser Technology</span>
-                <span className="text-[#283618] font-medium">{product.dispenserType}</span>
-              </div>
-            )}
-          </div>
-
-          {product.modeOfAction && (
-            <div className="bg-[#E9EDC9]/30 p-3 rounded-[16px] border border-[#606C38]/20">
-              <span className="text-[#283618] font-bold block text-[11px] mb-0.5">Mode of Action:</span>
-              <p className="text-xs text-[#555] leading-relaxed">{product.modeOfAction}</p>
-            </div>
-          )}
-
-          {/* MRL & Ecological Safety */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-1">
-            {product.mrlStatus && (
-              <div className="flex items-start gap-2 text-xs text-emerald-800 bg-emerald-50/80 p-2.5 rounded-[14px] border border-emerald-200">
-                <Award className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
-                <div>
-                  <strong className="block text-[10px] uppercase">MRL & Export Compliance:</strong>
-                  <span>{product.mrlStatus}</span>
-                </div>
-              </div>
-            )}
-            {product.beneficialSafety && (
-              <div className="flex items-start gap-2 text-xs text-[#283618] bg-[#E9EDC9]/60 p-2.5 rounded-[14px] border border-[#606C38]/20">
-                <ShieldCheck className="w-4 h-4 text-[#606C38] shrink-0 mt-0.5" />
-                <div>
-                  <strong className="block text-[10px] uppercase">Pollinator & Beneficial Safety:</strong>
-                  <span>{product.beneficialSafety}</span>
-                </div>
-              </div>
-            )}
-          </div>
-        </div>
-
-        {/* Economic Threshold Levels (ETLs) for IPM Decision-Making */}
-        {product.economicThreshold && (
-          <div className="p-4 rounded-[24px] bg-[#FEFAE0]/80 border border-[#DDA15E]/40 space-y-2.5">
-            <h3 className="text-sm font-serif font-bold text-[#283618] flex items-center gap-2">
-              <Activity className="w-4 h-4 text-[#BC6C25]" />
-              Integrated Pest Management (IPM) Action Thresholds
-            </h3>
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 text-xs">
-              <div className="bg-white/80 p-3 rounded-[16px] border border-[#DDA15E]/30">
-                <span className="text-[10px] font-bold text-[#606C38] uppercase block mb-1">01. Surveillance Trigger</span>
-                <p className="text-[#333] leading-snug">{product.economicThreshold.monitoringTrigger}</p>
-              </div>
-              <div className="bg-white/80 p-3 rounded-[16px] border border-[#DDA15E]/30">
-                <span className="text-[10px] font-bold text-[#BC6C25] uppercase block mb-1">02. Mass Trapping Grid</span>
-                <p className="text-[#333] leading-snug">{product.economicThreshold.massTrappingTrigger}</p>
-              </div>
-              <div className="bg-white/80 p-3 rounded-[16px] border border-[#DDA15E]/30">
-                <span className="text-[10px] font-bold text-red-700 uppercase block mb-1">03. Critical Intervention</span>
-                <p className="text-[#333] leading-snug">{product.economicThreshold.criticalIntervention}</p>
-              </div>
-            </div>
-          </div>
-        )}
 
         {/* Target Crops */}
         <div className="space-y-3">

@@ -10,7 +10,6 @@ import { PageId } from '../types';
 import { PageHeader } from '../components/PageHeader';
 import { PageFooterBanner } from '../components/PageFooterBanner';
 import { WE_STAND_FOR_PILLARS } from '../data/productsData';
-import { AboutFaqAccordion } from '../components/AboutFaqAccordion';
 
 interface AboutPageProps {
   onNavigate: (page: PageId) => void;
@@ -161,16 +160,13 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
           </div>
         </div>
 
-        {/* 5. Frequently Asked Questions (Accordion) */}
-        <AboutFaqAccordion onContactClick={() => onNavigate('contact')} />
-
       </div>
 
       {/* Page Footer Navigation */}
       <PageFooterBanner
         nextPageId="products"
-        nextPageTitle="Pheromone Lures Catalog"
-        nextPageDescription="Browse our complete collection of 13+ species-specific pheromones, field life specs, and dosage guides."
+        nextPageTitle="Pheromone Lures"
+        nextPageDescription="Browse our complete collection of species-specific pheromones, field life specs, and dosage guides."
         onNavigate={onNavigate}
       />
     </div>

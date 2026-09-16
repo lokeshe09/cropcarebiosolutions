@@ -31,91 +31,60 @@ export const ProductsPage: React.FC<ProductsPageProps> = ({
   onInquireProduct,
   onZoomImage,
 }) => {
-  const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState<string>('');
-
-  const categories = [
-    { id: 'all', label: 'All Solutions' },
-    { id: 'vegetables', label: 'Vegetables & Cucurbits' },
-    { id: 'fruits', label: 'Fruit Orchards' },
-    { id: 'plantation', label: 'Coconut & Palm Groves' },
-    { id: 'field_crops', label: 'Cotton, Pulses & Field Crops' },
-    { id: 'enhancers', label: 'Synergists & Magnets' }
-  ];
 
   const filteredProducts = useMemo(() => {
     return PRODUCTS_DATA.filter((p) => {
-      const matchesCategory =
-        selectedCategory === 'all' || p.category === selectedCategory;
       const q = searchQuery.toLowerCase().trim();
-      if (!q) return matchesCategory;
+      if (!q) return true;
 
-      const matchesSearch =
+      return (
         p.name.toLowerCase().includes(q) ||
         p.pestCommonName.toLowerCase().includes(q) ||
         (p.scientificName && p.scientificName.toLowerCase().includes(q)) ||
         p.targetCrops.some((c) => c.toLowerCase().includes(q)) ||
-        p.shortDescription.toLowerCase().includes(q);
-
-      return matchesCategory && matchesSearch;
+        p.shortDescription.toLowerCase().includes(q)
+      );
     });
-  }, [selectedCategory, searchQuery]);
+  }, [searchQuery]);
 
   return (
-    <div className="space-y-12">
-      {/* 1. Page Header */}
-      <PageHeader
-        badge="Botanical Pheromone Chemistry"
-        title="PHEROMONE LURES"
-        highlightText="CATALOG"
-        subtitle="13+ species-specific attractants engineered for maximum field capture, zero residue, and multi-season crop protection."
-        currentPage="products"
-        onNavigate={onNavigate}
-      />
+    <div className="space-y-10">
+      {/* 1. Header: Exactly as requested in PDF Point 3 */}
+      <div className="pt-10 sm:pt-14 pb-2 text-center max-w-4xl mx-auto px-4 space-y-2.5">
+        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-[#073B20] tracking-tight">
+          PHEROMONE LURES
+        </h1>
+        <p className="text-base sm:text-lg text-[#34443B] font-medium">
+          Targeted Attraction for Smarter Pest Management
+        </p>
+      </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         
-        {/* 2. Filter & Search Glass Bar */}
-        <div className="p-4 sm:p-5 rounded-[28px] bg-white/50 backdrop-blur-xl border border-white/80 shadow-md space-y-4">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-            
-            {/* Category Pills */}
-            <div className="flex items-center gap-2 overflow-x-auto w-full md:w-auto pb-2 md:pb-0 scrollbar-none">
-              {categories.map((cat) => (
-                <button
-                  key={cat.id}
-                  onClick={() => setSelectedCategory(cat.id)}
-                  className={`px-4 py-2 rounded-full text-xs font-semibold whitespace-nowrap transition-all duration-200 cursor-pointer ${
-                    selectedCategory === cat.id
-                      ? 'bg-[#606C38] text-white shadow-md shadow-[#606C38]/20 border border-white/30 tracking-wide'
-                      : 'bg-white/60 text-[#3C3C3C] hover:bg-[#E9EDC9]/60 border border-white/70 hover:text-[#283618]'
-                  }`}
-                >
-                  {cat.label}
-                </button>
-              ))}
-            </div>
+        {/* 2. Direct Lures Top Bar with Quick Search */}
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 p-4 rounded-[24px] bg-white/70 backdrop-blur-xl border border-white/90 shadow-xs">
+          <div className="text-xs sm:text-sm text-[#34443B] font-semibold">
+            Showing <span className="text-[#073B20] font-black">{filteredProducts.length}</span> Field-Tested Pheromone Lures
+          </div>
 
-            {/* Live Search Input */}
-            <div className="relative w-full md:w-80">
-              <Search className="w-4 h-4 text-[#888] absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
-              <input
-                type="text"
-                placeholder="Search by crop (Tomato, Mango, Maize)..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-10 pr-8 py-2.5 rounded-full text-xs glass-input border border-[#606C38]/20 focus:border-[#606C38] text-[#283618] placeholder-[#888]"
-              />
-              {searchQuery && (
-                <button
-                  onClick={() => setSearchQuery('')}
-                  className="absolute right-3.5 top-1/2 -translate-y-1/2 text-xs text-[#888] hover:text-[#283618] cursor-pointer"
-                >
-                  ✕
-                </button>
-              )}
-            </div>
-
+          <div className="relative w-full sm:w-80">
+            <Search className="w-4 h-4 text-[#888] absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+            <input
+              type="text"
+              placeholder="Search by lure name or target pest..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="w-full pl-10 pr-8 py-2 rounded-full text-xs glass-input border border-[#073B20]/20 focus:border-[#073B20] text-[#073B20] placeholder-[#888] bg-white/80"
+            />
+            {searchQuery && (
+              <button
+                onClick={() => setSearchQuery('')}
+                className="absolute right-3.5 top-1/2 -translate-y-1/2 text-xs text-[#888] hover:text-[#073B20] cursor-pointer"
+              >
+                ✕
+              </button>
+            )}
           </div>
         </div>
 
@@ -130,12 +99,11 @@ export const ProductsPage: React.FC<ProductsPageProps> = ({
             </p>
             <button
               onClick={() => {
-                setSelectedCategory('all');
                 setSearchQuery('');
               }}
               className="px-5 py-2.5 rounded-full text-xs font-semibold bg-[#606C38] text-white hover:bg-[#283618] transition-colors cursor-pointer"
             >
-              Reset Filters
+              Reset Search
             </button>
           </div>
         ) : (
@@ -275,9 +243,9 @@ export const ProductsPage: React.FC<ProductsPageProps> = ({
 
       {/* Page Footer Navigation */}
       <PageFooterBanner
-        nextPageId="pest-finder"
-        nextPageTitle="Crop-to-Pest Diagnostic Matcher"
-        nextPageDescription="Identify your crop family's major pest threats and pair each lure with the optimal hardware trap."
+        nextPageId="trap-guide"
+        nextPageTitle="Insect Traps"
+        nextPageDescription="Explore field-grade insect traps, delta traps, funnel traps, and water traps engineered for optimal lure deployment."
         onNavigate={onNavigate}
       />
     </div>

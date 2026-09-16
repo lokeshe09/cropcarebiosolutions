@@ -84,6 +84,15 @@ const CROP_CATEGORIES = [
   }
 ];
 
+const CATEGORIES_FILTER = [
+  { id: 'all', label: 'All Solutions' },
+  { id: 'vegetables', label: 'Vegetables & Cucurbits' },
+  { id: 'fruits', label: 'Fruit Orchards' },
+  { id: 'plantation', label: 'Coconut & Palm Groves' },
+  { id: 'field_crops', label: 'Cotton, Pulses & Field Crops' },
+  { id: 'enhancers', label: 'Synergists & Magnets' }
+];
+
 export const PestFinderPage: React.FC<PestFinderPageProps> = ({
   onNavigate,
   onSelectProduct,
@@ -91,27 +100,109 @@ export const PestFinderPage: React.FC<PestFinderPageProps> = ({
   onZoomImage,
 }) => {
   const [activeGroupIndex, setActiveGroupIndex] = useState<number>(0);
+  const [selectedFilter, setSelectedFilter] = useState<string>('all');
+  const [cropSearchQuery, setCropSearchQuery] = useState<string>('');
+
   const activeGroup = CROP_CATEGORIES[activeGroupIndex];
 
-  const relevantProducts = PRODUCTS_DATA.filter((p) =>
-    activeGroup.recommendedLures.includes(p.id)
-  );
+  const handleFilterClick = (filterId: string) => {
+    setSelectedFilter(filterId);
+    if (filterId === 'vegetables') setActiveGroupIndex(0);
+    else if (filterId === 'fruits') setActiveGroupIndex(3);
+    else if (filterId === 'plantation') setActiveGroupIndex(5);
+    else if (filterId === 'field_crops') setActiveGroupIndex(4);
+    else if (filterId === 'enhancers') setActiveGroupIndex(5);
+  };
+
+  const handleSearchChange = (query: string) => {
+    setCropSearchQuery(query);
+    const q = query.toLowerCase().trim();
+    if (!q) return;
+
+    const foundIndex = CROP_CATEGORIES.findIndex((cat) =>
+      cat.crops.some((c) => c.toLowerCase().includes(q)) ||
+      cat.name.toLowerCase().includes(q) ||
+      cat.keyThreat.toLowerCase().includes(q)
+    );
+    if (foundIndex !== -1) {
+      setActiveGroupIndex(foundIndex);
+    }
+  };
+
+  const relevantProducts = PRODUCTS_DATA.filter((p) => {
+    const isRecommended = activeGroup.recommendedLures.includes(p.id);
+    if (!cropSearchQuery.trim()) return isRecommended;
+
+    const q = cropSearchQuery.toLowerCase().trim();
+    return (
+      (isRecommended && (
+        p.name.toLowerCase().includes(q) ||
+        p.pestCommonName.toLowerCase().includes(q) ||
+        p.targetCrops.some((c) => c.toLowerCase().includes(q))
+      )) ||
+      p.targetCrops.some((c) => c.toLowerCase().includes(q))
+    );
+  });
 
   return (
     <div className="space-y-12">
       {/* 1. Page Header */}
       <PageHeader
-        badge="Agronomic Diagnostic Matcher"
-        title="CROP-TO-PEST"
-        highlightText="DIAGNOSTIC FINDER"
-        subtitle="Select your crop family to diagnose damaging insect threats, symptoms, and the exact lure & trap hardware pairing required."
+        badge="Agronomic Guidance & IPM"
+        title="CROP SOLUTIONS"
+        highlightText="INFORMATION"
+        subtitle="Select your crop family or search by crop to diagnose damaging pest threats, symptoms, and the exact lure & trap hardware pairing required."
         currentPage="pest-finder"
         onNavigate={onNavigate}
       />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         
-        {/* 2. Crop Family Selector Tabs */}
+        {/* 2. Filter & Search Glass Bar (Kept in Crop Solutions Information per Item 5) */}
+        <div className="p-4 sm:p-5 rounded-[28px] bg-white/60 backdrop-blur-xl border border-white/90 shadow-md space-y-4">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+            
+            {/* Category Pills */}
+            <div className="flex items-center gap-2 overflow-x-auto w-full md:w-auto pb-2 md:pb-0 scrollbar-none">
+              {CATEGORIES_FILTER.map((cat) => (
+                <button
+                  key={cat.id}
+                  onClick={() => handleFilterClick(cat.id)}
+                  className={`px-4 py-2 rounded-full text-xs font-semibold whitespace-nowrap transition-all duration-200 cursor-pointer ${
+                    selectedFilter === cat.id
+                      ? 'bg-[#073B20] text-white shadow-md shadow-[#073B20]/20 border border-white/30 tracking-wide'
+                      : 'bg-white/80 text-[#3C3C3C] hover:bg-[#E9EDC9]/60 border border-white/70 hover:text-[#283618]'
+                  }`}
+                >
+                  {cat.label}
+                </button>
+              ))}
+            </div>
+
+            {/* Live Search Input */}
+            <div className="relative w-full md:w-80">
+              <Search className="w-4 h-4 text-[#888] absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+              <input
+                type="text"
+                placeholder="Search by crop (Tomato, Mango, Maize)..."
+                value={cropSearchQuery}
+                onChange={(e) => handleSearchChange(e.target.value)}
+                className="w-full pl-10 pr-8 py-2.5 rounded-full text-xs glass-input border border-[#606C38]/20 focus:border-[#606C38] text-[#283618] placeholder-[#888] bg-white/90"
+              />
+              {cropSearchQuery && (
+                <button
+                  onClick={() => handleSearchChange('')}
+                  className="absolute right-3.5 top-1/2 -translate-y-1/2 text-xs text-[#888] hover:text-[#283618] cursor-pointer"
+                >
+                  ✕
+                </button>
+              )}
+            </div>
+
+          </div>
+        </div>
+
+        {/* 3. Crop Family Selector Tabs */}
         <AnimatedCard delay={0.05} distance={20} className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
           {CROP_CATEGORIES.map((cat, idx) => (
             <button
