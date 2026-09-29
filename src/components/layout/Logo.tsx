@@ -4,31 +4,55 @@ interface LogoProps {
 }
 
 /**
- * The company mark: a leaf split between the two brand colours, with the
- * midrib drawn through as a single hairline.
+ * The company mark: the green "C" around a seedling, cut from the official
+ * logo artwork. On dark panels it sits on a paper disc, since the deep green
+ * of the C and the brown root would otherwise sink into the background.
  */
 export function Logo({ className = 'h-9 w-9', tone = 'light' }: LogoProps) {
-  const ring = tone === 'dark' ? '#F7F4EC' : '#17352A';
-  const stem = tone === 'dark' ? '#17352A' : '#F7F4EC';
+  const mark = (
+    <img
+      src="/brand/logo-mark.png"
+      srcSet="/brand/logo-mark.png 1x, /brand/logo-mark@2x.png 2x"
+      alt=""
+      aria-hidden
+      decoding="async"
+      className={
+        tone === 'dark'
+          ? 'absolute inset-[12%] h-[76%] w-[76%] object-contain'
+          : `${className} object-contain`
+      }
+    />
+  );
 
+  /* Inset rather than padding: percentage padding resolves against the
+     parent's width, which blew the disc up and squeezed the mark to nothing. */
+  if (tone === 'dark') {
+    return (
+      <span aria-hidden className={`${className} relative block shrink-0 rounded-full bg-paper`}>
+        {mark}
+      </span>
+    );
+  }
+
+  return mark;
+}
+
+interface LogoTextProps {
+  className?: string;
+  tone?: 'light' | 'dark';
+}
+
+/**
+ * The name and the "Caring for Nature" line with its swoosh, cut from the
+ * same artwork. The dark-panel version is recoloured so it stays legible.
+ */
+export function LogoText({ className = 'h-8', tone = 'light' }: LogoTextProps) {
   return (
-    <svg viewBox="0 0 40 40" className={className} aria-hidden focusable="false">
-      <circle cx="20" cy="20" r="19" fill="none" stroke={ring} strokeWidth="1.25" />
-      <path
-        d="M20 31c-5.6-2.6-9-7.1-9-12.1C11 14.4 14.7 11 20 9.4V31Z"
-        fill="#3F6B4E"
-      />
-      <path
-        d="M20 31c5.6-2.6 9-7.1 9-12.1C29 14.4 25.3 11 20 9.4V31Z"
-        fill="#B4552D"
-      />
-      <path d="M20 32V8" stroke={stem} strokeWidth="1.3" strokeLinecap="round" />
-      <path
-        d="M20 18.5c2.4-1.9 4.9-2.4 6.6-4M20 23.6c-2.4-1.9-4.9-2.4-6.6-4"
-        stroke={stem}
-        strokeWidth="1.1"
-        strokeLinecap="round"
-      />
-    </svg>
+    <img
+      src={tone === 'dark' ? '/brand/logo-text-light.png' : '/brand/logo-text.png'}
+      alt="Crop Care Bio Solutions — Caring for Nature"
+      decoding="async"
+      className={`${className} w-auto max-w-full object-contain`}
+    />
   );
 }

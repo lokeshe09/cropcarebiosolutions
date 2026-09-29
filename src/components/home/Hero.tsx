@@ -32,14 +32,17 @@ export function Hero({ onNavigate, onZoom }: HeroProps) {
       <div className="relative mx-auto grid max-w-[1560px] grid-cols-1 lg:min-h-[calc(100svh-112px)] lg:grid-cols-12">
         {/* Welcome */}
         <div className="relative z-20 flex flex-col justify-center px-5 pb-12 pt-14 sm:px-8 lg:col-span-6 lg:py-20 lg:pl-14 lg:pr-12 xl:col-span-5 xl:pl-20">
-          <p className="eyebrow flex items-center gap-3 text-sage">
-            <span aria-hidden className="h-px w-8 bg-current opacity-50" />
-            Welcome
-          </p>
-
-          <h1 className="mt-7 max-w-[13ch] text-[clamp(2.5rem,5.4vw,4.4rem)] leading-[0.98] tracking-[-0.032em] text-paper">
-            Every seed a farmer plants{' '}
-            <span className="italic text-clay-soft">carries hope.</span>
+          {/* One h1 holding the brand and the welcome line together, so the
+              page's main heading names the company. */}
+          <h1>
+            <span className="eyebrow flex items-center gap-3 leading-normal text-sage">
+              <span aria-hidden className="h-px w-8 bg-current opacity-50" />
+              Welcome to {COMPANY.name}
+            </span>
+            <span className="mt-7 block max-w-[13ch] text-[clamp(2.5rem,5.4vw,4.4rem)] leading-[0.98] tracking-[-0.032em] text-paper">
+              Every seed a farmer plants{' '}
+              <span className="italic text-clay-soft">carries hope.</span>
+            </span>
           </h1>
 
           <div className="mt-8 max-w-md space-y-4 text-[17px] leading-relaxed text-paper/75">
@@ -67,7 +70,7 @@ export function Hero({ onNavigate, onZoom }: HeroProps) {
               <span>&ldquo;{HOME.heroCaption}&rdquo;</span>
             </blockquote>
             <figcaption className="mt-3 pl-9 font-mono text-[10px] uppercase tracking-[0.18em] text-sage">
-              {COMPANY.tagline}
+              {COMPANY.slogan}
             </figcaption>
           </figure>
         </div>
@@ -81,7 +84,8 @@ export function Hero({ onNavigate, onZoom }: HeroProps) {
       <div className="relative z-20 border-t border-white/12">
         <div className="mx-auto flex max-w-[1560px] items-center justify-between gap-6 px-5 py-4 sm:px-8 lg:px-14 xl:px-20">
           <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-paper/45">
-            Pheromone lures · Insect traps · Sticky traps
+            Pheromone Lures · Insect Traps
+            <span className="hidden sm:inline"> · Hyderabad, India</span>
           </p>
           <a
             href="#why"

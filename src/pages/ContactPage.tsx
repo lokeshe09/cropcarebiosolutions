@@ -3,8 +3,9 @@ import { Mail, MapPin, MessageCircle, Phone } from 'lucide-react';
 import type { InquiryForm, PageId } from '../types';
 import { PRODUCTS } from '../data/products';
 import { TRAPS } from '../data/traps';
-import { buildWhatsAppUrl, CONTACT, ENQUIRER_TYPES } from '../data/site';
+import { buildWhatsAppUrl, CONTACT, ENQUIRER_TYPES, SERVICE_AREAS } from '../data/site';
 import { PageIntro } from '../components/layout/PageIntro';
+import { SectionHeading } from '../components/ui/SectionHeading';
 import { Reveal } from '../components/ui/Reveal';
 
 interface ContactPageProps {
@@ -56,6 +57,8 @@ function Field({
     </div>
   );
 }
+
+const COMPANY_LINE = 'Crop Care Bio Solutions manufactures in Hyderabad, Telangana.';
 
 export function ContactPage({ onNavigate, prefillProduct = '' }: ContactPageProps) {
   const [form, setForm] = useState<InquiryForm>({ ...EMPTY, product: prefillProduct });
@@ -367,6 +370,57 @@ export function ContactPage({ onNavigate, prefillProduct = '' }: ContactPageProp
                 </div>
               </form>
             </Reveal>
+          </div>
+        </div>
+      </section>
+
+      {/* Where we supply. Written out state by state so a grower in any of
+          them can see, in plain words, that we reach them. */}
+      <section className="bg-paper-2 py-16 lg:py-20">
+        <div className="mx-auto max-w-[1320px] px-5 sm:px-8">
+          <SectionHeading
+            eyebrow="Where we supply"
+            title="From Hyderabad to farms across India."
+            lead={`${COMPANY_LINE} We work directly with growers, dealers and FPOs in ${SERVICE_AREAS.focusStates.join(' and ')}, and dispatch pheromone lures and insect traps to every state.`}
+          />
+
+          <div className="mt-10 grid gap-10 lg:grid-cols-12">
+            <div className="lg:col-span-4">
+              <h3 className="eyebrow text-clay">Our base</h3>
+              <p className="mt-3 font-display text-[22px] leading-snug text-pine">
+                {SERVICE_AREAS.home.city} – {SERVICE_AREAS.home.postalCode}, {SERVICE_AREAS.home.state}
+              </p>
+              <p className="mt-3 text-[15px] leading-relaxed text-ink-2">
+                Pheromone lures, fruit fly traps, funnel traps and sticky traps for{' '}
+                {SERVICE_AREAS.focusStates.join(' and ')} farmers, shipped from our Hyderabad unit.
+              </p>
+            </div>
+
+            <div className="lg:col-span-8">
+              <h3 className="eyebrow">States</h3>
+              <ul className="mt-4 flex flex-wrap gap-2">
+                {SERVICE_AREAS.states.map((state) => (
+                  <li
+                    key={state}
+                    className="border border-line bg-paper px-3 py-1.5 text-[13px] text-ink-2"
+                  >
+                    {state}
+                  </li>
+                ))}
+              </ul>
+
+              <h3 className="eyebrow mt-8">Union territories</h3>
+              <ul className="mt-4 flex flex-wrap gap-2">
+                {SERVICE_AREAS.unionTerritories.map((territory) => (
+                  <li
+                    key={territory}
+                    className="border border-line bg-paper px-3 py-1.5 text-[13px] text-ink-2"
+                  >
+                    {territory}
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </div>
       </section>

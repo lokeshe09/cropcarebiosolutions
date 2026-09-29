@@ -1,14 +1,17 @@
 import { Mail, MapPin, Phone } from 'lucide-react';
-import type { PageId } from '../../types';
-import { COMPANY, CONTACT, NAV_ITEMS } from '../../data/site';
+import type { PageId, Product } from '../../types';
+import { COMPANY, CONTACT, NAV_ITEMS, SERVICE_AREAS } from '../../data/site';
 import { PRODUCTS } from '../../data/products';
-import { Logo } from './Logo';
+import { productPath } from '../../lib/routes';
+import { RouteLink } from '../ui/RouteLink';
+import { Logo, LogoText } from './Logo';
 
 interface FooterProps {
   onNavigate: (page: PageId) => void;
+  onOpenProduct: (product: Product) => void;
 }
 
-export function Footer({ onNavigate }: FooterProps) {
+export function Footer({ onNavigate, onOpenProduct }: FooterProps) {
   const year = new Date().getFullYear();
   const lureLinks = PRODUCTS.filter((product) => !product.companionTo).slice(0, 6);
 
@@ -20,18 +23,16 @@ export function Footer({ onNavigate }: FooterProps) {
         <div className="grid gap-12 border-t border-white/12 py-16 lg:grid-cols-12 lg:gap-8">
           <div className="lg:col-span-4">
             <div className="flex items-center gap-3">
-              <Logo className="h-10 w-10" tone="dark" />
-              <span>
-                <span className="block font-display text-[20px]">{COMPANY.name}</span>
-                <span className="mt-0.5 block font-mono text-[10px] uppercase tracking-[0.2em] text-sage">
-                  {COMPANY.tagline}
-                </span>
-              </span>
+              <Logo className="h-12 w-12 shrink-0" tone="dark" />
+              <LogoText className="h-9" tone="dark" />
             </div>
 
             <p className="mt-6 max-w-sm text-[15px] leading-relaxed text-paper/65">
-              Manufacturer and exporter of eco-friendly pest management solutions — pheromone
-              lures and insect traps that help farmers protect their crops naturally.
+              {COMPANY.descriptorFull}
+            </p>
+            <p className="mt-4 max-w-sm text-[14px] leading-relaxed text-paper/55">
+              Based in {SERVICE_AREAS.home.city}, {SERVICE_AREAS.home.state} — supplying farmers,
+              dealers and FPOs in {SERVICE_AREAS.focusStates.join(', ')} and across India.
             </p>
           </div>
 
@@ -40,23 +41,23 @@ export function Footer({ onNavigate }: FooterProps) {
             <ul className="mt-5 space-y-3">
               {NAV_ITEMS.map((item) => (
                 <li key={item.id}>
-                  <button
-                    type="button"
-                    onClick={() => onNavigate(item.id)}
+                  <RouteLink
+                    to={item.id}
+                    onNavigate={() => onNavigate(item.id)}
                     className="link-rule text-[15px] text-paper/70 transition-colors hover:text-paper"
                   >
-                    {item.label}
-                  </button>
+                    {item.id === 'products' ? 'Pheromone Lures' : item.label}
+                  </RouteLink>
                 </li>
               ))}
               <li>
-                <button
-                  type="button"
-                  onClick={() => onNavigate('traps')}
+                <RouteLink
+                  to="traps"
+                  onNavigate={() => onNavigate('traps')}
                   className="link-rule text-[15px] text-paper/70 transition-colors hover:text-paper"
                 >
                   Insect Traps
-                </button>
+                </RouteLink>
               </li>
             </ul>
           </nav>
@@ -66,23 +67,23 @@ export function Footer({ onNavigate }: FooterProps) {
             <ul className="mt-5 space-y-3">
               {lureLinks.map((product) => (
                 <li key={product.id}>
-                  <button
-                    type="button"
-                    onClick={() => onNavigate('products')}
+                  <RouteLink
+                    to={{ path: productPath(product) }}
+                    onNavigate={() => onOpenProduct(product)}
                     className="link-rule text-left text-[15px] text-paper/70 transition-colors hover:text-paper"
                   >
                     {product.name}
-                  </button>
+                  </RouteLink>
                 </li>
               ))}
               <li>
-                <button
-                  type="button"
-                  onClick={() => onNavigate('products')}
+                <RouteLink
+                  to="products"
+                  onNavigate={() => onNavigate('products')}
                   className="link-rule text-[15px] text-clay-soft"
                 >
                   View all lures
-                </button>
+                </RouteLink>
               </li>
             </ul>
           </nav>

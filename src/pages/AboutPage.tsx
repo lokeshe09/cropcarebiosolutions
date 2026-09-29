@@ -1,5 +1,5 @@
 import type { PageId } from '../types';
-import { ABOUT, WE_STAND_FOR } from '../data/site';
+import { ABOUT, COMPANY, WE_STAND_FOR } from '../data/site';
 import { PageIntro } from '../components/layout/PageIntro';
 import { PageHandoff } from '../components/layout/PageHandoff';
 import { SectionHeading } from '../components/ui/SectionHeading';
@@ -19,7 +19,7 @@ export function AboutPage({ onNavigate }: AboutPageProps) {
       <PageIntro
         breadcrumb="About"
         eyebrow="About us"
-        title="Caring for farmers. Caring for nature."
+        title={COMPANY.promise}
         lead={ABOUT.welcome}
         onNavigate={onNavigate}
       />
@@ -58,7 +58,7 @@ export function AboutPage({ onNavigate }: AboutPageProps) {
                 </div>
                 <div className="bg-paper p-6">
                   <dt className="eyebrow">What it protects</dt>
-                  <dd className="mt-2.5 text-[15px] text-pine">Soil, water and the harvest</dd>
+                  <dd className="mt-2.5 text-[15px] text-pine">Crops, soil, water &amp; the environment</dd>
                 </div>
               </dl>
             </div>
@@ -90,32 +90,30 @@ export function AboutPage({ onNavigate }: AboutPageProps) {
       </section>
 
       {/* We stand for */}
-      <section className="bg-paper py-20 lg:py-28">
+      <section className="bg-paper py-14 lg:py-16">
         <div className="mx-auto max-w-[1320px] px-5 sm:px-8">
-          <SectionHeading
-            index="03"
-            eyebrow="Crop Care Bio Solutions"
-            title="We Stand For"
-          />
+          <SectionHeading index="03" eyebrow="Crop Care Bio Solutions" title="We Stand For" />
 
-          <div className="mt-14 grid gap-12 lg:grid-cols-12 lg:gap-16">
-            <ol className="lg:col-span-7">
+          <div className="mt-9 grid gap-8 lg:grid-cols-12 lg:gap-12">
+            {/* Two across rather than a stacked list, so all five values sit in
+                one screen without scrolling. */}
+            <ol className="grid gap-x-10 sm:grid-cols-2 lg:col-span-8">
               {WE_STAND_FOR.map((value, index) => (
                 <Reveal
                   as="li"
                   key={value.title}
-                  delay={index * 0.05}
-                  className="group border-t border-line last:border-b"
+                  delay={index * 0.04}
+                  className="group border-t border-line py-4"
                 >
-                  <div className="flex gap-6 py-7 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-1.5 sm:gap-10">
-                    <span className="pt-1.5 font-mono text-[12px] text-ink-3 transition-colors group-hover:text-clay">
+                  <div className="flex gap-4 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-1">
+                    <span className="pt-1.5 font-mono text-[11px] text-ink-3 transition-colors group-hover:text-clay">
                       {String(index + 1).padStart(2, '0')}
                     </span>
                     <div>
-                      <h3 className="font-display text-[clamp(1.3rem,2.2vw,1.65rem)] text-pine">
+                      <h3 className="font-display text-[clamp(1.2rem,1.9vw,1.5rem)] text-pine">
                         {value.title}
                       </h3>
-                      <p className="mt-2.5 max-w-lg text-[15px] leading-relaxed text-ink-2">
+                      <p className="mt-1.5 text-[15px] leading-relaxed text-ink-2">
                         {value.body}
                       </p>
                     </div>
@@ -124,17 +122,17 @@ export function AboutPage({ onNavigate }: AboutPageProps) {
               ))}
             </ol>
 
-            <Reveal className="lg:col-span-5">
-              <div className="grid gap-4">
+            <Reveal className="lg:col-span-4">
+              <div className="grid grid-cols-2 gap-4 lg:grid-cols-1">
                 <img
                   src={agronomist}
                   alt="An agronomist inspecting a trap in the field"
-                  className="aspect-[4/3] w-full object-cover"
+                  className="aspect-[4/3] w-full rounded-lg object-cover"
                 />
                 <img
                   src={harvest}
                   alt="Harvested fruit, clean and unblemished"
-                  className="aspect-[4/3] w-full object-cover"
+                  className="aspect-[4/3] w-full rounded-lg object-cover"
                 />
               </div>
             </Reveal>

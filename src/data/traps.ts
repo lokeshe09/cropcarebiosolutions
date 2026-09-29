@@ -150,12 +150,12 @@ export const TRAPS: TrapType[] = [
     name: 'Palm Trap',
     family: 'palm',
     bestFor: 'Coconut, arecanut, date palm and oil palm plantations',
-    suitableLures: ['RPW', 'RPW-M', 'RB'],
+    suitableLures: ['RPW', 'WD', 'RB'],
     description:
-      'A bucket trap with entry openings around the rim and a rough outer surface that weevils and beetles can climb. It takes the aggregation lure and the RPW Magnet bottle together on the same hanger.',
+      'A bucket trap with entry openings around the rim and a rough outer surface that weevils and beetles can climb. It takes the aggregation lure and the Weevil Defender bottle together on the same hanger.',
     features: [
       'Textured outside so weevils can climb in',
-      'Holds both the lure and the Magnet bottle',
+      'Holds both the lure and the Weevil Defender bottle',
       'Can be buried halfway into the soil or hung on the trunk',
       'Built for long spells in the open',
     ],
@@ -185,6 +185,27 @@ export const TRAPS: TrapType[] = [
     recommendedHeight: '1.5–2 m from the ground',
     trapsPerAcre: '8–12 per acre',
     servicing: 'Clear weekly so the count stays comparable week to week.',
+  },
+  {
+    id: 'mcphail-trap',
+    name: 'McPhail Trap',
+    family: 'fruit-fly',
+    bestFor: 'Melon Fly and Oriental Fruit Fly in orchards and vegetable fields',
+    suitableLures: ['MF', 'OFF'],
+    description:
+      'A bell-shaped trap with a clear upper dome and a yellow base, entered through an opening in the bottom. Flies drawn in by the lure move up towards the light and do not find the entrance again, and the catch stays in view through the clear top.',
+    features: [
+      'Bottom entry that flies rarely find their way back out of',
+      'Clear dome for counting the catch without opening the trap',
+      'Yellow base adds a visual cue to the lure',
+      'Top and base separate for cleaning and re-baiting',
+    ],
+    // TODO — placeholder photo; replace with a McPhail trap image.
+    imageUrl: '/images/trap-glass.webp',
+    setupAdvice: 'Hang in the shaded part of the canopy, clear of leaves around the entrance.',
+    recommendedHeight: '1.5–2 m in trees, 1 m on vines',
+    trapsPerAcre: '10–15 per acre',
+    servicing: 'Empty every 10–14 days. Replace the lure at 90 days.',
   },
   {
     id: 'solar-trap',

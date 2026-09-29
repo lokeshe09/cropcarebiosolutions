@@ -4,6 +4,8 @@ import type { PageId, Product } from '../../types';
 import { FEATURED } from '../../data/site';
 import { PRODUCTS } from '../../data/products';
 import { BIO_TOOLS, TRAPS } from '../../data/traps';
+import { PAGE_PATHS, productPath } from '../../lib/routes';
+import { RouteLink } from '../ui/RouteLink';
 import { Figure } from '../ui/Figure';
 import { SectionHeading } from '../ui/SectionHeading';
 import { Button } from '../ui/Button';
@@ -21,6 +23,7 @@ interface Card {
   image: string;
   alt: string;
   open: () => void;
+  href: string;
   cta: string;
 }
 
@@ -36,7 +39,7 @@ export function FeaturedProducts({ onNavigate, onOpenProduct }: FeaturedProducts
     rail.scrollBy({ left: direction * (rail.clientWidth * 0.8), behavior: 'smooth' });
   };
 
-  /* Resolve the six names from the content sheet against the real catalogue,
+  /* Resolve the featured names from the content sheet against the real catalogue,
      so a card can never drift out of sync with the product data. */
   const cards = FEATURED.reduce<Card[]>((acc, entry) => {
     if (entry.kind === 'lure') {
@@ -50,6 +53,7 @@ export function FeaturedProducts({ onNavigate, onOpenProduct }: FeaturedProducts
           image: product.imageUrl,
           alt: product.imageAlt,
           open: () => onOpenProduct(product),
+          href: productPath(product),
           cta: 'View details',
         });
       }
@@ -66,6 +70,7 @@ export function FeaturedProducts({ onNavigate, onOpenProduct }: FeaturedProducts
         image: trap.imageUrl,
         alt: trap.name,
         open: () => onNavigate('traps'),
+        href: `${PAGE_PATHS.traps}#${trap.id}`,
         cta: 'See traps',
       });
       return acc;
@@ -81,6 +86,7 @@ export function FeaturedProducts({ onNavigate, onOpenProduct }: FeaturedProducts
         image: tool.imageUrl,
         alt: tool.name,
         open: () => onNavigate('traps'),
+        href: `${PAGE_PATHS.traps}#${tool.id}`,
         cta: 'See traps',
       });
     }
@@ -123,7 +129,7 @@ export function FeaturedProducts({ onNavigate, onOpenProduct }: FeaturedProducts
         <div ref={railRef} className="rail -mr-5 flex gap-5 overflow-x-auto pb-2 sm:-mr-8">
           {cards.map((card) => (
             <article key={card.key} className="group w-[280px] shrink-0 sm:w-[320px]">
-              <button type="button" onClick={card.open} className="block w-full text-left">
+              <RouteLink to={{ path: card.href }} onNavigate={card.open} className="block w-full text-left">
                 <Figure src={card.image} alt={card.alt} ratio="aspect-[4/5]" />
 
                 <div className="mt-5 border-t border-line pt-4">
@@ -142,7 +148,7 @@ export function FeaturedProducts({ onNavigate, onOpenProduct }: FeaturedProducts
                     />
                   </span>
                 </div>
-              </button>
+              </RouteLink>
             </article>
           ))}
 

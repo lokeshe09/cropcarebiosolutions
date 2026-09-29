@@ -4,7 +4,8 @@ import { ChevronDown, Menu, Phone, X } from 'lucide-react';
 import type { PageId } from '../../types';
 import { CONTACT, COMPANY, NAV_ITEMS } from '../../data/site';
 import { useDismissable } from '../../hooks/useDismissable';
-import { Logo } from './Logo';
+import { Logo, LogoText } from './Logo';
+import { RouteLink } from '../ui/RouteLink';
 
 interface NavbarProps {
   currentPage: PageId;
@@ -68,21 +69,14 @@ export function Navbar({ currentPage, onNavigate }: NavbarProps) {
         }`}
       >
         <div className="mx-auto flex h-[68px] max-w-[1320px] items-center justify-between gap-6 px-5 sm:px-8 lg:h-[76px]">
-          <button
-            type="button"
-            onClick={() => go('home')}
-            className="flex items-center gap-3 text-left"
+          <RouteLink
+            to="home"
+            onNavigate={() => go('home')}
+            className="flex min-w-0 items-center gap-3 text-left"
           >
-            <Logo className="h-9 w-9 shrink-0" />
-            <span className="leading-none">
-              <span className="block font-display text-[19px] tracking-tight text-pine">
-                Crop Care
-              </span>
-              <span className="mt-1 block font-mono text-[10px] uppercase tracking-[0.2em] text-ink-3">
-                Bio Solutions
-              </span>
-            </span>
-          </button>
+            <Logo className="h-11 w-11 shrink-0 lg:h-12 lg:w-12" />
+            <LogoText className="h-7 sm:h-8 lg:h-9" />
+          </RouteLink>
 
           <nav className="hidden items-center gap-1 lg:flex">
             {NAV_ITEMS.map((item) => {
@@ -92,10 +86,10 @@ export function Navbar({ currentPage, onNavigate }: NavbarProps) {
 
               if (!item.children) {
                 return (
-                  <button
+                  <RouteLink
                     key={item.id}
-                    type="button"
-                    onClick={() => go(item.id)}
+                    to={item.id}
+                    onNavigate={() => go(item.id)}
                     aria-current={active ? 'page' : undefined}
                     className={`relative px-3.5 py-2 text-[14px] transition-colors hover:text-pine ${
                       active ? 'text-pine' : 'text-ink-2'
@@ -108,7 +102,7 @@ export function Navbar({ currentPage, onNavigate }: NavbarProps) {
                         className="absolute inset-x-3.5 -bottom-0.5 h-px bg-clay"
                       />
                     )}
-                  </button>
+                  </RouteLink>
                 );
               }
 
@@ -159,15 +153,12 @@ export function Navbar({ currentPage, onNavigate }: NavbarProps) {
                         transition={{ duration: 0.16, ease: 'easeOut' }}
                         className="absolute left-0 top-full w-[280px] border border-line bg-paper p-2 shadow-[0_24px_60px_-28px_rgba(20,33,26,0.45)]"
                       >
-                        {item.children.map((child, index) => (
-                          <button
-                            key={child.label}
-                            type="button"
-                            role="menuitem"
-                            disabled={child.id === null}
-                            onClick={() => child.id && go(child.id)}
-                            className="flex w-full items-center justify-between gap-3 px-3.5 py-3 text-left transition-colors hover:bg-paper-2 disabled:cursor-default disabled:hover:bg-transparent"
-                          >
+                        {item.children.map((child, index) => {
+                          const target = child.id;
+                          const rowClass =
+                            'flex w-full items-center justify-between gap-3 px-3.5 py-3 text-left transition-colors';
+                          const content = (
+                            <>
                             <span className="flex items-baseline gap-3">
                               <span className="font-mono text-[11px] text-ink-3">
                                 {String(index + 1).padStart(2, '0')}
@@ -185,8 +176,25 @@ export function Navbar({ currentPage, onNavigate }: NavbarProps) {
                                 {child.note}
                               </span>
                             )}
-                          </button>
-                        ))}
+                            </>
+                          );
+
+                          return target ? (
+                            <RouteLink
+                              key={child.label}
+                              to={target}
+                              role="menuitem"
+                              onNavigate={() => go(target)}
+                              className={`${rowClass} hover:bg-paper-2`}
+                            >
+                              {content}
+                            </RouteLink>
+                          ) : (
+                            <span key={child.label} role="menuitem" aria-disabled className={rowClass}>
+                              {content}
+                            </span>
+                          );
+                        })}
                       </motion.div>
                     )}
                   </AnimatePresence>
@@ -196,13 +204,13 @@ export function Navbar({ currentPage, onNavigate }: NavbarProps) {
           </nav>
 
           <div className="flex items-center gap-2">
-            <button
-              type="button"
-              onClick={() => go('contact')}
+            <RouteLink
+              to="contact"
+              onNavigate={() => go('contact')}
               className="hidden rounded-full bg-pine px-5 py-2.5 text-[13px] font-medium text-paper transition-colors hover:bg-pine-soft lg:inline-flex"
             >
               Request a quote
-            </button>
+            </RouteLink>
 
             <button
               type="button"
@@ -228,8 +236,8 @@ export function Navbar({ currentPage, onNavigate }: NavbarProps) {
           >
             <div className="flex h-[68px] items-center justify-between px-5">
               <div className="flex items-center gap-3">
-                <Logo className="h-9 w-9" tone="dark" />
-                <span className="font-display text-[19px]">Crop Care</span>
+                <Logo className="h-10 w-10 shrink-0" tone="dark" />
+                <LogoText className="h-7" tone="dark" />
               </div>
               <button
                 type="button"
@@ -244,35 +252,47 @@ export function Navbar({ currentPage, onNavigate }: NavbarProps) {
             <nav className="flex-1 overflow-y-auto px-5 pb-10 pt-6">
               {NAV_ITEMS.map((item, index) => (
                 <div key={item.id} className="border-t border-white/12 py-1">
-                  <button
-                    type="button"
-                    onClick={() => go(item.id)}
+                  <RouteLink
+                    to={item.id}
+                    onNavigate={() => go(item.id)}
                     className="flex w-full items-baseline gap-4 py-4 text-left"
                   >
                     <span className="font-mono text-[11px] text-sage">
                       {String(index + 1).padStart(2, '0')}
                     </span>
                     <span className="font-display text-[28px] leading-none">{item.label}</span>
-                  </button>
+                  </RouteLink>
 
                   {item.children && (
                     <div className="pb-3 pl-9">
-                      {item.children.map((child) => (
-                        <button
-                          key={child.label}
-                          type="button"
-                          disabled={child.id === null}
-                          onClick={() => child.id && go(child.id)}
-                          className="flex w-full items-center gap-2 py-1.5 text-left text-[15px] text-paper/70 disabled:text-paper/35"
-                        >
-                          {child.label}
-                          {child.note && (
-                            <span className="font-mono text-[10px] uppercase tracking-[0.14em] text-clay-soft">
-                              {child.note}
-                            </span>
-                          )}
-                        </button>
-                      ))}
+                      {item.children.map((child) => {
+                        const target = child.id;
+                        const note = child.note && (
+                          <span className="font-mono text-[10px] uppercase tracking-[0.14em] text-clay-soft">
+                            {child.note}
+                          </span>
+                        );
+
+                        return target ? (
+                          <RouteLink
+                            key={child.label}
+                            to={target}
+                            onNavigate={() => go(target)}
+                            className="flex w-full items-center gap-2 py-1.5 text-left text-[15px] text-paper/70"
+                          >
+                            {child.label}
+                            {note}
+                          </RouteLink>
+                        ) : (
+                          <span
+                            key={child.label}
+                            className="flex w-full items-center gap-2 py-1.5 text-left text-[15px] text-paper/35"
+                          >
+                            {child.label}
+                            {note}
+                          </span>
+                        );
+                      })}
                     </div>
                   )}
                 </div>
@@ -286,13 +306,13 @@ export function Navbar({ currentPage, onNavigate }: NavbarProps) {
                   <Phone className="h-4 w-4" aria-hidden />
                   {CONTACT.phonePrimary.display}
                 </a>
-                <button
-                  type="button"
-                  onClick={() => go('contact')}
-                  className="w-full rounded-full bg-paper px-6 py-3.5 text-sm font-medium text-pine"
+                <RouteLink
+                  to="contact"
+                  onNavigate={() => go('contact')}
+                  className="block w-full rounded-full bg-paper px-6 py-3.5 text-center text-sm font-medium text-pine"
                 >
                   Request a quote
-                </button>
+                </RouteLink>
               </div>
             </nav>
           </motion.div>

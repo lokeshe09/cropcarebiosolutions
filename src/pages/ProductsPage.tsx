@@ -1,7 +1,9 @@
 import { useMemo, useState } from 'react';
 import { Search, X } from 'lucide-react';
-import type { PageId, Product, ProductFamily } from '../types';
+import type { PageId, Product } from '../types';
 import { PRODUCTS } from '../data/products';
+import { productPath } from '../lib/routes';
+import { RouteLink } from '../components/ui/RouteLink';
 import { PageIntro } from '../components/layout/PageIntro';
 import { PageHandoff } from '../components/layout/PageHandoff';
 import { Figure } from '../components/ui/Figure';
@@ -13,27 +15,17 @@ interface ProductsPageProps {
   onRequestQuote: (productName: string) => void;
 }
 
-const FAMILIES: { id: ProductFamily | 'all'; label: string }[] = [
-  { id: 'all', label: 'All lures' },
-  { id: 'fruit-flies', label: 'Fruit flies' },
-  { id: 'moths-borers', label: 'Moths & borers' },
-  { id: 'palm-weevils', label: 'Palm pests' },
-  { id: 'synergist', label: 'Companion' },
-];
-
 export function ProductsPage({
   onNavigate,
   onOpenProduct,
   onRequestQuote,
 }: ProductsPageProps) {
   const [query, setQuery] = useState('');
-  const [family, setFamily] = useState<ProductFamily | 'all'>('all');
 
   const results = useMemo(() => {
     const needle = query.trim().toLowerCase();
 
     return PRODUCTS.filter((product) => {
-      if (family !== 'all' && product.family !== family) return false;
       if (!needle) return true;
 
       return [
@@ -48,7 +40,7 @@ export function ProductsPage({
         .toLowerCase()
         .includes(needle);
     });
-  }, [query, family]);
+  }, [query]);
 
   return (
     <>
@@ -89,33 +81,9 @@ export function ProductsPage({
 
       <section className="bg-paper pb-8 pt-8">
         <div className="mx-auto max-w-[1320px] px-5 sm:px-8">
-          <div className="flex flex-wrap items-center justify-between gap-5">
-            <ul className="flex flex-wrap gap-2">
-              {FAMILIES.map((item) => {
-                const active = family === item.id;
-                return (
-                  <li key={item.id}>
-                    <button
-                      type="button"
-                      onClick={() => setFamily(item.id)}
-                      aria-pressed={active}
-                      className={`rounded-full border px-4 py-2 text-[13px] transition-colors ${
-                        active
-                          ? 'border-pine bg-pine text-paper'
-                          : 'border-line-strong text-ink-2 hover:border-pine hover:text-pine'
-                      }`}
-                    >
-                      {item.label}
-                    </button>
-                  </li>
-                );
-              })}
-            </ul>
-
-            <p className="tnum font-mono text-[11px] uppercase tracking-[0.14em] text-ink-3">
-              {results.length} {results.length === 1 ? 'product' : 'products'}
-            </p>
-          </div>
+          <p className="tnum font-mono text-[11px] uppercase tracking-[0.14em] text-ink-3">
+            {results.length} {results.length === 1 ? 'product' : 'products'}
+          </p>
         </div>
       </section>
 
@@ -131,10 +99,7 @@ export function ProductsPage({
               </p>
               <button
                 type="button"
-                onClick={() => {
-                  setQuery('');
-                  setFamily('all');
-                }}
+                onClick={() => setQuery('')}
                 className="mt-6 rounded-full border border-line-strong px-5 py-2.5 text-[13px] text-pine transition-colors hover:border-pine"
               >
                 Reset
@@ -167,13 +132,13 @@ export function ProductsPage({
                       <p className="eyebrow">{product.pestCommonName}</p>
 
                       <h2 className="mt-3 font-display text-[22px] leading-tight text-pine">
-                        <button
-                          type="button"
-                          onClick={() => onOpenProduct(product)}
+                        <RouteLink
+                          to={{ path: productPath(product) }}
+                          onNavigate={() => onOpenProduct(product)}
                           className="link-rule text-left"
                         >
                           {product.name}
-                        </button>
+                        </RouteLink>
                       </h2>
 
                       {product.scientificName && (
@@ -248,7 +213,7 @@ export function ProductsPage({
         nextPage="traps"
         label="Next"
         title="Insect Traps"
-        description="The housings the lures sit in — fruit fly traps, funnel traps, water traps, delta traps, palm traps and the solar light trap."
+        description="The housings the lures sit in, and the sticky traps that work alongside them."
         onNavigate={onNavigate}
       />
     </>

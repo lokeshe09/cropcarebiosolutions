@@ -6,21 +6,29 @@ import type { CropSolution, PageId } from '../types';
 
 export const COMPANY = {
   name: 'Crop Care Bio Solutions',
-  tagline: 'Caring for Farmers. Caring for Nature.',
+  /** The slogan, used wherever the brand signs off. */
+  slogan: 'Caring for Nature',
+  /** The line the About page leads on. */
+  promise: 'Growing a Sustainable Future, Naturally',
+  /** Short form, for the masthead strip. */
   descriptor: 'Manufacturer & Exporter · Pheromone Lures & Insect Traps',
+  /** Full form, for the footer. */
+  descriptorFull:
+    'Manufacturer & Exporter of Eco-Friendly Pest Management Solutions, offering Pheromone Lures and Insect Traps for Effective and Sustainable Crop Protection.',
 } as const;
 
 /**
- * TODO — replace with the company's live details before launch.
- * These are placeholders; every phone number, address and email on the site
+ * TODO — confirm the email address before launch; phone, WhatsApp and
+ * address are the company's live details.
+ * Every phone number, address and email on the site
  * reads from this one object, so there is a single place to change.
  */
 export const CONTACT = {
-  phonePrimary: { display: '+91 00000 00000', dial: '+910000000000' },
-  phoneSecondary: { display: '+91 00000 00000', dial: '+910000000000' },
-  whatsapp: '910000000000',
+  phonePrimary: { display: '+91 93467 20617', dial: '+919346720617' },
+  phoneSecondary: { display: '+91 93467 20617', dial: '+919346720617' },
+  whatsapp: '919346720617',
   email: 'info@cropcarebiosolutions.com',
-  addressLines: ['Crop Care Bio Solutions', 'India'],
+  addressLines: ['Crop Care Bio Solutions', 'Hyderabad – 500055, Telangana', 'India'],
   hours: 'Monday to Saturday, 9:00 am – 6:00 pm IST',
 } as const;
 
@@ -52,15 +60,6 @@ export const NAV_ITEMS: NavItem[] = [
   { id: 'crop-solutions', label: 'Crop Solutions' },
   { id: 'contact', label: 'Contact' },
 ];
-
-export const PAGE_TITLES: Record<PageId, string> = {
-  home: 'Crop Care Bio Solutions',
-  about: 'About',
-  products: 'Pheromone Lures',
-  traps: 'Insect Traps',
-  'crop-solutions': 'Crop Solutions',
-  contact: 'Contact',
-};
 
 /* -------------------------------------------------------------------------
  * Homepage copy — from the company content sheet
@@ -98,9 +97,9 @@ export const WHY_CROP_CARE = [
 ] as const;
 
 /**
- * The six products the content sheet names for the homepage rail:
- * fruit fly trap, solar trap, sticky sheets, dorsalis lure,
- * rhinoceros beetle lure and Tuta absoluta lure.
+ * The four products the client asked for on the homepage rail:
+ * fruit fly trap, oriental fruit fly lure, Tuta absoluta lure
+ * and rhinoceros beetle lure.
  */
 export const FEATURED: {
   id: string;
@@ -108,11 +107,9 @@ export const FEATURED: {
   label: string;
 }[] = [
   { id: 'fruit-fly-trap', kind: 'hardware', label: 'Insect Trap' },
-  { id: 'solar-trap', kind: 'hardware', label: 'Insect Trap' },
-  { id: 'sticky-sheets', kind: 'hardware', label: 'Sticky Trap' },
   { id: 'oriental-fruit-fly', kind: 'lure', label: 'Pheromone Lure' },
-  { id: 'rhinoceros-beetle', kind: 'lure', label: 'Pheromone Lure' },
   { id: 'tuta-absoluta', kind: 'lure', label: 'Pheromone Lure' },
+  { id: 'rhinoceros-beetle', kind: 'lure', label: 'Pheromone Lure' },
 ];
 
 /**
@@ -213,7 +210,7 @@ export const ABOUT = {
 export const WE_STAND_FOR = [
   {
     title: 'Crop Care Bio Solutions',
-    body: 'Caring for Farmers. Caring for Nature.',
+    body: 'Caring for Nature.',
   },
   {
     title: 'Farmer First',
@@ -279,7 +276,7 @@ export const CROP_SOLUTIONS: CropSolution[] = [
     threat: 'Red palm weevil and rhinoceros beetle',
     symptoms:
       'Holes in the trunk with chewed fibre and fermented ooze, cut fronds in a V-notch, a crown that wilts from the centre.',
-    lureIds: ['red-palm-weevil', 'rpw-magnet', 'rhinoceros-beetle'],
+    lureIds: ['red-palm-weevil', 'weevil-defender', 'rhinoceros-beetle'],
   },
   {
     id: 'field-crops',
@@ -319,3 +316,53 @@ export const ENQUIRER_TYPES = [
   'Exporter',
   'Other',
 ] as const;
+
+/* -------------------------------------------------------------------------
+ * Where we supply — shown on the Contact page and in the structured data
+ * ---------------------------------------------------------------------- */
+
+/** Home state first, then its neighbour, then the rest of India. */
+export const SERVICE_AREAS = {
+  home: { city: 'Hyderabad', state: 'Telangana', postalCode: '500055', regionCode: 'IN-TG' },
+  focusStates: ['Telangana', 'Andhra Pradesh'],
+  states: [
+    'Telangana',
+    'Andhra Pradesh',
+    'Karnataka',
+    'Maharashtra',
+    'Tamil Nadu',
+    'Kerala',
+    'Odisha',
+    'Chhattisgarh',
+    'Madhya Pradesh',
+    'Gujarat',
+    'Rajasthan',
+    'Goa',
+    'Uttar Pradesh',
+    'Uttarakhand',
+    'Punjab',
+    'Haryana',
+    'Himachal Pradesh',
+    'Bihar',
+    'Jharkhand',
+    'West Bengal',
+    'Assam',
+    'Arunachal Pradesh',
+    'Manipur',
+    'Meghalaya',
+    'Mizoram',
+    'Nagaland',
+    'Sikkim',
+    'Tripura',
+  ],
+  unionTerritories: [
+    'Delhi',
+    'Jammu and Kashmir',
+    'Ladakh',
+    'Puducherry',
+    'Chandigarh',
+    'Andaman and Nicobar Islands',
+    'Dadra and Nagar Haveli and Daman and Diu',
+    'Lakshadweep',
+  ],
+} as const;

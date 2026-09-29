@@ -1,0 +1,15 @@
+{
+  "name": "Crop Care Bio Solutions",
+  "short_name": "Crop Care",
+  "description": "Pheromone lures and insect traps — manufacturer and exporter, Hyderabad, India.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#F7F4EC",
+  "theme_color": "#17352A",
+  "lang": "en-IN",
+  "icons": [
+    { "src": "/brand/favicon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/brand/favicon-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}

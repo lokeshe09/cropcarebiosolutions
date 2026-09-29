@@ -38,9 +38,6 @@ export function MissionVision({ onNavigate }: MissionVisionProps) {
             <Button variant="onDark" size="sm" onClick={() => onNavigate('about')} withArrow>
               Read our full mission
             </Button>
-            <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-paper/45">
-              Caring for farmers. Caring for nature.
-            </p>
           </div>
         </Reveal>
       </div>

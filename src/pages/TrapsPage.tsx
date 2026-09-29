@@ -96,7 +96,7 @@ export function TrapsPage({ onNavigate, onRequestQuote, onZoom }: TrapsPageProps
           <ul className="grid gap-x-6 gap-y-14 md:grid-cols-2 lg:grid-cols-3">
             {traps.map((trap, index) => (
               <Reveal as="li" key={trap.id} delay={(index % 3) * 0.06}>
-                <article className="group flex h-full flex-col">
+                <article id={trap.id} className="group flex h-full scroll-mt-28 flex-col">
                   <Figure
                     src={trap.imageUrl}
                     alt={trap.name}
@@ -184,7 +184,7 @@ export function TrapsPage({ onNavigate, onRequestQuote, onZoom }: TrapsPageProps
           <ul className="mt-14 grid gap-x-6 gap-y-14 sm:grid-cols-2 lg:grid-cols-4">
             {BIO_TOOLS.map((tool, index) => (
               <Reveal as="li" key={tool.id} delay={(index % 4) * 0.06}>
-                <article className="group flex h-full flex-col">
+                <article id={tool.id} className="group flex h-full scroll-mt-28 flex-col">
                   <Figure
                     src={tool.imageUrl}
                     alt={tool.name}

@@ -1,7 +1,8 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
 import type { PageId, Product } from './types';
-import { PAGE_TITLES } from './data/site';
+import { PAGE_PATHS, parseRoute, productPath, routePath } from './lib/routes';
+import { syncHead } from './lib/head';
 import { Navbar } from './components/layout/Navbar';
 import { Footer } from './components/layout/Footer';
 import { ProductSheet } from './components/product/ProductSheet';
@@ -14,63 +15,124 @@ import { TrapsPage } from './pages/TrapsPage';
 import { CropSolutionsPage } from './pages/CropSolutionsPage';
 import { ContactPage } from './pages/ContactPage';
 
-const PAGES: PageId[] = ['home', 'about', 'products', 'traps', 'crop-solutions', 'contact'];
+/** History entries for an open product carry the page it was opened over. */
+interface SheetState {
+  sheet: true;
+  bg: PageId;
+}
 
-/** Hashes used by the earlier version of the site, kept working. */
-const LEGACY_HASHES: Record<string, PageId> = {
-  'trap-guide': 'traps',
-  'pest-finder': 'crop-solutions',
-};
-
-const readHash = (): PageId => {
-  const hash = window.location.hash.replace(/^#\/?/, '');
-  if (PAGES.includes(hash as PageId)) return hash as PageId;
-  return LEGACY_HASHES[hash] ?? 'home';
+const sheetState = (): SheetState | null => {
+  const state = window.history.state as SheetState | null;
+  return state?.sheet ? state : null;
 };
 
 export default function App() {
   // Resolved before first paint, so a deep link renders its page directly
   // instead of mounting home and transitioning away from it.
-  const [page, setPage] = useState<PageId>(readHash);
-  const [sheetProduct, setSheetProduct] = useState<Product | null>(null);
+  const [initial] = useState(() => parseRoute(window.location.pathname, window.location.hash));
+  const [page, setPage] = useState<PageId>(initial.page);
+  const [notFound, setNotFound] = useState(Boolean(initial.notFound));
+  const [sheetProduct, setSheetProduct] = useState<Product | null>(initial.product ?? null);
   const [quoteProduct, setQuoteProduct] = useState('');
   const [lightbox, setLightbox] = useState<{ src: string; alt: string } | null>(null);
   const reduceMotion = useReducedMotion();
 
-  useEffect(() => {
-    const sync = () => setPage(readHash());
-    sync();
-    window.addEventListener('hashchange', sync);
-    return () => window.removeEventListener('hashchange', sync);
-  }, []);
-
-  /* Keep the tab title in step with the route, for history and bookmarks. */
-  useEffect(() => {
-    document.title =
-      page === 'home'
-        ? 'Crop Care Bio Solutions — Pheromone Lures & Insect Traps'
-        : `${PAGE_TITLES[page]} — Crop Care Bio Solutions`;
-  }, [page]);
+  /* Closing a sheet steps back through history, which lands asynchronously;
+     a navigation asked for in the meantime waits for it. */
+  const closingSheet = useRef(false);
+  const pendingPage = useRef<PageId | null>(null);
 
   const navigate = useCallback(
     (next: PageId) => {
-      window.location.hash = next;
+      const path = PAGE_PATHS[next];
+      if (sheetState()) window.history.replaceState(null, '', path);
+      else if (window.location.pathname !== path) window.history.pushState(null, '', path);
+
+      setSheetProduct(null);
+      setNotFound(false);
       setPage(next);
       window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
     },
     [reduceMotion],
   );
 
+  /* Old #hash links become clean paths, so bookmarks keep working. */
+  useEffect(() => {
+    if (initial.notFound) return;
+    const target = routePath(initial);
+    if (window.location.pathname !== target || parseRoute(window.location.pathname).page !== initial.page) {
+      window.history.replaceState(null, '', target);
+    }
+  }, [initial]);
+
+  useEffect(() => {
+    const onPopState = () => {
+      closingSheet.current = false;
+
+      if (pendingPage.current) {
+        const next = pendingPage.current;
+        pendingPage.current = null;
+        navigate(next);
+        return;
+      }
+
+      const route = parseRoute(window.location.pathname, window.location.hash);
+      setNotFound(Boolean(route.notFound));
+
+      if (route.product) {
+        setSheetProduct(route.product);
+        setPage(sheetState()?.bg ?? 'products');
+      } else {
+        setSheetProduct(null);
+        setPage(route.page);
+      }
+    };
+
+    window.addEventListener('popstate', onPopState);
+    return () => window.removeEventListener('popstate', onPopState);
+  }, [navigate]);
+
+  /* Title, description, canonical and structured data follow the screen. */
+  useEffect(() => {
+    syncHead(
+      notFound
+        ? { page, notFound: true }
+        : { page: sheetProduct ? 'products' : page, product: sheetProduct ?? undefined },
+    );
+  }, [page, sheetProduct, notFound]);
+
+  /** Each product has its own address, so it can be shared and indexed. */
+  const openProduct = useCallback(
+    (product: Product) => {
+      const state: SheetState = { sheet: true, bg: page };
+      if (sheetState()) window.history.replaceState(state, '', productPath(product));
+      else window.history.pushState(state, '', productPath(product));
+      setSheetProduct(product);
+    },
+    [page],
+  );
+
+  const closeSheet = useCallback(() => {
+    setSheetProduct(null);
+    if (sheetState()) {
+      closingSheet.current = true;
+      window.history.back();
+    } else {
+      // Arrived straight on a product address: settle on its page instead.
+      window.history.replaceState(null, '', PAGE_PATHS[page]);
+    }
+  }, [page]);
+
   const requestQuote = useCallback(
     (productName: string) => {
       setQuoteProduct(productName);
-      navigate('contact');
+      if (closingSheet.current) pendingPage.current = 'contact';
+      else navigate('contact');
     },
     [navigate],
   );
 
   const openZoom = useCallback((src: string, alt: string) => setLightbox({ src, alt }), []);
-  const closeSheet = useCallback(() => setSheetProduct(null), []);
 
   return (
     <div className="flex min-h-screen flex-col bg-paper">
@@ -95,7 +157,7 @@ export default function App() {
             {page === 'home' && (
               <HomePage
                 onNavigate={navigate}
-                onOpenProduct={setSheetProduct}
+                onOpenProduct={openProduct}
                 onZoom={openZoom}
               />
             )}
@@ -105,7 +167,7 @@ export default function App() {
             {page === 'products' && (
               <ProductsPage
                 onNavigate={navigate}
-                onOpenProduct={setSheetProduct}
+                onOpenProduct={openProduct}
                 onRequestQuote={requestQuote}
               />
             )}
@@ -121,7 +183,7 @@ export default function App() {
             {page === 'crop-solutions' && (
               <CropSolutionsPage
                 onNavigate={navigate}
-                onOpenProduct={setSheetProduct}
+                onOpenProduct={openProduct}
                 onRequestQuote={requestQuote}
               />
             )}
@@ -133,7 +195,7 @@ export default function App() {
         </AnimatePresence>
       </main>
 
-      <Footer onNavigate={navigate} />
+      <Footer onNavigate={navigate} onOpenProduct={openProduct} />
 
       <WhatsAppTab />
 

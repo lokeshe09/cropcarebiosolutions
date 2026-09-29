@@ -11,7 +11,7 @@ interface WhyCropCareProps {
 
 export function WhyCropCare({ onNavigate }: WhyCropCareProps) {
   return (
-    <section id="why" className="scroll-mt-24 bg-paper py-20 lg:py-28">
+    <section id="why" className="scroll-mt-24 bg-paper py-14 lg:py-16">
       <div className="mx-auto max-w-[1320px] px-5 sm:px-8">
         <SectionHeading
           index="01"
@@ -24,37 +24,34 @@ export function WhyCropCare({ onNavigate }: WhyCropCareProps) {
           }
         />
 
-        <div className="mt-14 grid gap-12 lg:grid-cols-12 lg:gap-16">
-          {/* A single close-up carries the whole section; four icons would not. */}
+        <div className="mt-9 grid gap-8 lg:grid-cols-12 lg:gap-12">
           <Reveal className="lg:col-span-5">
-            <figure className="sticky top-28">
-              <img
-                src={macroLeaf}
-                alt="Close-up of a healthy leaf surface"
-                className="aspect-[4/5] w-full object-cover"
-              />
-            </figure>
+            <img
+              src={macroLeaf}
+              alt="Close-up of a healthy leaf surface"
+              className="aspect-[4/3] w-full rounded-lg object-cover"
+            />
           </Reveal>
 
-          <ol className="lg:col-span-7">
+          {/* Two by two rather than a stacked list, so all four points sit in
+              one screen and nobody has to scroll to find the fourth. */}
+          <ol className="grid gap-x-10 sm:grid-cols-2 lg:col-span-7">
             {WHY_CROP_CARE.map((item, index) => (
               <Reveal
                 as="li"
                 key={item.title}
-                delay={index * 0.06}
-                className="group border-t border-line last:border-b"
+                delay={index * 0.05}
+                className="group border-t border-line py-5"
               >
-                <div className="flex gap-6 py-8 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-1.5 sm:gap-10 lg:py-10">
-                  <span className="pt-2 font-mono text-[12px] text-ink-3 transition-colors group-hover:text-clay">
+                <div className="flex gap-4 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-1">
+                  <span className="pt-1.5 font-mono text-[11px] text-ink-3 transition-colors group-hover:text-clay">
                     {String(index + 1).padStart(2, '0')}
                   </span>
                   <div>
-                    <h3 className="font-display text-[clamp(1.5rem,2.6vw,2rem)] text-pine">
+                    <h3 className="font-display text-[clamp(1.35rem,2.1vw,1.7rem)] text-pine">
                       {item.title}
                     </h3>
-                    <p className="mt-3 max-w-md text-[16px] leading-relaxed text-ink-2">
-                      {item.body}
-                    </p>
+                    <p className="mt-2 text-[15px] leading-relaxed text-ink-2">{item.body}</p>
                   </div>
                 </div>
               </Reveal>

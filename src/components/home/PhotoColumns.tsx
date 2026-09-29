@@ -16,28 +16,18 @@ interface PhotoColumnsProps {
  * Within a column a photograph returns only after the whole set has passed,
  * which is well beyond the height of the viewport.
  *
- * Indices are into FIELD_GALLERY. Each layout is a complete partition, so
- * every photograph is on screen at every breakpoint.
+ * Indices are into FIELD_GALLERY. Together the columns are a complete
+ * partition, so every photograph is on screen and none is in two places.
  */
-const LAYOUTS = {
-  /* Three columns: trap, crop, person and produce shots spread across all. */
-  wide: [
-    [0, 7, 4, 3],
-    [10, 2, 8, 5],
-    [1, 9, 6],
-  ],
-  /* Two columns, for narrow screens where a third would be too slim. */
-  narrow: [
-    [0, 7, 4, 3, 8, 6],
-    [10, 2, 5, 1, 9],
-  ],
-} as const;
+const COLUMNS = [
+  [0, 7, 4, 3, 8, 6],
+  [10, 2, 5, 1, 9],
+] as const;
 
 /* Speed, direction and a negative delay, so the columns never set off together. */
 const MOTION = [
-  { duration: '78s', reverse: false, delay: '-9s' },
-  { duration: '104s', reverse: true, delay: '-43s' },
-  { duration: '88s', reverse: false, delay: '-67s' },
+  { duration: '92s', reverse: false, delay: '-11s' },
+  { duration: '116s', reverse: true, delay: '-49s' },
 ];
 
 function Column({
@@ -94,26 +84,19 @@ function Column({
 }
 
 /**
- * The photography beside the masthead. Vertical columns suit the pictures,
+ * The photography beside the masthead. Two vertical columns suit the pictures,
  * which are all shot portrait, and keep them large instead of shrinking them
  * into a contact sheet.
  *
  * Every frame loads eagerly — this is the first thing on the page, and native
- * lazy loading would leave the off-screen tiles blank as they drift in. The two
- * layouts reference the same eleven files, so only eleven are ever fetched.
+ * lazy loading would leave the off-screen tiles blank as they drift in.
  */
 export function PhotoColumns({ onZoom }: PhotoColumnsProps) {
   return (
     <div className="absolute inset-0">
-      <div className="hidden h-full gap-4 px-4 sm:flex">
-        {LAYOUTS.wide.map((order, index) => (
-          <Column key={`wide-${index}`} order={order} index={index} onZoom={onZoom} />
-        ))}
-      </div>
-
-      <div className="flex h-full gap-3 px-3 sm:hidden">
-        {LAYOUTS.narrow.map((order, index) => (
-          <Column key={`narrow-${index}`} order={order} index={index} onZoom={onZoom} />
+      <div className="flex h-full gap-3 px-3 sm:gap-4 sm:px-4">
+        {COLUMNS.map((order, index) => (
+          <Column key={index} order={order} index={index} onZoom={onZoom} />
         ))}
       </div>
 

@@ -149,29 +149,32 @@
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='0.22'/%3E%3C/svg%3E");
 }
 
-/* Link with a rule that draws itself in on hover. */
-.link-rule {
-  position: relative;
-  display: inline-block;
-}
+/* Link with a rule that draws itself in on hover. In the components layer so
+   utilities on the same element (inline-flex, block …) win over inline-block. */
+@layer components {
+  .link-rule {
+    position: relative;
+    display: inline-block;
+  }
 
-.link-rule::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: -2px;
-  width: 100%;
-  height: 1px;
-  background: currentColor;
-  transform: scaleX(0);
-  transform-origin: right;
-  transition: transform 0.4s var(--ease-out-quint);
-}
+  .link-rule::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    width: 100%;
+    height: 1px;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.4s var(--ease-out-quint);
+  }
 
-.link-rule:hover::after,
-.link-rule:focus-visible::after {
-  transform: scaleX(1);
-  transform-origin: left;
+  .link-rule:hover::after,
+  .link-rule:focus-visible::after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
 }
 
 /* Seamless marquee: the track holds two identical halves and slides by -50%. */

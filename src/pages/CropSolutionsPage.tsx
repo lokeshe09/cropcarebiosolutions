@@ -3,6 +3,8 @@ import { AlertTriangle, ArrowRight, Search, X } from 'lucide-react';
 import type { PageId, Product } from '../types';
 import { PRODUCTS } from '../data/products';
 import { CROP_SOLUTIONS } from '../data/site';
+import { productPath } from '../lib/routes';
+import { RouteLink } from '../components/ui/RouteLink';
 import { PageIntro } from '../components/layout/PageIntro';
 import { PageHandoff } from '../components/layout/PageHandoff';
 import { Figure } from '../components/ui/Figure';
@@ -212,13 +214,13 @@ export function CropSolutionsPage({
                           </p>
 
                           <div className="mt-4 flex flex-wrap items-center gap-x-5 gap-y-2">
-                            <button
-                              type="button"
-                              onClick={() => onOpenProduct(product)}
+                            <RouteLink
+                              to={{ path: productPath(product) }}
+                              onNavigate={() => onOpenProduct(product)}
                               className="link-rule text-[13px] font-medium text-pine"
                             >
                               View protocol
-                            </button>
+                            </RouteLink>
                             <button
                               type="button"
                               onClick={() => onRequestQuote(product.name)}
