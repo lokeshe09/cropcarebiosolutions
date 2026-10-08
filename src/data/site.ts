@@ -18,25 +18,42 @@ export const COMPANY = {
 } as const;
 
 /**
- * TODO — confirm the email address before launch; phone, WhatsApp and
- * address are the company's live details.
- * Every phone number, address and email on the site
+ * The company's live contact details. Every phone number, address and email on the site
  * reads from this one object, so there is a single place to change.
  */
 export const CONTACT = {
   phonePrimary: { display: '+91 93467 20617', dial: '+919346720617' },
   phoneSecondary: { display: '+91 70324 96243', dial: '+917032496243' },
   whatsapp: '919346720617',
-  email: 'info@cropcarebiosolutions.com',
-  addressLines: ['Crop Care Bio Solutions', 'Hyderabad – 500055, Telangana', 'India'],
-  /**
-   * TODO — the company is sending the full street addresses. A block with no
-   * lines is left off the page rather than shown empty.
-   */
-  addresses: [
-    { label: 'Office address', lines: ['Hyderabad – 500055, Telangana', 'India'] },
-    { label: 'Store address', lines: [] as string[] },
+  email: 'cropcarebiosolutions@gmail.com',
+  /** Registered office, used wherever a single address is shown. */
+  addressLines: [
+    'Plot No. 20/P, Deva Bhoomi Nagar',
+    'Gajularamaram, Quthbullapur',
+    'Hyderabad – 500055, Telangana',
   ],
+  /** A block with no lines is left off the page rather than shown empty. */
+  addresses: [
+    {
+      label: 'Registered office',
+      lines: [
+        'Plot No. 20/P, Deva Bhoomi Nagar',
+        'Gajularamaram, Quthbullapur',
+        'Hyderabad – 500055, Telangana',
+      ],
+    },
+    {
+      label: 'Manufacturing unit',
+      lines: [
+        'Plot No. 567, Vokshith Enclave, Road No. 2',
+        '40 ft Road Inside, Sri Balaji Layout',
+        'Quthbullapur, Gajularamaram',
+        'Hyderabad – 500055, Telangana',
+      ],
+    },
+  ] as { label: string; lines: string[] }[],
+  /** For search engines: the registered office's street address. */
+  streetAddress: 'Plot No. 20/P, Deva Bhoomi Nagar, Gajularamaram, Quthbullapur',
   hours: 'Monday to Saturday, 9:00 am – 6:00 pm IST',
 } as const;
 

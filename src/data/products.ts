@@ -73,7 +73,7 @@ export const PRODUCTS: Product[] = [
       'After use, dispose of the lure safely — either bury it or burn it.',
       'If stored well, the lure works effectively for 2 years.',
     ],
-    recommendedTraps: ['Fruit Fly Trap', 'Vertical Fruit Fly Trap', 'Glass Trap', 'McPhail Trap'],
+    recommendedTraps: ['Fruit Fly Trap', 'Vertical Fruit Fly Trap', 'Glass Trap'],
     imageUrl: '/images/photos/lure-melon-fly.webp',
     imageAlt: 'Melon Fly pheromone lure sachet',
     trapImageUrl: '/images/photos/trap-fruit-fly-square.webp',
@@ -126,7 +126,7 @@ export const PRODUCTS: Product[] = [
       'After use, dispose of the lure safely — either bury it or burn it.',
       'If stored well, the lure works effectively for 2 years.',
     ],
-    recommendedTraps: ['Fruit Fly Trap', 'Vertical Fruit Fly Trap', 'Glass Trap', 'McPhail Trap'],
+    recommendedTraps: ['Fruit Fly Trap', 'Vertical Fruit Fly Trap', 'Glass Trap'],
     imageUrl: '/images/photos/lure-oriental-fruit-fly.webp',
     imageAlt: 'Oriental Fruit Fly pheromone lure sachet',
     trapImageUrl: '/images/photos/trap-fruit-fly-square.webp',
@@ -172,7 +172,7 @@ export const PRODUCTS: Product[] = [
     recommendedTraps: ['Water Trap', 'Funnel Trap', 'Delta Trap', 'Pheroglo Trap'],
     imageUrl: '/images/photos/lure-tuta-absoluta.webp',
     imageAlt: 'Tuta absoluta pheromone lure sachet',
-    trapImageUrl: '/images/photos/trap-water.webp',
+    trapImageUrl: '/images/photos/trap-water-v2.webp',
     cropSolution: {
       title: 'Tomato Leaf Miner Lure & Water Trap',
       body: [
@@ -214,7 +214,7 @@ export const PRODUCTS: Product[] = [
     recommendedTraps: ['Water Trap', 'Funnel Trap', 'Delta Trap', 'Pheroglo Trap'],
     imageUrl: '/images/photos/lure-shoot-borer.webp',
     imageAlt: 'Brinjal fruit and shoot borer pheromone lure sachet',
-    trapImageUrl: '/images/photos/trap-water.webp',
+    trapImageUrl: '/images/photos/trap-water-v2.webp',
     cropSolution: {
       title: 'Eggplant Borer Lure & Water Trap',
       body: [
@@ -571,7 +571,7 @@ export const PRODUCTS: Product[] = [
     recommendedTraps: ['Water Trap', 'Funnel Trap', 'Delta Trap', 'Pheroglo Trap'],
     imageUrl: '/images/photos/lure-diamondback-moth.webp',
     imageAlt: 'Diamondback moth pheromone lure sachet',
-    trapImageUrl: '/images/photos/trap-water.webp',
+    trapImageUrl: '/images/photos/trap-water-v2.webp',
     cropSolution: {
       title: 'Diamondback Moth Lure & Water Trap',
       body: [

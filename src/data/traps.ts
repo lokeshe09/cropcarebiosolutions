@@ -99,7 +99,7 @@ export const TRAPS: TrapType[] = [
       'Lightweight',
       'Low maintenance',
     ],
-    imageUrl: '/images/photos/trap-water.webp',
+    imageUrl: '/images/photos/trap-water-v2.webp',
     setupAdvice:
       'Fill with clean water to about 2 cm below the rim and add a little oil or mild detergent so moths do not float off.',
     recommendedHeight: '20–30 cm above the crop canopy',

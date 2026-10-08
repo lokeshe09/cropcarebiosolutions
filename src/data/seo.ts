@@ -218,6 +218,7 @@ function organization() {
     email: CONTACT.email,
     address: {
       '@type': 'PostalAddress',
+      streetAddress: CONTACT.streetAddress,
       addressLocality: SERVICE_AREAS.home.city,
       addressRegion: SERVICE_AREAS.home.state,
       postalCode: SERVICE_AREAS.home.postalCode,
