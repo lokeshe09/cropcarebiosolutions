@@ -32,8 +32,8 @@ export function WhyCropCare({ onNavigate }: WhyCropCareProps) {
                 reduced motion get its first frame as a still. */}
             {reduceMotion ? (
               <img
-                src="/videos/why-crop-care-poster.webp"
-                alt="Dew on healthy green crop leaves at sunrise"
+                src="/videos/why-crop-care-paddy-poster.webp"
+                alt="Green paddy field at sunrise with a pheromone trap among the rice"
                 className="aspect-[16/10] w-full rounded-lg object-cover"
               />
             ) : (
@@ -43,12 +43,12 @@ export function WhyCropCare({ onNavigate }: WhyCropCareProps) {
                 loop
                 playsInline
                 preload="metadata"
-                poster="/videos/why-crop-care-poster.webp"
-                aria-label="Dew on healthy green crop leaves at sunrise"
+                poster="/videos/why-crop-care-paddy-poster.webp"
+                aria-label="Green paddy field at sunrise with a pheromone trap among the rice"
                 className="aspect-[16/10] w-full rounded-lg bg-paper-3 object-cover"
               >
-                <source src="/videos/why-crop-care.webm" type="video/webm" />
-                <source src="/videos/why-crop-care.mp4" type="video/mp4" />
+                <source src="/videos/why-crop-care-paddy.webm" type="video/webm" />
+                <source src="/videos/why-crop-care-paddy.mp4" type="video/mp4" />
               </video>
             )}
           </Reveal>
