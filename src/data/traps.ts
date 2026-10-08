@@ -154,7 +154,7 @@ export const TRAPS: TrapType[] = [
     name: 'Palm Trap',
     family: 'palm',
     bestFor: 'Coconut, arecanut, date palm and oil palm plantations',
-    suitableLures: ['RPW', 'WD', 'RB'],
+    suitableLures: ['RPW', 'RB'],
     description:
       'The Palm Trap is designed for monitoring and managing Red Palm Weevil and Rhinoceros Beetle in palm plantations. It is a durable bucket-shaped trap with a covered top and multiple entry openings. The pheromone lure is placed inside the trap to attract the target insects. Once attracted, the insects enter through the openings and are retained inside the trap. It is suitable for use in coconut, oil palm, date palm, and arecanut plantations.',
     features: [

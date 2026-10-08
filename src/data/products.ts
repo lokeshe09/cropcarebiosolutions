@@ -373,42 +373,6 @@ export const PRODUCTS: Product[] = [
   },
 
   {
-    id: 'weevil-defender',
-    name: 'Weevil Defender',
-    scientificName: 'Rhynchophorus ferrugineus',
-    pestCommonName: 'Red Palm Weevil — companion attractant',
-    code: 'WD',
-    family: 'synergist',
-    companionTo: 'red-palm-weevil',
-    description: [
-      'A sealed plastic bottle designed to release ethyl acetate slowly over time. Weevil Defender enhances the attraction of the pheromone lure when the two are used together.',
-    ],
-    activeIngredient: 'Ethyl Acetate',
-    modeOfAction:
-      'Enhances the attraction of the Red Palm Weevil pheromone lure when used together.',
-    targetCrops: ['Coconut', 'Arecanut', 'Date Palm', 'Oil Palm'],
-    application: [
-      'Tie the Weevil Defender bottle along with the RPW pheromone lure inside the trap.',
-      'Do not open the cap or make any holes in the bottle.',
-      'Hang or fix it as per the RPW trap setup instructions.',
-      'Use in shaded conditions and avoid direct sunlight.',
-    ],
-    storage: [],
-    recommendedTraps: ['Palm Trap'],
-    imageUrl: '/images/lure-weevil-defender.webp',
-    imageAlt: 'Weevil Defender bottle for Red Palm Weevil, with red cap and green label',
-    trapImageUrl: '/images/photos/trap-palm-square.webp',
-    cropSolution: {
-      title: 'Weevil Defender',
-      body: [
-        'Weevil Defender is a pheromone-based monitoring solution designed to detect and track weevil activity in stored-product and crop environments. It helps attract target adult weevils, making early detection of pest presence easier.',
-        'Regular monitoring helps identify infestations at an early stage and supports timely pest-management decisions.',
-      ],
-      tagline: 'Detect early. Monitor efficiently. Protect your valuable produce.',
-    },
-  },
-
-  {
     id: 'rhinoceros-beetle',
     name: 'Rhinoceros Beetle Lure',
     scientificName: 'Oryctes rhinoceros',

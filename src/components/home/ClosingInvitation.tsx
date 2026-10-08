@@ -70,16 +70,16 @@ export function ClosingInvitation({ onNavigate }: ClosingInvitationProps) {
         {/* Three direct routes, for people who would rather not fill in a form. */}
         <Reveal
           delay={0.1}
-          className="mx-auto mt-16 grid max-w-3xl gap-px overflow-hidden border border-line-strong bg-line-strong sm:grid-cols-3"
+          className="mx-auto mt-16 grid max-w-3xl divide-y divide-white/40 overflow-hidden rounded-xl border border-white/60 [text-shadow:0_1px_10px_rgba(0,0,0,0.45)] sm:grid-cols-3 sm:divide-x sm:divide-y-0"
         >
-          <div className="flex flex-col gap-2 bg-paper p-7">
-            <Phone className="h-4 w-4 text-clay" aria-hidden />
-            <span className="eyebrow">Call</span>
+          <div className="flex flex-col gap-2 p-7">
+            <Phone className="h-4 w-4 text-clay-soft" aria-hidden />
+            <span className="eyebrow text-paper/75">Call</span>
             {[CONTACT.phonePrimary, CONTACT.phoneSecondary].map((phone) => (
               <a
                 key={phone.dial}
                 href={`tel:${phone.dial}`}
-                className="link-rule self-start text-[15px] text-pine"
+                className="link-rule self-start text-[15px] text-paper"
               >
                 {phone.display}
               </a>
@@ -92,20 +92,20 @@ export function ClosingInvitation({ onNavigate }: ClosingInvitationProps) {
             )}
             target="_blank"
             rel="noopener noreferrer"
-            className="group flex flex-col gap-2 bg-paper p-7 transition-colors hover:bg-paper-2"
+            className="group flex flex-col gap-2 p-7 transition-colors hover:bg-white/10"
           >
-            <MessageCircle className="h-4 w-4 text-clay" aria-hidden />
-            <span className="eyebrow">WhatsApp</span>
-            <span className="text-[15px] text-pine">Message our team</span>
+            <MessageCircle className="h-4 w-4 text-clay-soft" aria-hidden />
+            <span className="eyebrow text-paper/75">WhatsApp</span>
+            <span className="text-[15px] text-paper">Message our team</span>
           </a>
 
           <a
             href={`mailto:${CONTACT.email}`}
-            className="group flex flex-col gap-2 bg-paper p-7 transition-colors hover:bg-paper-2"
+            className="group flex flex-col gap-2 p-7 transition-colors hover:bg-white/10"
           >
-            <Mail className="h-4 w-4 text-clay" aria-hidden />
-            <span className="eyebrow">Email</span>
-            <span className="break-all text-[15px] text-pine">{CONTACT.email}</span>
+            <Mail className="h-4 w-4 text-clay-soft" aria-hidden />
+            <span className="eyebrow text-paper/75">Email</span>
+            <span className="text-[14px] text-paper [overflow-wrap:anywhere]">{CONTACT.email}</span>
           </a>
         </Reveal>
 

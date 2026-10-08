@@ -14,6 +14,8 @@ interface NavbarProps {
 
 export function Navbar({ currentPage, onNavigate }: NavbarProps) {
   const [scrolled, setScrolled] = useState(false);
+  const [hidden, setHidden] = useState(false);
+  const headerRef = useRef<HTMLElement>(null);
   const [menuOpen, setMenuOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -21,12 +23,38 @@ export function Navbar({ currentPage, onNavigate }: NavbarProps) {
 
   useDismissable(menuOpen, () => setMenuOpen(false));
 
+  /* Hide the bar while reading down the page, bring it back the moment the
+     visitor scrolls up. Small jitters are ignored, and it never hides near
+     the top or while a menu is open. */
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
+    let lastY = window.scrollY;
+    const onScroll = () => {
+      const y = window.scrollY;
+      setScrolled(y > 24);
+      const delta = y - lastY;
+      if (Math.abs(delta) < 6) return;
+      setHidden(delta > 0 && y > 160);
+      lastY = y;
+    };
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
+
+  const isHidden = hidden && !menuOpen && !dropdownOpen;
+
+  /* Other sticky bars (e.g. the Crop Solutions tabs) sit just below the
+     header, so they read its current height from this variable. */
+  useEffect(() => {
+    const root = document.documentElement;
+    const update = () => {
+      const height = headerRef.current?.offsetHeight ?? 0;
+      root.style.setProperty('--header-offset', `${isHidden ? 0 : height}px`);
+    };
+    update();
+    window.addEventListener('resize', update);
+    return () => window.removeEventListener('resize', update);
+  }, [isHidden]);
 
   useEffect(() => {
     if (!dropdownOpen) return;
@@ -69,11 +97,12 @@ export function Navbar({ currentPage, onNavigate }: NavbarProps) {
       </div>
 
       <header
-        className={`sticky top-0 z-50 border-b bg-paper/92 backdrop-blur-md transition-shadow duration-300 supports-[backdrop-filter]:bg-paper/85 ${
+        ref={headerRef}
+        className={`sticky top-0 z-50 border-b bg-paper/92 backdrop-blur-md transition-[transform,box-shadow] duration-300 ease-out supports-[backdrop-filter]:bg-paper/85 ${
           scrolled
             ? 'border-line shadow-[0_10px_30px_-24px_rgba(20,33,26,0.7)]'
             : 'border-line'
-        }`}
+        } ${isHidden ? '-translate-y-full' : 'translate-y-0'}`}
       >
         <div className="mx-auto flex h-[68px] max-w-[1320px] items-center justify-between gap-6 px-5 sm:px-8 lg:h-[76px]">
           <RouteLink

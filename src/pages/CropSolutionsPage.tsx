@@ -116,7 +116,7 @@ export function CropSolutionsPage({
       )}
 
       {/* Crop family tabs — large, clearly a choice, always in reach. */}
-      <section className="sticky top-[68px] z-30 border-b border-line bg-paper/95 backdrop-blur-md lg:top-[76px]">
+      <section className="sticky top-[var(--header-offset,68px)] z-30 border-b border-line bg-paper/95 backdrop-blur-md transition-[top] duration-300 ease-out">
         <div className="mx-auto max-w-[1320px] px-5 sm:px-8">
           <div className="rail flex gap-2 overflow-x-auto py-3.5" role="tablist" aria-label="Crop families">
             {CROP_SOLUTIONS.map((group) => {

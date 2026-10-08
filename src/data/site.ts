@@ -284,7 +284,7 @@ export const CROP_SOLUTIONS: CropSolution[] = [
     threat: 'Red palm weevil and rhinoceros beetle',
     symptoms:
       'Holes in the trunk with chewed fibre and fermented ooze, cut fronds in a V-notch, a crown that wilts from the centre.',
-    lureIds: ['red-palm-weevil', 'weevil-defender', 'rhinoceros-beetle'],
+    lureIds: ['red-palm-weevil', 'rhinoceros-beetle'],
   },
   {
     id: 'field-crops',
