@@ -3,8 +3,6 @@ import { AlertTriangle, ArrowRight, Search, X } from 'lucide-react';
 import type { PageId, Product } from '../types';
 import { PRODUCTS } from '../data/products';
 import { CROP_SOLUTIONS } from '../data/site';
-import { productPath } from '../lib/routes';
-import { RouteLink } from '../components/ui/RouteLink';
 import { PageIntro } from '../components/layout/PageIntro';
 import { PageHandoff } from '../components/layout/PageHandoff';
 import { Figure } from '../components/ui/Figure';
@@ -241,14 +239,6 @@ export function CropSolutionsPage({
                     )}
 
                     <div className="mt-auto flex flex-wrap items-center gap-3 pt-6">
-                      <RouteLink
-                        to={{ path: productPath(product) }}
-                        onNavigate={() => onOpenProduct(product)}
-                        className="inline-flex items-center gap-2 rounded-full bg-pine px-5 py-2.5 text-[13px] font-medium text-paper transition-colors hover:bg-pine-soft"
-                      >
-                        View protocol
-                        <ArrowRight className="h-3.5 w-3.5" aria-hidden />
-                      </RouteLink>
                       <button
                         type="button"
                         onClick={() => onRequestQuote(product.name)}

@@ -78,7 +78,6 @@ export const TRAPS: TrapType[] = [
     // TODO — placeholder photo; replace with a McPhail trap image.
     imageUrl: '/images/trap-glass.webp',
     setupAdvice: 'Hang in the shaded part of the canopy, clear of leaves around the entrance.',
-    recommendedHeight: '1.5–2 m in trees, 1 m on vines',
     trapsPerAcre: '10–15 per acre',
     servicing: 'Empty every 10–14 days. Replace the lure at 90 days.',
   },
@@ -102,7 +101,6 @@ export const TRAPS: TrapType[] = [
     imageUrl: '/images/photos/trap-water-v2.webp',
     setupAdvice:
       'Fill with clean water to about 2 cm below the rim and add a little oil or mild detergent so moths do not float off.',
-    recommendedHeight: '20–30 cm above the crop canopy',
     trapsPerAcre: '8–10 per acre',
     servicing: 'Top up water weekly and skim the catch every 5–7 days.',
   },
@@ -125,7 +123,6 @@ export const TRAPS: TrapType[] = [
     imageUrl: '/images/photos/trap-funnel.webp',
     setupAdvice:
       'Tie to a bamboo stake by the top loop and keep the funnel mouth above the crop canopy. Raise the stake as the crop grows.',
-    recommendedHeight: '30–45 cm above the crop canopy',
     trapsPerAcre: '8–15 per acre, depending on the lure',
     servicing: 'Untie the bottom cord and empty weekly. Check that the lure sits in the top cage.',
   },
@@ -145,7 +142,6 @@ export const TRAPS: TrapType[] = [
     ],
     imageUrl: '/images/trap-bucket.webp',
     setupAdvice: 'Hang from a branch or stake so the lid sits just above the crop canopy.',
-    recommendedHeight: 'Just above the crop canopy',
     trapsPerAcre: '8–10 per acre',
     servicing: 'Empty every 7–10 days and rinse before re-baiting.',
   },
@@ -167,7 +163,6 @@ export const TRAPS: TrapType[] = [
     imageUrl: '/images/photos/trap-palm.webp',
     setupAdvice:
       'Bury to the side openings or hang on the trunk at 1–1.5 m. Place in shaded spots in the grove.',
-    recommendedHeight: '1–1.5 m on the trunk, or half-buried',
     trapsPerAcre: '3–4 per acre',
     servicing: 'Empty the catch every two weeks and refresh the bait liquid monthly.',
   },
@@ -188,7 +183,6 @@ export const TRAPS: TrapType[] = [
     imageUrl: '/images/photos/trap-delta.webp',
     setupAdvice:
       'Fold into the triangle, lay the sticky liner face up, hang the lure from the ridge hook and suspend in the crop row.',
-    recommendedHeight: 'Trellis height, or about 1 m above ground',
     trapsPerAcre: '6–8 per acre for monitoring',
     servicing: 'Replace the liner when it is about two-thirds covered, or every 4–6 weeks.',
   },
@@ -208,7 +202,6 @@ export const TRAPS: TrapType[] = [
     ],
     imageUrl: '/images/trap-solar.webp',
     setupAdvice: 'Mount on a firm pole near the middle of the field where the panel gets full sun.',
-    recommendedHeight: '1.5 m above ground',
     trapsPerAcre: '1–2 per acre',
     servicing: 'Wipe the panel monthly and empty the basin weekly.',
   },

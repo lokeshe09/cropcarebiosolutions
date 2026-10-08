@@ -263,7 +263,7 @@ export const PRODUCTS: Product[] = [
       'Effective for up to 2 years if stored well.',
     ],
     recommendedTraps: ['Funnel Trap', 'Delta Trap', 'Moth Trap'],
-    imageUrl: '/images/photos/lure-cotton-bollworm.webp',
+    imageUrl: '/images/photos/lure-cotton-bollworm-v2.webp',
     imageAlt: 'Cotton bollworm pheromone lure sachet',
     trapImageUrl: '/images/photos/trap-funnel-square.webp',
     cropSolution: {
@@ -315,7 +315,7 @@ export const PRODUCTS: Product[] = [
       'Effective for up to 2 years if stored well.',
     ],
     recommendedTraps: ['Funnel Trap', 'Delta Trap', 'Moth Trap'],
-    imageUrl: '/images/photos/lure-tobacco-cutworm.webp',
+    imageUrl: '/images/photos/lure-tobacco-cutworm-v2.webp',
     imageAlt: 'Tobacco cutworm pheromone lure sachet',
     trapImageUrl: '/images/photos/trap-funnel-square.webp',
     cropSolution: {

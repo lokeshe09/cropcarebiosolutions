@@ -384,44 +384,16 @@ export function ContactPage({ onNavigate, prefillProduct = '' }: ContactPageProp
             lead="Crop Care Bio Solutions manufactures eco-friendly pest management solutions in Hyderabad, Telangana, and supplies pheromone lures and insect traps across India and to international markets. We serve customers across India and support international customers with reliable products and export supply."
           />
 
-          <div className="mt-10 grid gap-10 lg:grid-cols-12">
-            <div className="lg:col-span-4">
-              <h3 className="eyebrow text-clay">Our Manufacturing Base</h3>
-              <p className="mt-3 font-display text-[22px] leading-snug text-pine">
-                {SERVICE_AREAS.home.city}, {SERVICE_AREAS.home.state}, India
-              </p>
-              <p className="mt-3 text-[15px] leading-relaxed text-ink-2">
-                From our Hyderabad manufacturing base, we supply pheromone lures, fruit fly
-                traps, funnel traps, sticky traps and other insect monitoring and management
-                solutions for agricultural and horticultural applications.
-              </p>
-            </div>
-
-            <div className="lg:col-span-8">
-              <h3 className="eyebrow">States</h3>
-              <ul className="mt-4 flex flex-wrap gap-2">
-                {SERVICE_AREAS.states.map((state) => (
-                  <li
-                    key={state}
-                    className="border border-line bg-paper px-3 py-1.5 text-[13px] text-ink-2"
-                  >
-                    {state}
-                  </li>
-                ))}
-              </ul>
-
-              <h3 className="eyebrow mt-8">Union territories</h3>
-              <ul className="mt-4 flex flex-wrap gap-2">
-                {SERVICE_AREAS.unionTerritories.map((territory) => (
-                  <li
-                    key={territory}
-                    className="border border-line bg-paper px-3 py-1.5 text-[13px] text-ink-2"
-                  >
-                    {territory}
-                  </li>
-                ))}
-              </ul>
-            </div>
+          <div className="mt-10 max-w-2xl border-l-2 border-clay pl-6">
+            <h3 className="eyebrow text-clay">Our Manufacturing Base</h3>
+            <p className="mt-3 font-display text-[22px] leading-snug text-pine">
+              {SERVICE_AREAS.home.city}, {SERVICE_AREAS.home.state}, India
+            </p>
+            <p className="mt-3 text-[15px] leading-relaxed text-ink-2">
+              From our Hyderabad manufacturing base, we supply pheromone lures, fruit fly
+              traps, funnel traps, sticky traps and other insect monitoring and management
+              solutions for agricultural and horticultural applications.
+            </p>
           </div>
         </div>
       </section>
