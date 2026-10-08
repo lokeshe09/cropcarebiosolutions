@@ -100,7 +100,7 @@ export const TRAPS: TrapType[] = [
       'Reusable and durable',
       'Simple field installation',
     ],
-    imageUrl: '/images/photos/trap-funnel.webp',
+    imageUrl: '/images/photos/trap-funnel-v2.webp',
     setupAdvice:
       'Tie to a bamboo stake by the top loop and keep the funnel mouth above the crop canopy. Raise the stake as the crop grows.',
     trapsPerAcre: '8–15 per acre, depending on the lure',

@@ -265,7 +265,7 @@ export const PRODUCTS: Product[] = [
     recommendedTraps: ['Funnel Trap', 'Delta Trap', 'Moth Trap'],
     imageUrl: '/images/photos/lure-cotton-bollworm-v2.webp',
     imageAlt: 'Cotton bollworm pheromone lure sachet',
-    trapImageUrl: '/images/photos/trap-funnel-square.webp',
+    trapImageUrl: '/images/photos/trap-funnel-v2.webp',
     cropSolution: {
       title: 'Cotton Bollworm Lure & Funnel Trap',
       body: [
@@ -317,7 +317,7 @@ export const PRODUCTS: Product[] = [
     recommendedTraps: ['Funnel Trap', 'Delta Trap', 'Moth Trap'],
     imageUrl: '/images/photos/lure-tobacco-cutworm-v2.webp',
     imageAlt: 'Tobacco cutworm pheromone lure sachet',
-    trapImageUrl: '/images/photos/trap-funnel-square.webp',
+    trapImageUrl: '/images/photos/trap-funnel-v2.webp',
     cropSolution: {
       title: 'Tobacco Cutworm Lure & Funnel Trap',
       body: [
@@ -446,7 +446,7 @@ export const PRODUCTS: Product[] = [
     recommendedTraps: ['Funnel Trap', 'Moth Trap'],
     imageUrl: '/images/photos/lure-pink-bollworm.webp',
     imageAlt: 'Pink bollworm pheromone lure sachet',
-    trapImageUrl: '/images/photos/trap-funnel-square.webp',
+    trapImageUrl: '/images/photos/trap-funnel-v2.webp',
     cropSolution: {
       title: 'Pink Bollworm Lure & Funnel Trap',
       body: [
@@ -487,7 +487,7 @@ export const PRODUCTS: Product[] = [
     recommendedTraps: ['Funnel Trap', 'Moth Trap'],
     imageUrl: '/images/photos/lure-fall-armyworm.webp',
     imageAlt: 'Fall armyworm pheromone lure sachet',
-    trapImageUrl: '/images/photos/trap-funnel-square.webp',
+    trapImageUrl: '/images/photos/trap-funnel-v2.webp',
     cropSolution: {
       title: 'Fall Armyworm Lure & Funnel Trap',
       body: [
@@ -529,7 +529,7 @@ export const PRODUCTS: Product[] = [
     recommendedTraps: ['Funnel Trap', 'Moth Trap'],
     imageUrl: '/images/photos/lure-yellow-stem-borer.webp',
     imageAlt: 'Yellow stem borer pheromone lure sachet',
-    trapImageUrl: '/images/photos/trap-funnel-square.webp',
+    trapImageUrl: '/images/photos/trap-funnel-v2.webp',
     cropSolution: {
       title: 'Yellow Stem Borer Lure & Funnel Trap',
       body: [
