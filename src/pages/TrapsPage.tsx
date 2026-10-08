@@ -16,7 +16,7 @@ interface TrapsPageProps {
 const FAMILIES: { id: TrapFamily | 'all'; label: string }[] = [
   { id: 'all', label: 'All traps' },
   { id: 'fruit-fly', label: 'Fruit fly' },
-  { id: 'funnel', label: 'Funnel & bucket' },
+  { id: 'funnel', label: 'Funnel' },
   { id: 'water', label: 'Water' },
   { id: 'delta', label: 'Delta' },
   { id: 'palm', label: 'Palm' },

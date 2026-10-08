@@ -62,26 +62,6 @@ export const TRAPS: TrapType[] = [
     servicing: FRUIT_FLY_SERVICING,
   },
   {
-    id: 'mcphail-trap',
-    name: 'McPhail Trap',
-    family: 'fruit-fly',
-    bestFor: 'Melon Fly and Oriental Fruit Fly in orchards and vegetable fields',
-    suitableLures: ['MF', 'OFF'],
-    description:
-      'A bell-shaped trap with a clear upper dome and a yellow base, entered through an opening in the bottom. Flies drawn in by the lure move up towards the light and do not find the entrance again, and the catch stays in view through the clear top.',
-    features: [
-      'Bottom entry that flies rarely find their way back out of',
-      'Clear dome for counting the catch without opening the trap',
-      'Yellow base adds a visual cue to the lure',
-      'Top and base separate for cleaning and re-baiting',
-    ],
-    // TODO — placeholder photo; replace with a McPhail trap image.
-    imageUrl: '/images/trap-glass.webp',
-    setupAdvice: 'Hang in the shaded part of the canopy, clear of leaves around the entrance.',
-    trapsPerAcre: '10–15 per acre',
-    servicing: 'Empty every 10–14 days. Replace the lure at 90 days.',
-  },
-  {
     id: 'water-trap',
     name: 'Water Trap',
     family: 'water',
@@ -125,25 +105,6 @@ export const TRAPS: TrapType[] = [
       'Tie to a bamboo stake by the top loop and keep the funnel mouth above the crop canopy. Raise the stake as the crop grows.',
     trapsPerAcre: '8–15 per acre, depending on the lure',
     servicing: 'Untie the bottom cord and empty weekly. Check that the lure sits in the top cage.',
-  },
-  {
-    id: 'bucket-trap',
-    name: 'Bucket / Pheroglo Trap',
-    family: 'funnel',
-    bestFor: 'General moth trapping where a high-capacity dry trap is wanted',
-    suitableLures: ['CBW', 'TCW', 'TLM', 'DBM', 'EPB'],
-    description:
-      'A wide bucket body with a coloured lid and a lure holder beneath it. Moths drawn to the lure drop into the deep chamber. The generous volume means it can be left for longer between visits.',
-    features: [
-      'Deep chamber holds a heavy catch',
-      'Coloured lid adds a visual cue to the scent',
-      'Strong hook for hanging from a branch or stake',
-      'Simple to wash out and re-bait',
-    ],
-    imageUrl: '/images/trap-bucket.webp',
-    setupAdvice: 'Hang from a branch or stake so the lid sits just above the crop canopy.',
-    trapsPerAcre: '8–10 per acre',
-    servicing: 'Empty every 7–10 days and rinse before re-baiting.',
   },
   {
     id: 'palm-trap',

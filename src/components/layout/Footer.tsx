@@ -2,7 +2,7 @@ import { Mail, MapPin, Phone } from 'lucide-react';
 import type { PageId, Product } from '../../types';
 import { COMPANY, CONTACT } from '../../data/site';
 import { PRODUCTS } from '../../data/products';
-import { productPath } from '../../lib/routes';
+import { PAGE_PATHS, productPath } from '../../lib/routes';
 import { RouteLink } from '../ui/RouteLink';
 import { Logo, LogoText } from './Logo';
 
@@ -13,21 +13,26 @@ interface FooterProps {
 
 export function Footer({ onNavigate, onOpenProduct }: FooterProps) {
   const year = new Date().getFullYear();
-  /* The order the company asked for: the fruit fly and Tuta lures, then the
-     two palm lures, then the moth lures. */
-  const lureOrder = [
-    'melon-fly',
-    'oriental-fruit-fly',
-    'tuta-absoluta',
-    'rhinoceros-beetle',
-    'red-palm-weevil',
-    'shoot-borer',
-    'cotton-bollworm',
-    'tobacco-cutworm',
-  ];
-  const lureLinks = lureOrder
+  /* "Our Products", in the order the company asked for: four lures, then
+     three traps and the sticky traps. */
+  const productLinks = ['melon-fly', 'oriental-fruit-fly', 'tuta-absoluta', 'rhinoceros-beetle']
     .map((id) => PRODUCTS.find((product) => product.id === id))
     .filter((product): product is Product => Boolean(product));
+
+  const trapLinks = [
+    { anchor: 'fruit-fly-trap', label: 'Fruit Fly Trap' },
+    { anchor: 'funnel-trap', label: 'Funnel Trap' },
+    { anchor: 'solar-trap', label: 'Solar Light Trap' },
+    { anchor: 'sticky-sheets', label: 'Sticky Traps' },
+  ];
+
+  /** Opens the Insect Traps page and brings the chosen trap into view. */
+  const goToTrap = (anchor: string) => {
+    onNavigate('traps');
+    window.setTimeout(() => {
+      document.getElementById(anchor)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 450);
+  };
 
   const siteLinks: { id: PageId; label: string }[] = [
     { id: 'home', label: 'Home' },
@@ -73,9 +78,9 @@ export function Footer({ onNavigate, onOpenProduct }: FooterProps) {
           </nav>
 
           <nav className="lg:col-span-3">
-            <h3 className="eyebrow text-sage">Pheromone lures</h3>
+            <h3 className="eyebrow text-sage">Our Products</h3>
             <ul className="mt-5 space-y-3">
-              {lureLinks.map((product) => (
+              {productLinks.map((product) => (
                 <li key={product.id}>
                   <RouteLink
                     to={{ path: productPath(product) }}
@@ -86,15 +91,17 @@ export function Footer({ onNavigate, onOpenProduct }: FooterProps) {
                   </RouteLink>
                 </li>
               ))}
-              <li>
-                <RouteLink
-                  to="products"
-                  onNavigate={() => onNavigate('products')}
-                  className="link-rule text-[15px] text-clay-soft"
-                >
-                  View all lures
-                </RouteLink>
-              </li>
+              {trapLinks.map((trap) => (
+                <li key={trap.anchor}>
+                  <RouteLink
+                    to={{ path: `${PAGE_PATHS.traps}#${trap.anchor}` }}
+                    onNavigate={() => goToTrap(trap.anchor)}
+                    className="link-rule text-left text-[15px] text-paper/70 transition-colors hover:text-paper"
+                  >
+                    {trap.label}
+                  </RouteLink>
+                </li>
+              ))}
             </ul>
           </nav>
 

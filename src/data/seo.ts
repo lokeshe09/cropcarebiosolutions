@@ -89,7 +89,7 @@ export const PAGE_META: Record<PageId, PageMeta> = {
     path: PAGE_PATHS.traps,
     title: 'Insect Traps: Fruit Fly, Funnel, Delta & Sticky Traps | Crop Care',
     description:
-      'Fruit fly traps, McPhail traps, funnel traps, water traps, delta traps, palm traps, solar light traps, yellow and blue sticky traps. Manufacturer in Hyderabad, India.',
+      'Fruit fly traps, vertical fruit fly traps, glass traps, funnel traps, water traps, delta traps, palm traps, solar light traps, yellow and blue sticky traps. Manufacturer in Hyderabad, India.',
     keywords: [
       ...BASE_KEYWORDS,
       'fruit fly trap',
@@ -98,7 +98,7 @@ export const PAGE_META: Record<PageId, PageMeta> = {
       'yellow sticky trap',
       'solar light trap',
       'delta trap',
-      'McPhail trap',
+      'vertical fruit fly trap',
     ],
     trail: [{ name: 'Insect Traps', path: PAGE_PATHS.traps }],
   },
