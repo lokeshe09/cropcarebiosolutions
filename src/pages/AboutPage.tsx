@@ -1,3 +1,4 @@
+import { useReducedMotion } from 'motion/react';
 import type { PageId } from '../types';
 import { ABOUT, COMPANY, WE_STAND_FOR } from '../data/site';
 import { PageIntro } from '../components/layout/PageIntro';
@@ -13,6 +14,8 @@ interface AboutPageProps {
 }
 
 export function AboutPage({ onNavigate }: AboutPageProps) {
+  const reduceMotion = useReducedMotion();
+
   return (
     <>
       <PageIntro
@@ -66,23 +69,51 @@ export function AboutPage({ onNavigate }: AboutPageProps) {
       </section>
 
       {/* Mission & Vision */}
-      <section className="bg-pine py-20 text-paper lg:py-28">
+      <section className="relative isolate overflow-hidden bg-pine py-20 text-paper lg:py-28">
+        {/* Aerial loop of the fields behind the statements, or its first frame
+            for visitors who ask for reduced motion. */}
+        {reduceMotion ? (
+          <img
+            src="/videos/about-mission-poster.webp"
+            alt=""
+            aria-hidden
+            loading="lazy"
+            decoding="async"
+            className="absolute inset-0 -z-20 h-full w-full object-cover"
+          />
+        ) : (
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            poster="/videos/about-mission-poster.webp"
+            aria-hidden
+            className="absolute inset-0 -z-20 h-full w-full object-cover"
+          >
+            <source src="/videos/about-mission.webm" type="video/webm" />
+            <source src="/videos/about-mission.mp4" type="video/mp4" />
+          </video>
+        )}
+        <div className="absolute inset-0 -z-10 bg-pine-deep/45" aria-hidden />
+
         <div className="mx-auto max-w-[1320px] px-5 sm:px-8">
           <SectionHeading index="02" eyebrow="Crop Care Bio Solutions" title="Mission & Vision" tone="dark" />
 
-          <div className="mt-14 grid gap-px overflow-hidden border border-white/12 bg-white/12 lg:grid-cols-2">
-            <article className="bg-pine p-8 lg:p-12">
+          <div className="mt-14 grid gap-px overflow-hidden border border-white/15 bg-white/15 lg:grid-cols-2">
+            <article className="bg-pine-deep/70 p-8 backdrop-blur-sm lg:p-12">
               <p className="font-mono text-[12px] uppercase tracking-[0.18em] text-clay-soft">
                 Mission
               </p>
-              <p className="mt-5 text-[16px] leading-relaxed text-paper/70">{ABOUT.mission}</p>
+              <p className="mt-5 text-[16px] leading-relaxed text-paper/90">{ABOUT.mission}</p>
             </article>
 
-            <article className="bg-pine p-8 lg:p-12">
+            <article className="bg-pine-deep/70 p-8 backdrop-blur-sm lg:p-12">
               <p className="font-mono text-[12px] uppercase tracking-[0.18em] text-clay-soft">
                 Vision
               </p>
-              <p className="mt-5 text-[16px] leading-relaxed text-paper/70">{ABOUT.vision}</p>
+              <p className="mt-5 text-[16px] leading-relaxed text-paper/90">{ABOUT.vision}</p>
             </article>
           </div>
         </div>
