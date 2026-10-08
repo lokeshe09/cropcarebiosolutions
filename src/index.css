@@ -177,6 +177,15 @@
   }
 }
 
+/* Crop Solutions: the threat panel follows the lure list on tall desktop
+   screens; on shorter ones it scrolls normally so nothing is cut off. */
+@media (min-width: 1024px) and (min-height: 820px) {
+  .threat-panel {
+    position: sticky;
+    top: 168px;
+  }
+}
+
 /* Background slideshow: two photos plus a repeat of the first. Each holds,
    then slides; the last step lands on the repeat, identical to the start. */
 .bg-slide {

@@ -143,14 +143,16 @@ export function CropSolutionsPage({
 
       <section className="bg-paper py-14 lg:py-20">
         <div className="mx-auto max-w-[1320px] px-5 sm:px-8">
-          <div className="grid gap-10 lg:grid-cols-12 lg:gap-16">
-            <div className="lg:col-span-5">
+          <div className="grid gap-10 lg:grid-cols-12 lg:gap-12">
+            {/* Stays in view beside the lure list, below the sticky tabs —
+                only on screens tall enough to show all of it. */}
+            <div className="threat-panel lg:col-span-4 lg:self-start">
               <p className="eyebrow text-clay">Main threat</p>
-              <h2 className="mt-4 font-display text-[clamp(1.8rem,3.6vw,2.6rem)] leading-tight text-pine">
+              <h2 className="mt-4 font-display text-[clamp(1.6rem,2.6vw,2.15rem)] leading-[1.15] text-pine">
                 {active.threat}
               </h2>
 
-              <div className="mt-8 border-l-2 border-clay bg-paper-2 p-6">
+              <div className="mt-7 border-l-2 border-clay bg-paper-2 p-5">
                 <p className="flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.14em] text-clay">
                   <AlertTriangle className="h-3.5 w-3.5" aria-hidden />
                   What the damage looks like
@@ -158,7 +160,7 @@ export function CropSolutionsPage({
                 <p className="mt-3 text-[15px] leading-relaxed text-ink-2">{active.symptoms}</p>
               </div>
 
-              <div className="mt-8">
+              <div className="mt-7">
                 <p className="eyebrow">Crops covered</p>
                 <ul className="mt-4 flex flex-wrap gap-1.5">
                   {active.crops.map((crop) => (
@@ -173,7 +175,7 @@ export function CropSolutionsPage({
               </div>
             </div>
 
-            <div className="lg:col-span-7">
+            <div className="lg:col-span-8">
               <p className="eyebrow">
                 {activeProducts.length} matching {activeProducts.length === 1 ? 'lure' : 'lures'}
               </p>
@@ -181,70 +183,76 @@ export function CropSolutionsPage({
               <ul className="mt-6 space-y-px bg-line">
                 {activeProducts.map((product, index) => (
                   <Reveal as="li" key={product.id} delay={index * 0.05}>
-                    <article className="group bg-paper p-5 transition-colors hover:bg-paper-2 sm:p-6">
-                      <div className="flex flex-col gap-5 sm:flex-row">
-                        <div className="flex shrink-0 gap-2">
+                    <article className="group grid gap-6 bg-paper p-5 transition-colors hover:bg-paper-2 sm:grid-cols-[220px_minmax(0,1fr)] sm:p-7">
+                      {/* Lure and trap side by side at a fixed size, aligned to
+                          the top, so a long description never stretches them. */}
+                      <div className="grid max-w-[280px] grid-cols-2 gap-2.5 self-start sm:max-w-none">
+                        <figure className="m-0">
                           <Figure
                             src={product.imageUrl}
                             alt={product.imageAlt}
-                            ratio="aspect-square"
-                            className="w-24 sm:w-28"
+                            ratio="aspect-[4/5]"
+                            className="rounded-md"
                           />
+                          <figcaption className="eyebrow mt-2 text-center">Lure</figcaption>
+                        </figure>
+                        <figure className="m-0">
                           <Figure
                             src={product.trapImageUrl}
                             alt={`Trap for ${product.name}`}
-                            ratio="aspect-square"
-                            className="w-24 sm:w-28"
+                            ratio="aspect-[4/5]"
+                            className="rounded-md"
                           />
-                        </div>
+                          <figcaption className="eyebrow mt-2 text-center">Trap</figcaption>
+                        </figure>
+                      </div>
 
-                        <div className="min-w-0 flex-1">
-                          <p className="eyebrow flex items-center gap-2.5">
-                            <span className="text-clay">{product.code}</span>
-                            <span aria-hidden className="h-px w-4 bg-line-strong" />
-                            <span className="truncate">{product.pestCommonName}</span>
-                          </p>
+                      <div className="flex min-w-0 flex-col">
+                        <p className="eyebrow flex items-center gap-2.5">
+                          <span className="text-clay">{product.code}</span>
+                          <span aria-hidden className="h-px w-4 bg-line-strong" />
+                          <span className="truncate">{product.pestCommonName}</span>
+                        </p>
 
-                          <h3 className="mt-2 font-display text-[20px] leading-tight text-pine">
-                            {product.cropSolution?.title ?? product.name}
-                          </h3>
+                        <h3 className="mt-2.5 font-display text-[clamp(1.2rem,1.7vw,1.4rem)] leading-snug text-pine">
+                          {product.cropSolution?.title ?? product.name}
+                        </h3>
 
-                          {product.cropSolution ? (
-                            <div className="mt-2 space-y-2 text-[14px] leading-relaxed text-ink-2">
-                              {product.cropSolution.body.map((paragraph) => (
-                                <p key={paragraph.slice(0, 32)}>{paragraph}</p>
-                              ))}
-                              <p className="font-display text-[15px] italic text-pine">
-                                {product.cropSolution.tagline}
-                              </p>
-                            </div>
-                          ) : (
-                            <p className="mt-2 line-clamp-3 text-[14px] leading-relaxed text-ink-2">
-                              {product.description[0]}
+                        {product.cropSolution ? (
+                          <div className="mt-3 space-y-2.5 text-[14.5px] leading-relaxed text-ink-2">
+                            {product.cropSolution.body.map((paragraph) => (
+                              <p key={paragraph.slice(0, 32)}>{paragraph}</p>
+                            ))}
+                            <p className="pt-1 font-display text-[15.5px] italic text-pine">
+                              {product.cropSolution.tagline}
                             </p>
-                          )}
-
-                          <div className="mt-4 flex flex-wrap items-center gap-x-5 gap-y-2">
-                            <RouteLink
-                              to={{ path: productPath(product) }}
-                              onNavigate={() => onOpenProduct(product)}
-                              className="link-rule text-[13px] font-medium text-pine"
-                            >
-                              View protocol
-                            </RouteLink>
-                            <button
-                              type="button"
-                              onClick={() => onRequestQuote(product.name)}
-                              className="link-rule text-[13px] text-clay"
-                            >
-                              Request a quote
-                            </button>
-                            {product.trapsPerAcre && (
-                              <span className="font-mono text-[11px] uppercase tracking-[0.12em] text-ink-3">
-                                {product.trapsPerAcre}
-                              </span>
-                            )}
                           </div>
+                        ) : (
+                          <p className="mt-3 line-clamp-3 text-[14.5px] leading-relaxed text-ink-2">
+                            {product.description[0]}
+                          </p>
+                        )}
+
+                        <div className="mt-5 flex flex-wrap items-center gap-x-5 gap-y-2 border-t border-line pt-4">
+                          <RouteLink
+                            to={{ path: productPath(product) }}
+                            onNavigate={() => onOpenProduct(product)}
+                            className="link-rule text-[13px] font-medium text-pine"
+                          >
+                            View protocol
+                          </RouteLink>
+                          <button
+                            type="button"
+                            onClick={() => onRequestQuote(product.name)}
+                            className="link-rule text-[13px] text-clay"
+                          >
+                            Request a quote
+                          </button>
+                          {product.trapsPerAcre && (
+                            <span className="font-mono text-[11px] uppercase tracking-[0.12em] text-ink-3 sm:ml-auto">
+                              {product.trapsPerAcre}
+                            </span>
+                          )}
                         </div>
                       </div>
                     </article>
