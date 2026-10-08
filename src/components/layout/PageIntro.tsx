@@ -11,6 +11,8 @@ interface PageIntroProps {
   onNavigate: (page: PageId) => void;
   /** Optional trailing slot, e.g. a count or a filter control. */
   aside?: ReactNode;
+  /** Widens the trailing slot for media such as a video. */
+  wideAside?: boolean;
 }
 
 /**
@@ -25,6 +27,7 @@ export function PageIntro({
   breadcrumb,
   onNavigate,
   aside,
+  wideAside = false,
 }: PageIntroProps) {
   return (
     <header className="bg-paper pt-12 lg:pt-16">
@@ -56,7 +59,17 @@ export function PageIntro({
             )}
           </div>
 
-          {aside && <div className="w-full lg:w-auto lg:max-w-sm lg:shrink-0">{aside}</div>}
+          {aside && (
+            <div
+              className={
+                wideAside
+                  ? 'w-full lg:w-[44%] lg:max-w-[560px] lg:shrink-0'
+                  : 'w-full lg:w-auto lg:max-w-sm lg:shrink-0'
+              }
+            >
+              {aside}
+            </div>
+          )}
         </div>
       </div>
 
