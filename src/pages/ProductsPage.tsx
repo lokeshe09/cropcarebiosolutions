@@ -120,7 +120,7 @@ export function ProductsPage({
                         <Figure
                           src={product.imageUrl}
                           alt={product.imageAlt}
-                          ratio="aspect-[4/3]"
+                          ratio="aspect-[4/5]"
                         />
                         <span className="absolute left-0 top-0 bg-paper px-3 py-1.5 font-mono text-[11px] tracking-[0.12em] text-clay">
                           {product.code}

@@ -107,7 +107,7 @@ export function ProductSheet({
                   <Figure
                     src={product.imageUrl}
                     alt={product.imageAlt}
-                    ratio="aspect-[4/3]"
+                    ratio="aspect-square"
                     onZoom={product.imageUrl ? onZoom : undefined}
                   />
                   <figcaption className="eyebrow mt-2.5">The lure</figcaption>
@@ -117,7 +117,7 @@ export function ProductSheet({
                   <Figure
                     src={product.trapImageUrl}
                     alt={`Trap used with the ${product.name}`}
-                    ratio="aspect-[4/3]"
+                    ratio="aspect-square"
                     onZoom={product.trapImageUrl ? onZoom : undefined}
                   />
                   <figcaption className="eyebrow mt-2.5">Fits this trap</figcaption>

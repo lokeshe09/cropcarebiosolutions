@@ -13,6 +13,11 @@ interface FigureProps {
   eager?: boolean;
   /** Slight zoom on hover of the surrounding group. */
   hoverZoom?: boolean;
+  /**
+   * "contain" (default) shows the whole photograph — product packs and traps
+   * must never be cut off. "cover" fills the frame, for scenic photos.
+   */
+  fit?: 'contain' | 'cover';
 }
 
 /**
@@ -33,6 +38,7 @@ export function Figure({
   onZoom,
   eager = false,
   hoverZoom = true,
+  fit = 'contain',
 }: FigureProps) {
   const [failed, setFailed] = useState(false);
 
@@ -58,7 +64,9 @@ export function Figure({
         decoding="async"
         fetchPriority={eager ? 'high' : 'auto'}
         onError={() => setFailed(true)}
-        className={`relative h-full w-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+        className={`relative h-full w-full ${
+          fit === 'contain' ? 'object-contain p-[4%]' : 'object-cover'
+        } transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${
           hoverZoom ? 'group-hover:scale-[1.04]' : ''
         }`}
       />
