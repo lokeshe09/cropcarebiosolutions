@@ -1,4 +1,5 @@
 import { Mail, MessageCircle, Phone } from 'lucide-react';
+import { useReducedMotion } from 'motion/react';
 import type { PageId } from '../../types';
 import { buildWhatsAppUrl, CONTACT, HOME } from '../../data/site';
 import { Button } from '../ui/Button';
@@ -9,17 +10,37 @@ interface ClosingInvitationProps {
 }
 
 export function ClosingInvitation({ onNavigate }: ClosingInvitationProps) {
+  const reduceMotion = useReducedMotion();
+
   return (
     <section className="relative isolate overflow-hidden bg-paper-3 py-24 lg:py-32">
-      <img
-        src="/images/field/field-07-full.webp"
-        alt=""
-        aria-hidden
-        loading="lazy"
-        decoding="async"
-        className="absolute inset-0 -z-20 h-full w-full object-cover"
-      />
-      <div className="absolute inset-0 -z-10 bg-paper/80" aria-hidden />
+      {/* Seed, sweat and growing crop behind the closing line — a silent loop,
+          or its first frame for visitors who ask for reduced motion. */}
+      {reduceMotion ? (
+        <img
+          src="/videos/closing-message-poster.webp"
+          alt=""
+          aria-hidden
+          loading="lazy"
+          decoding="async"
+          className="absolute inset-0 -z-20 h-full w-full object-cover"
+        />
+      ) : (
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          poster="/videos/closing-message-poster.webp"
+          aria-hidden
+          className="absolute inset-0 -z-20 h-full w-full object-cover"
+        >
+          <source src="/videos/closing-message.webm" type="video/webm" />
+          <source src="/videos/closing-message.mp4" type="video/mp4" />
+        </video>
+      )}
+      <div className="absolute inset-0 -z-10 bg-paper/75" aria-hidden />
 
       <div className="relative mx-auto max-w-[1320px] px-5 sm:px-8">
         <Reveal className="mx-auto max-w-3xl text-center">
