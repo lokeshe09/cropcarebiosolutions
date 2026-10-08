@@ -115,22 +115,23 @@ export function CropSolutionsPage({
         </section>
       )}
 
-      {/* Crop family tabs */}
+      {/* Crop family tabs — large, clearly a choice, always in reach. */}
       <section className="sticky top-[68px] z-30 border-b border-line bg-paper/95 backdrop-blur-md lg:top-[76px]">
         <div className="mx-auto max-w-[1320px] px-5 sm:px-8">
-          <div className="rail flex gap-1 overflow-x-auto py-3">
+          <div className="rail flex gap-2 overflow-x-auto py-3.5" role="tablist" aria-label="Crop families">
             {CROP_SOLUTIONS.map((group) => {
               const isActive = group.id === activeId;
               return (
                 <button
                   key={group.id}
                   type="button"
+                  role="tab"
+                  aria-selected={isActive}
                   onClick={() => setActiveId(group.id)}
-                  aria-pressed={isActive}
-                  className={`shrink-0 whitespace-nowrap rounded-full px-5 py-2.5 text-[13px] transition-colors ${
+                  className={`shrink-0 whitespace-nowrap rounded-full border px-5 py-2.5 text-[14px] font-medium transition-colors ${
                     isActive
-                      ? 'bg-pine text-paper'
-                      : 'text-ink-2 hover:bg-paper-2 hover:text-pine'
+                      ? 'border-pine bg-pine text-paper shadow-[0_8px_20px_-12px_rgba(23,53,42,0.8)]'
+                      : 'border-line-strong bg-white text-ink hover:border-pine hover:text-pine'
                   }`}
                 >
                   {group.name}
@@ -141,126 +142,131 @@ export function CropSolutionsPage({
         </div>
       </section>
 
-      <section className="bg-paper py-14 lg:py-20">
+      <section className="bg-paper-2 py-10 lg:py-14">
         <div className="mx-auto max-w-[1320px] px-5 sm:px-8">
-          <div className="grid gap-10 lg:grid-cols-12 lg:gap-12">
-            {/* Stays in view beside the lure list, below the sticky tabs —
-                only on screens tall enough to show all of it. */}
-            <div className="threat-panel lg:col-span-4 lg:self-start">
+          {/* Overview of the chosen crop family: the threat, what the damage
+              looks like and the crops it covers, side by side in one panel. */}
+          <div className="grid overflow-hidden rounded-xl border border-line bg-white shadow-[0_20px_50px_-36px_rgba(20,33,26,0.45)] lg:grid-cols-12">
+            <div className="p-6 sm:p-8 lg:col-span-5">
               <p className="eyebrow text-clay">Main threat</p>
-              <h2 className="mt-4 font-display text-[clamp(1.6rem,2.6vw,2.15rem)] leading-[1.15] text-pine">
+              <h2 className="mt-3 font-display text-[clamp(1.5rem,2.4vw,2rem)] leading-[1.2] text-pine">
                 {active.threat}
               </h2>
-
-              <div className="mt-7 border-l-2 border-clay bg-paper-2 p-5">
-                <p className="flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.14em] text-clay">
-                  <AlertTriangle className="h-3.5 w-3.5" aria-hidden />
-                  What the damage looks like
-                </p>
-                <p className="mt-3 text-[15px] leading-relaxed text-ink-2">{active.symptoms}</p>
-              </div>
-
-              <div className="mt-7">
-                <p className="eyebrow">Crops covered</p>
-                <ul className="mt-4 flex flex-wrap gap-1.5">
-                  {active.crops.map((crop) => (
-                    <li
-                      key={crop}
-                      className="border border-line bg-paper-2 px-2.5 py-1 text-[13px] text-ink-2"
-                    >
-                      {crop}
-                    </li>
-                  ))}
-                </ul>
-              </div>
             </div>
 
-            <div className="lg:col-span-8">
-              <p className="eyebrow">
-                {activeProducts.length} matching {activeProducts.length === 1 ? 'lure' : 'lures'}
+            <div className="border-t border-line bg-[#fbf3ee] p-6 sm:p-8 lg:col-span-4 lg:border-l lg:border-t-0">
+              <p className="flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.14em] text-clay">
+                <AlertTriangle className="h-4 w-4" aria-hidden />
+                What the damage looks like
               </p>
+              <p className="mt-3 text-[15px] leading-relaxed text-ink">{active.symptoms}</p>
+            </div>
 
-              <ul className="mt-6 space-y-px bg-line">
-                {activeProducts.map((product, index) => (
-                  <Reveal as="li" key={product.id} delay={index * 0.05}>
-                    <article className="group grid gap-6 bg-paper p-5 transition-colors hover:bg-paper-2 sm:grid-cols-[220px_minmax(0,1fr)] sm:p-7">
-                      {/* Lure and trap side by side at a fixed size, aligned to
-                          the top, so a long description never stretches them. */}
-                      <div className="grid max-w-[280px] grid-cols-2 gap-2.5 self-start sm:max-w-none">
-                        <figure className="m-0">
-                          <Figure
-                            src={product.imageUrl}
-                            alt={product.imageAlt}
-                            ratio="aspect-[4/5]"
-                            className="rounded-md"
-                          />
-                          <figcaption className="eyebrow mt-2 text-center">Lure</figcaption>
-                        </figure>
-                        <figure className="m-0">
-                          <Figure
-                            src={product.trapImageUrl}
-                            alt={`Trap for ${product.name}`}
-                            ratio="aspect-[4/5]"
-                            className="rounded-md"
-                          />
-                          <figcaption className="eyebrow mt-2 text-center">Trap</figcaption>
-                        </figure>
-                      </div>
-
-                      <div className="flex min-w-0 flex-col">
-                        <p className="eyebrow flex items-center gap-2.5">
-                          <span className="text-clay">{product.code}</span>
-                          <span aria-hidden className="h-px w-4 bg-line-strong" />
-                          <span className="truncate">{product.pestCommonName}</span>
-                        </p>
-
-                        <h3 className="mt-2.5 font-display text-[clamp(1.2rem,1.7vw,1.4rem)] leading-snug text-pine">
-                          {product.cropSolution?.title ?? product.name}
-                        </h3>
-
-                        {product.cropSolution ? (
-                          <div className="mt-3 space-y-2.5 text-[14.5px] leading-relaxed text-ink-2">
-                            {product.cropSolution.body.map((paragraph) => (
-                              <p key={paragraph.slice(0, 32)}>{paragraph}</p>
-                            ))}
-                            <p className="pt-1 font-display text-[15.5px] italic text-pine">
-                              {product.cropSolution.tagline}
-                            </p>
-                          </div>
-                        ) : (
-                          <p className="mt-3 line-clamp-3 text-[14.5px] leading-relaxed text-ink-2">
-                            {product.description[0]}
-                          </p>
-                        )}
-
-                        <div className="mt-5 flex flex-wrap items-center gap-x-5 gap-y-2 border-t border-line pt-4">
-                          <RouteLink
-                            to={{ path: productPath(product) }}
-                            onNavigate={() => onOpenProduct(product)}
-                            className="link-rule text-[13px] font-medium text-pine"
-                          >
-                            View protocol
-                          </RouteLink>
-                          <button
-                            type="button"
-                            onClick={() => onRequestQuote(product.name)}
-                            className="link-rule text-[13px] text-clay"
-                          >
-                            Request a quote
-                          </button>
-                          {product.trapsPerAcre && (
-                            <span className="font-mono text-[11px] uppercase tracking-[0.12em] text-ink-3 sm:ml-auto">
-                              {product.trapsPerAcre}
-                            </span>
-                          )}
-                        </div>
-                      </div>
-                    </article>
-                  </Reveal>
+            <div className="border-t border-line p-6 sm:p-8 lg:col-span-3 lg:border-l lg:border-t-0">
+              <p className="eyebrow">Crops covered</p>
+              <ul className="mt-4 flex flex-wrap gap-1.5">
+                {active.crops.map((crop) => (
+                  <li
+                    key={crop}
+                    className="rounded-full border border-line bg-paper px-3 py-1 text-[13px] text-ink"
+                  >
+                    {crop}
+                  </li>
                 ))}
               </ul>
             </div>
           </div>
+
+          <div className="mt-12 flex items-end justify-between gap-4 border-b border-line pb-4">
+            <h2 className="font-display text-[clamp(1.4rem,2.2vw,1.8rem)] text-pine">
+              {activeProducts.length} matching {activeProducts.length === 1 ? 'lure' : 'lures'}
+            </h2>
+            <p className="hidden text-[13px] text-ink-3 sm:block">{active.name}</p>
+          </div>
+
+          {/* Lure cards: large photos of the lure and its trap on top, the
+              description below, actions pinned to the bottom of every card. */}
+          <ul className="mt-8 grid gap-6 md:grid-cols-2">
+            {activeProducts.map((product, index) => (
+              <Reveal as="li" key={product.id} delay={(index % 2) * 0.06} className="h-full">
+                <article className="flex h-full flex-col overflow-hidden rounded-xl border border-line bg-white shadow-[0_20px_50px_-38px_rgba(20,33,26,0.5)] transition-shadow hover:shadow-[0_26px_60px_-32px_rgba(20,33,26,0.55)]">
+                  <div className="grid grid-cols-2 gap-px bg-line">
+                    <figure className="relative m-0 bg-white">
+                      <Figure
+                        src={product.imageUrl}
+                        alt={product.imageAlt}
+                        ratio="aspect-[5/6]"
+                        className="bg-white!"
+                      />
+                      <figcaption className="absolute left-3 top-3 rounded-full bg-pine/90 px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.14em] text-paper">
+                        Lure
+                      </figcaption>
+                    </figure>
+                    <figure className="relative m-0 bg-white">
+                      <Figure
+                        src={product.trapImageUrl}
+                        alt={`Trap for ${product.name}`}
+                        ratio="aspect-[5/6]"
+                        className="bg-white!"
+                      />
+                      <figcaption className="absolute left-3 top-3 rounded-full bg-pine/90 px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.14em] text-paper">
+                        Trap
+                      </figcaption>
+                    </figure>
+                  </div>
+
+                  <div className="flex flex-1 flex-col border-t border-line p-6 sm:p-7">
+                    <p className="eyebrow flex items-center gap-2.5">
+                      <span className="rounded bg-clay/10 px-1.5 py-0.5 text-clay">{product.code}</span>
+                      <span className="truncate text-ink-2">{product.pestCommonName}</span>
+                    </p>
+
+                    <h3 className="mt-3 font-display text-[clamp(1.25rem,1.8vw,1.5rem)] leading-snug text-pine">
+                      {product.cropSolution?.title ?? product.name}
+                    </h3>
+
+                    {product.cropSolution ? (
+                      <div className="mt-3 space-y-3 text-[15px] leading-relaxed text-ink">
+                        {product.cropSolution.body.map((paragraph) => (
+                          <p key={paragraph.slice(0, 32)}>{paragraph}</p>
+                        ))}
+                        <p className="rounded-lg border-l-[3px] border-moss bg-[#eef3ec] px-4 py-3 font-display text-[16px] italic text-pine">
+                          {product.cropSolution.tagline}
+                        </p>
+                      </div>
+                    ) : (
+                      <p className="mt-3 text-[15px] leading-relaxed text-ink">
+                        {product.description[0]}
+                      </p>
+                    )}
+
+                    <div className="mt-auto flex flex-wrap items-center gap-3 pt-6">
+                      <RouteLink
+                        to={{ path: productPath(product) }}
+                        onNavigate={() => onOpenProduct(product)}
+                        className="inline-flex items-center gap-2 rounded-full bg-pine px-5 py-2.5 text-[13px] font-medium text-paper transition-colors hover:bg-pine-soft"
+                      >
+                        View protocol
+                        <ArrowRight className="h-3.5 w-3.5" aria-hidden />
+                      </RouteLink>
+                      <button
+                        type="button"
+                        onClick={() => onRequestQuote(product.name)}
+                        className="rounded-full border border-line-strong px-5 py-2.5 text-[13px] font-medium text-ink transition-colors hover:border-clay hover:text-clay"
+                      >
+                        Request a quote
+                      </button>
+                      {product.trapsPerAcre && (
+                        <span className="ml-auto rounded-full bg-paper-2 px-3 py-1.5 font-mono text-[11px] uppercase tracking-[0.1em] text-ink-2">
+                          {product.trapsPerAcre}
+                        </span>
+                      )}
+                    </div>
+                  </div>
+                </article>
+              </Reveal>
+            ))}
+          </ul>
         </div>
       </section>
 
