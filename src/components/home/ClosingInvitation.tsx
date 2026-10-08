@@ -40,23 +40,28 @@ export function ClosingInvitation({ onNavigate }: ClosingInvitationProps) {
           <source src="/videos/closing-message.mp4" type="video/mp4" />
         </video>
       )}
-      <div className="absolute inset-0 -z-10 bg-paper/75" aria-hidden />
+      {/* A light green tint, darkest behind the quote, so the video stays clear
+          and the white text stays readable. */}
+      <div
+        className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_center,rgba(14,36,28,0.62)_0%,rgba(14,36,28,0.38)_55%,rgba(14,36,28,0.22)_100%)]"
+        aria-hidden
+      />
 
       <div className="relative mx-auto max-w-[1320px] px-5 sm:px-8">
         <Reveal className="mx-auto max-w-3xl text-center">
-          <p className="eyebrow">Closing message</p>
+          <p className="eyebrow text-paper/80">Closing message</p>
 
           <blockquote className="mt-8">
-            <p className="font-display text-[clamp(1.7rem,4vw,2.9rem)] leading-[1.16] text-pine">
+            <p className="font-display text-[clamp(1.7rem,4vw,2.9rem)] leading-[1.16] text-paper [text-shadow:0_2px_18px_rgba(0,0,0,0.35)]">
               &ldquo;{HOME.closing}&rdquo;
             </p>
           </blockquote>
 
           <div className="mt-11 flex flex-wrap items-center justify-center gap-3">
-            <Button onClick={() => onNavigate('contact')} withArrow>
+            <Button variant="onDark" onClick={() => onNavigate('contact')} withArrow>
               Contact us
             </Button>
-            <Button variant="outline" onClick={() => onNavigate('about')}>
+            <Button variant="outlineOnDark" onClick={() => onNavigate('about')}>
               Know more
             </Button>
           </div>
@@ -104,7 +109,7 @@ export function ClosingInvitation({ onNavigate }: ClosingInvitationProps) {
           </a>
         </Reveal>
 
-        <p className="mt-8 text-center font-mono text-[11px] uppercase tracking-[0.16em] text-ink-3">
+        <p className="mt-8 text-center font-mono text-[11px] uppercase tracking-[0.16em] text-paper/85">
           {CONTACT.hours}
         </p>
       </div>

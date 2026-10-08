@@ -1,7 +1,7 @@
 import type { ButtonHTMLAttributes, ReactNode } from 'react';
 import { ArrowRight } from 'lucide-react';
 
-type Variant = 'primary' | 'accent' | 'outline' | 'ghost' | 'onDark';
+type Variant = 'primary' | 'accent' | 'outline' | 'outlineOnDark' | 'ghost' | 'onDark';
 type Size = 'sm' | 'md';
 
 const BASE =
@@ -11,6 +11,7 @@ const VARIANTS: Record<Variant, string> = {
   primary: 'bg-pine text-paper hover:bg-pine-soft',
   accent: 'bg-clay text-white hover:bg-clay-deep',
   outline: 'border border-line-strong text-ink hover:border-pine hover:text-pine',
+  outlineOnDark: 'border border-white/60 text-paper hover:border-paper hover:bg-white/10',
   ghost: 'text-ink hover:text-clay',
   onDark: 'bg-paper text-pine hover:bg-clay-soft',
 };
