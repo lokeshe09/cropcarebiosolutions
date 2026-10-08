@@ -96,24 +96,24 @@ export function AboutPage({ onNavigate }: AboutPageProps) {
             <source src="/videos/about-mission.mp4" type="video/mp4" />
           </video>
         )}
-        <div className="absolute inset-0 -z-10 bg-pine-deep/45" aria-hidden />
+        <div className="absolute inset-0 -z-10 bg-pine-deep/55" aria-hidden />
 
         <div className="mx-auto max-w-[1320px] px-5 sm:px-8">
           <SectionHeading index="02" eyebrow="Crop Care Bio Solutions" title="Mission & Vision" tone="dark" />
 
-          <div className="mt-14 grid gap-px overflow-hidden border border-white/15 bg-white/15 lg:grid-cols-2">
-            <article className="bg-pine-deep/70 p-8 backdrop-blur-sm lg:p-12">
+          <div className="mt-14 grid divide-y divide-white/25 overflow-hidden border border-white/25 lg:grid-cols-2 lg:divide-x lg:divide-y-0">
+            <article className="bg-pine-deep/25 p-8 [text-shadow:0_1px_12px_rgba(0,0,0,0.55)] lg:p-12">
               <p className="font-mono text-[12px] uppercase tracking-[0.18em] text-clay-soft">
                 Mission
               </p>
-              <p className="mt-5 text-[16px] leading-relaxed text-paper/90">{ABOUT.mission}</p>
+              <p className="mt-5 text-[16px] leading-relaxed text-paper">{ABOUT.mission}</p>
             </article>
 
-            <article className="bg-pine-deep/70 p-8 backdrop-blur-sm lg:p-12">
+            <article className="bg-pine-deep/25 p-8 [text-shadow:0_1px_12px_rgba(0,0,0,0.55)] lg:p-12">
               <p className="font-mono text-[12px] uppercase tracking-[0.18em] text-clay-soft">
                 Vision
               </p>
-              <p className="mt-5 text-[16px] leading-relaxed text-paper/90">{ABOUT.vision}</p>
+              <p className="mt-5 text-[16px] leading-relaxed text-paper">{ABOUT.vision}</p>
             </article>
           </div>
         </div>
