@@ -1,15 +1,17 @@
+import { useReducedMotion } from 'motion/react';
 import type { PageId } from '../../types';
 import { WHY_CROP_CARE } from '../../data/site';
 import { Reveal } from '../ui/Reveal';
 import { SectionHeading } from '../ui/SectionHeading';
 import { Button } from '../ui/Button';
-import macroLeaf from '../../assets/images/macro_leaf_botanical_1787652599609.webp';
 
 interface WhyCropCareProps {
   onNavigate: (page: PageId) => void;
 }
 
 export function WhyCropCare({ onNavigate }: WhyCropCareProps) {
+  const reduceMotion = useReducedMotion();
+
   return (
     <section id="why" className="scroll-mt-24 bg-paper py-10 lg:py-12">
       <div className="mx-auto max-w-[1320px] px-5 sm:px-8">
@@ -26,11 +28,29 @@ export function WhyCropCare({ onNavigate }: WhyCropCareProps) {
 
         <div className="mt-6 grid items-center gap-6 lg:grid-cols-12 lg:gap-10">
           <Reveal className="lg:col-span-5">
-            <img
-              src={macroLeaf}
-              alt="Close-up of a healthy leaf surface"
-              className="aspect-[16/10] w-full rounded-lg object-cover"
-            />
+            {/* A short silent loop of the crop at sunrise. Visitors who ask for
+                reduced motion get its first frame as a still. */}
+            {reduceMotion ? (
+              <img
+                src="/videos/why-crop-care-poster.webp"
+                alt="Dew on healthy green crop leaves at sunrise"
+                className="aspect-[16/10] w-full rounded-lg object-cover"
+              />
+            ) : (
+              <video
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="metadata"
+                poster="/videos/why-crop-care-poster.webp"
+                aria-label="Dew on healthy green crop leaves at sunrise"
+                className="aspect-[16/10] w-full rounded-lg bg-paper-3 object-cover"
+              >
+                <source src="/videos/why-crop-care.webm" type="video/webm" />
+                <source src="/videos/why-crop-care.mp4" type="video/mp4" />
+              </video>
+            )}
           </Reveal>
 
           {/* Two by two rather than a stacked list, so all four points sit in
