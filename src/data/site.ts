@@ -148,10 +148,10 @@ export const FEATURED: {
  */
 export const FIELD_GALLERY = [
   {
-    src: '/images/field/field-01.webp',
-    full: '/images/field/field-01-full.webp',
-    caption: 'A trap in the mango canopy at sundown',
-    alt: 'A yellow pheromone trap hanging among ripening mangoes in an orchard at golden hour',
+    src: '/images/field/field-fruit-fly-trap.webp',
+    full: '/images/field/field-fruit-fly-trap-full.webp',
+    caption: 'Fruit fly trap hanging in the mango canopy',
+    alt: 'A yellow and clear Crop Care Bio Solutions fruit fly trap hanging from a mango branch among green mangoes',
   },
   {
     src: '/images/field/field-02.webp',
@@ -178,10 +178,10 @@ export const FIELD_GALLERY = [
     alt: 'Two weathered hands opening the collection cup of a funnel trap, moths visible inside',
   },
   {
-    src: '/images/field/field-06.webp',
-    full: '/images/field/field-06-full.webp',
-    caption: 'Coconut grove, trap fixed at trunk height',
-    alt: 'A bucket trap strapped to a coconut palm trunk, the grove receding in low evening sun',
+    src: '/images/field/field-palm-trap.webp',
+    full: '/images/field/field-palm-trap-full.webp',
+    caption: 'Palm trap fixed on the trunk in a coconut and date palm grove',
+    alt: 'A white Crop Care Bio Solutions palm trap bucket hung on a palm trunk, coconut and date palms around it',
   },
   {
     src: '/images/field/field-07.webp',
