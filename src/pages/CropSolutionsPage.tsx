@@ -206,12 +206,23 @@ export function CropSolutionsPage({
                           </p>
 
                           <h3 className="mt-2 font-display text-[20px] leading-tight text-pine">
-                            {product.name}
+                            {product.cropSolution?.title ?? product.name}
                           </h3>
 
-                          <p className="mt-2 line-clamp-3 text-[14px] leading-relaxed text-ink-2">
-                            {product.description[0]}
-                          </p>
+                          {product.cropSolution ? (
+                            <div className="mt-2 space-y-2 text-[14px] leading-relaxed text-ink-2">
+                              {product.cropSolution.body.map((paragraph) => (
+                                <p key={paragraph.slice(0, 32)}>{paragraph}</p>
+                              ))}
+                              <p className="font-display text-[15px] italic text-pine">
+                                {product.cropSolution.tagline}
+                              </p>
+                            </div>
+                          ) : (
+                            <p className="mt-2 line-clamp-3 text-[14px] leading-relaxed text-ink-2">
+                              {product.description[0]}
+                            </p>
+                          )}
 
                           <div className="mt-4 flex flex-wrap items-center gap-x-5 gap-y-2">
                             <RouteLink

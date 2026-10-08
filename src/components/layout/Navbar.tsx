@@ -51,13 +51,20 @@ export function Navbar({ currentPage, onNavigate }: NavbarProps) {
       <div className="hidden bg-pine-deep text-paper/70 lg:block">
         <div className="mx-auto flex h-9 max-w-[1320px] items-center justify-between px-8 text-[12px]">
           <p className="tracking-wide">{COMPANY.descriptor}</p>
-          <a
-            href={`tel:${CONTACT.phonePrimary.dial}`}
-            className="link-rule inline-flex items-center gap-2 transition-colors hover:text-paper"
-          >
+          <span className="inline-flex items-center gap-2">
             <Phone className="h-3.5 w-3.5" aria-hidden />
-            {CONTACT.phonePrimary.display}
-          </a>
+            {[CONTACT.phonePrimary, CONTACT.phoneSecondary].map((phone, index) => (
+              <span key={phone.dial} className="inline-flex items-center gap-2">
+                {index > 0 && <span aria-hidden className="text-paper/35">/</span>}
+                <a
+                  href={`tel:${phone.dial}`}
+                  className="link-rule transition-colors hover:text-paper"
+                >
+                  {phone.display}
+                </a>
+              </span>
+            ))}
+          </span>
         </div>
       </div>
 
@@ -299,13 +306,16 @@ export function Navbar({ currentPage, onNavigate }: NavbarProps) {
               ))}
 
               <div className="mt-8 space-y-3 border-t border-white/12 pt-8">
-                <a
-                  href={`tel:${CONTACT.phonePrimary.dial}`}
-                  className="flex items-center gap-2 text-[15px] text-paper/80"
-                >
-                  <Phone className="h-4 w-4" aria-hidden />
-                  {CONTACT.phonePrimary.display}
-                </a>
+                {[CONTACT.phonePrimary, CONTACT.phoneSecondary].map((phone) => (
+                  <a
+                    key={phone.dial}
+                    href={`tel:${phone.dial}`}
+                    className="flex items-center gap-2 text-[15px] text-paper/80"
+                  >
+                    <Phone className="h-4 w-4" aria-hidden />
+                    {phone.display}
+                  </a>
+                ))}
                 <RouteLink
                   to="contact"
                   onNavigate={() => go('contact')}

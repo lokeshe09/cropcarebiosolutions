@@ -1,5 +1,8 @@
 import type { BioToolItem, TrapType } from '../types';
 
+/** Servicing note shared by the fruit fly, vertical fruit fly and glass traps. */
+const FRUIT_FLY_SERVICING = 'Rinse when it is full and replace the lure at 90 days.';
+
 /** Trap hardware the lures are designed to sit in. */
 export const TRAPS: TrapType[] = [
   {
@@ -9,39 +12,100 @@ export const TRAPS: TrapType[] = [
     bestFor: 'Melon Fly and Oriental Fruit Fly in orchards and vegetable vines',
     suitableLures: ['MF', 'OFF'],
     description:
-      'A dome trap with inverted cone openings around the body and a lure basket under the hood. Flies follow the scent in through the cones and cannot find their way back out. The lower chamber is clear, so the catch can be checked without opening the trap.',
+      'A square-shaped fruit fly trap with openings on both sides and a lure holder inside. Flies are attracted by the scent of the lure and enter through the openings but cannot easily find their way back out. The transparent lower chamber allows the catch to be checked without opening the trap.',
     features: [
-      'Entry cones on all sides, so flies come in from any direction',
-      'Hooded top keeps rain off the lure',
-      'Clear reservoir for checking the catch at a glance',
-      'Reusable across seasons',
+      'Openings on both sides allow fruit flies to enter from different directions',
+      'Lure holder inside the trap releases the attractant scent to draw fruit flies in',
+      'Transparent trap body allows easy checking of the captured flies',
+      'Reusable trap for repeated use across growing seasons',
     ],
     imageUrl: '/images/trap-fruit-fly.webp',
-    setupAdvice:
-      'Hang inside the shaded part of the canopy. On vegetable vines, suspend about a metre above the ground on a bamboo pole.',
-    recommendedHeight: '1.5–2 m in trees, 1 m on vines',
     trapsPerAcre: '10–15 per acre',
-    servicing: 'Empty every 10–14 days. Rinse if dust builds up. Replace the lure at 90 days.',
+    servicing: FRUIT_FLY_SERVICING,
   },
   {
     id: 'vertical-fruit-fly-trap',
     name: 'Vertical Fruit Fly Trap',
     family: 'fruit-fly',
-    bestFor: 'Trellised vines, polyhouses and dense orchard canopies',
+    bestFor: 'Fruit and vegetable crops in open fields, gardens and polyhouses',
     suitableLures: ['MF', 'OFF'],
     description:
-      'A tall cylindrical version of the fruit fly trap with entry ports along its height. The narrow body sits inside dense foliage without catching on branches, which suits gourd trellises and close-planted orchards.',
+      'The Vertical Fruit Fly Trap is a practical and space-saving solution for effective fruit fly management. Its vertical structure features entry openings at the top, allowing fruit flies to enter easily. Fruit flies are attracted by the lure’s scent and enter through the openings, where they are safely contained. The transparent body allows easy monitoring of the captured flies without opening the trap. Its simple, reusable design makes it convenient to clean, maintain, and use across seasons.',
     features: [
-      'Slim profile that hangs cleanly inside foliage',
-      'Entry ports at several heights',
-      'Twist-off base for quick emptying',
-      'Clear body for visible catch counts',
+      'Vertical hanging design',
+      'Top-entry openings',
+      'Space-saving and convenient',
+      'Transparent container for easy monitoring',
+      'Suitable for fruit and vegetable crops in open fields, gardens, kitchen/terrace gardens, and greenhouses/polyhouses',
+      'Reusable and easy to clean',
     ],
-    imageUrl: '/images/trap-fruit-fly.webp',
-    setupAdvice: 'Suspend along trellis posts or in a branch fork, in the shaded middle canopy.',
-    recommendedHeight: '1.2–1.8 m from the ground',
+    imageUrl: '/images/trap-bucket.webp',
     trapsPerAcre: '10–15 per acre',
-    servicing: 'Twist the base off to empty; takes a few seconds per trap.',
+    servicing: FRUIT_FLY_SERVICING,
+  },
+  {
+    id: 'glass-trap',
+    name: 'Glass Trap',
+    family: 'fruit-fly',
+    bestFor: 'Fruit fly monitoring in orchards',
+    suitableLures: ['OFF', 'MF'],
+    description:
+      'A transparent dome trap with an invaginated base entrance. Light passes through the walls, which keeps trapped flies moving upward and away from the opening they came in by.',
+    features: [
+      'Clear walls for immediate catch counts',
+      'Sealed against rain and long sun exposure',
+      'Twist-lock base for cleaning and re-baiting',
+      'A steady reference trap for weekly records',
+    ],
+    imageUrl: '/images/trap-glass.webp',
+    trapsPerAcre: '8–12 per acre',
+    servicing: FRUIT_FLY_SERVICING,
+  },
+  {
+    id: 'mcphail-trap',
+    name: 'McPhail Trap',
+    family: 'fruit-fly',
+    bestFor: 'Melon Fly and Oriental Fruit Fly in orchards and vegetable fields',
+    suitableLures: ['MF', 'OFF'],
+    description:
+      'A bell-shaped trap with a clear upper dome and a yellow base, entered through an opening in the bottom. Flies drawn in by the lure move up towards the light and do not find the entrance again, and the catch stays in view through the clear top.',
+    features: [
+      'Bottom entry that flies rarely find their way back out of',
+      'Clear dome for counting the catch without opening the trap',
+      'Yellow base adds a visual cue to the lure',
+      'Top and base separate for cleaning and re-baiting',
+    ],
+    // TODO — placeholder photo; replace with a McPhail trap image.
+    imageUrl: '/images/trap-glass.webp',
+    setupAdvice: 'Hang in the shaded part of the canopy, clear of leaves around the entrance.',
+    recommendedHeight: '1.5–2 m in trees, 1 m on vines',
+    trapsPerAcre: '10–15 per acre',
+    servicing: 'Empty every 10–14 days. Replace the lure at 90 days.',
+  },
+  {
+    id: 'water-trap',
+    name: 'Water Trap',
+    family: 'water',
+    bestFor: 'Tomato leaf miner, brinjal fruit & shoot borer and diamondback moth',
+    suitableLures: ['TLM', 'EPB', 'DBM'],
+    description:
+      'A wide water pan with the lure held on a central clip above the surface and overflow slots at the rim. Moths drawn to the lure land on the water and cannot lift off again.',
+    features: [
+      'Water-based trapping',
+      'Wide trapping area',
+      'Easy pest collection',
+      'Easy to clean',
+      'Simple to use',
+      'Lightweight',
+      'Low maintenance',
+    ],
+    // TODO — replace with the water trap photo the company is sending.
+    imageUrl: '/images/trap-water-tuta.webp',
+    setupAdvice:
+      'Fill with clean water to about 2 cm below the rim and add a little oil or mild detergent so moths do not float off.',
+    recommendedHeight: '20–30 cm above the crop canopy',
+    trapsPerAcre: '8–10 per acre',
+    servicing: 'Top up water weekly and skim the catch every 5–7 days.',
   },
   {
     id: 'funnel-trap',
@@ -52,10 +116,12 @@ export const TRAPS: TrapType[] = [
     description:
       'A canopy cap holding the lure, a smooth funnel below it, and a clear sleeve bag at the bottom. Moths fly towards the lure, hit the canopy, and drop through the funnel into the sleeve. It runs dry, so there is no water to top up.',
     features: [
-      'No water and no daily upkeep',
-      'Holds a large catch of big moths',
-      'Reusable body with replaceable sleeve bags',
-      'Suits large acreages of cotton, maize, soybean, pulses and paddy',
+      'Protective rain & sun canopy',
+      'Transparent collection bag',
+      'Easy pest monitoring',
+      'Easy cleaning & replacement',
+      'Reusable and durable',
+      'Simple field installation',
     ],
     imageUrl: '/images/trap-funnel.webp',
     setupAdvice:
@@ -85,79 +151,19 @@ export const TRAPS: TrapType[] = [
     servicing: 'Empty every 7–10 days and rinse before re-baiting.',
   },
   {
-    id: 'water-trap-tuta',
-    name: 'Water Trap — Tuta',
-    family: 'water',
-    bestFor: 'Tomato Leaf Miner in open fields and polyhouses',
-    suitableLures: ['TLM'],
-    description:
-      'A wide water pan with the lure held on a central clip above the surface and overflow slots at the rim. Moths drawn to the lure land on the water and cannot lift off again.',
-    features: [
-      'Pan area and clip height set for small Tuta moths',
-      'No insecticide involved',
-      'High capacity during peak moth flights',
-      'UV-stabilised body for long outdoor use',
-    ],
-    imageUrl: '/images/trap-water-tuta.webp',
-    setupAdvice:
-      'Fill with clean water to about 2 cm below the rim and add a little oil or mild detergent so moths do not float off.',
-    recommendedHeight: '20–30 cm above the crop canopy',
-    trapsPerAcre: '8–10 per acre',
-    servicing: 'Top up water weekly and skim the catch every 5–7 days.',
-  },
-  {
-    id: 'water-trap-luci',
-    name: 'Water Trap — Shoot Borer',
-    family: 'water',
-    bestFor: 'Brinjal Fruit & Shoot Borer',
-    suitableLures: ['EPB'],
-    description:
-      'A yellow water pan built for brinjal fields, with a central clip that keeps the lure dry while the scent carries across the plot. Overflow slits hold the water level through rain.',
-    features: [
-      'Yellow pan adds a visual cue alongside the lure',
-      'Bracket for mounting on a wooden or bamboo pole',
-      'Overflow slits that do not clog',
-      'Protects tender growing shoots',
-    ],
-    imageUrl: '/images/trap-water-luci.webp',
-    setupAdvice: 'Mount on poles across the field, roughly 15 m apart.',
-    recommendedHeight: 'Level with the upper third of the plant',
-    trapsPerAcre: '8–10 per acre',
-    servicing: 'Keep a thin film of oil or soapy water on the surface.',
-  },
-  {
-    id: 'water-trap-dbm',
-    name: 'Water Trap — Diamondback Moth',
-    family: 'water',
-    bestFor: 'Diamondback Moth in cabbage, cauliflower and mustard',
-    suitableLures: ['DBM'],
-    description:
-      'A low water basin for cole crop beds. It catches male moths during evening flights, which interrupts egg laying on young leaves and curds.',
-    features: [
-      'Low profile that stays steady in open fields',
-      'Central clip holds the lure just above the water',
-      'Drain plug for quick washing and refilling',
-      'Helps prevent windowing damage on leaves',
-    ],
-    imageUrl: '/images/trap-water-dbm.webp',
-    setupAdvice: 'Install about 15–20 days after transplanting and keep the water topped up.',
-    recommendedHeight: '15–20 cm above the crop head',
-    trapsPerAcre: '8–10 per acre',
-    servicing: 'Check the water level after heavy rain and in dry spells.',
-  },
-  {
     id: 'palm-trap',
     name: 'Palm Trap',
     family: 'palm',
     bestFor: 'Coconut, arecanut, date palm and oil palm plantations',
     suitableLures: ['RPW', 'WD', 'RB'],
     description:
-      'A bucket trap with entry openings around the rim and a rough outer surface that weevils and beetles can climb. It takes the aggregation lure and the Weevil Defender bottle together on the same hanger.',
+      'The Palm Trap is designed for monitoring and managing Red Palm Weevil and Rhinoceros Beetle in palm plantations. It is a durable bucket-shaped trap with a covered top and multiple entry openings. The pheromone lure is placed inside the trap to attract the target insects. Once attracted, the insects enter through the openings and are retained inside the trap. It is suitable for use in coconut, oil palm, date palm, and arecanut plantations.',
     features: [
-      'Textured outside so weevils can climb in',
-      'Holds both the lure and the Weevil Defender bottle',
-      'Can be buried halfway into the soil or hung on the trunk',
-      'Built for long spells in the open',
+      'Multiple entry holes',
+      'Easy climbing access',
+      'Hang or bury for installation',
+      'Stable & durable design',
+      'Reusable & easy to maintain',
     ],
     imageUrl: '/images/trap-palm.webp',
     setupAdvice:
@@ -165,67 +171,6 @@ export const TRAPS: TrapType[] = [
     recommendedHeight: '1–1.5 m on the trunk, or half-buried',
     trapsPerAcre: '3–4 per acre',
     servicing: 'Empty the catch every two weeks and refresh the bait liquid monthly.',
-  },
-  {
-    id: 'glass-trap',
-    name: 'Glass Trap',
-    family: 'fruit-fly',
-    bestFor: 'Fruit fly monitoring in orchards',
-    suitableLures: ['OFF', 'MF'],
-    description:
-      'A transparent dome trap with an invaginated base entrance. Light passes through the walls, which keeps trapped flies moving upward and away from the opening they came in by.',
-    features: [
-      'Clear walls for immediate catch counts',
-      'Sealed against rain and long sun exposure',
-      'Twist-lock base for cleaning and re-baiting',
-      'A steady reference trap for weekly records',
-    ],
-    imageUrl: '/images/trap-glass.webp',
-    setupAdvice: 'Hang on shaded inner branches, on the north-eastern side of the tree.',
-    recommendedHeight: '1.5–2 m from the ground',
-    trapsPerAcre: '8–12 per acre',
-    servicing: 'Clear weekly so the count stays comparable week to week.',
-  },
-  {
-    id: 'mcphail-trap',
-    name: 'McPhail Trap',
-    family: 'fruit-fly',
-    bestFor: 'Melon Fly and Oriental Fruit Fly in orchards and vegetable fields',
-    suitableLures: ['MF', 'OFF'],
-    description:
-      'A bell-shaped trap with a clear upper dome and a yellow base, entered through an opening in the bottom. Flies drawn in by the lure move up towards the light and do not find the entrance again, and the catch stays in view through the clear top.',
-    features: [
-      'Bottom entry that flies rarely find their way back out of',
-      'Clear dome for counting the catch without opening the trap',
-      'Yellow base adds a visual cue to the lure',
-      'Top and base separate for cleaning and re-baiting',
-    ],
-    // TODO — placeholder photo; replace with a McPhail trap image.
-    imageUrl: '/images/trap-glass.webp',
-    setupAdvice: 'Hang in the shaded part of the canopy, clear of leaves around the entrance.',
-    recommendedHeight: '1.5–2 m in trees, 1 m on vines',
-    trapsPerAcre: '10–15 per acre',
-    servicing: 'Empty every 10–14 days. Replace the lure at 90 days.',
-  },
-  {
-    id: 'solar-trap',
-    name: 'Solar Light Trap',
-    family: 'solar',
-    bestFor: 'Night-flying pests in field crops, vegetables and horticulture',
-    suitableLures: ['CBW', 'TCW', 'TLM', 'FAW', 'YSB'],
-    description:
-      'A solar panel, a dusk-to-dawn LED, a lure holder and a collection basin in one unit. Light and pheromone work together, and the trap switches itself on at dusk with no cabling to run.',
-    features: [
-      'Light and pheromone attraction in one trap',
-      'Solar panel and rechargeable battery, no mains wiring',
-      'Automatic dusk-to-dawn switching',
-      'Large basin for heavy night catches',
-    ],
-    imageUrl: '/images/trap-solar.webp',
-    setupAdvice: 'Mount on a firm pole near the middle of the field where the panel gets full sun.',
-    recommendedHeight: '1.5 m above ground',
-    trapsPerAcre: '1–2 per acre',
-    servicing: 'Wipe the panel monthly and empty the basin weekly.',
   },
   {
     id: 'delta-trap',
@@ -248,75 +193,80 @@ export const TRAPS: TrapType[] = [
     trapsPerAcre: '6–8 per acre for monitoring',
     servicing: 'Replace the liner when it is about two-thirds covered, or every 4–6 weeks.',
   },
+  {
+    id: 'solar-trap',
+    name: 'Solar Light Trap',
+    family: 'solar',
+    bestFor: 'Night-flying pests in field crops, vegetables and horticulture',
+    suitableLures: ['CBW', 'TCW', 'TLM', 'FAW', 'YSB'],
+    description:
+      'A solar panel, a dusk-to-dawn LED, a lure holder and a collection basin in one unit. Light and pheromone work together, and the trap switches itself on at dusk with no cabling to run.',
+    features: [
+      'Light and pheromone attraction in one trap',
+      'Solar panel and rechargeable battery, no mains wiring',
+      'Automatic dusk-to-dawn switching',
+      'Large basin for heavy night catches',
+    ],
+    imageUrl: '/images/trap-solar.webp',
+    setupAdvice: 'Mount on a firm pole near the middle of the field where the panel gets full sun.',
+    recommendedHeight: '1.5 m above ground',
+    trapsPerAcre: '1–2 per acre',
+    servicing: 'Wipe the panel monthly and empty the basin weekly.',
+  },
 ];
+
+/** Section copy for the sticky traps on the Insect Traps page. */
+export const STICKY_INTRO = {
+  eyebrow: 'Sticky Traps',
+  title: 'Integrated Sticky Pest Monitoring',
+  lead: 'Yellow and blue sticky solutions help monitor pests such as whiteflies, aphids, leaf miners and thrips. Available as sticky sheets, sticky rolls and sticky pouches with glue, they offer practical and versatile solutions for crop protection.',
+} as const;
 
 /** Sticky traps and adhesives sold alongside the lures and traps. */
 export const BIO_TOOLS: BioToolItem[] = [
   {
     id: 'sticky-sheets',
     name: 'Sticky Sheets',
-    tagline: 'Yellow and blue boards for sucking pests',
+    tagline: 'Yellow and blue PVC sticky sheets for sucking pests',
     description:
-      'Non-drying sticky boards in two colours — yellow for whiteflies, aphids and leaf miners, blue for thrips. Both faces are coated, and the glue stays tacky in sun and rain.',
-    targetPests: ['Whiteflies', 'Thrips', 'Aphids', 'Jassids', 'Leaf miners'],
+      'Not all pests rely on pheromone cues. Colour-based sticky boards complement pheromone lures for other target pests, providing a comprehensive approach to Integrated Pest Management (IPM). Available in yellow for whiteflies, aphids and leaf miners, and blue for thrips, our double-sided, non-drying sticky boards remain tacky in sun and rain.',
+    targetPests: ['Whiteflies', 'Thrips', 'Aphids', 'Jassids'],
     suitableCrops: ['Polyhouses', 'Tomato & capsicum', 'Chilli & onion', 'Floriculture', 'Nurseries'],
     specs: [
       { label: 'Colours', value: 'Yellow and blue' },
-      { label: 'Sizes', value: '15 × 20 cm, 20 × 30 cm' },
-      { label: 'Field life', value: '45–60 days' },
-      { label: 'Rate', value: '15–20 sheets per acre' },
+      { label: 'Recommended', value: '15–20 sheets per acre' },
     ],
     imageUrl: '/images/tool-sticky-sheets.webp',
-    highlights: [
-      'Glue on both faces',
-      'Non-drying and rainproof',
-      'Brings down sucking pest numbers quickly',
-      'Pre-punched holes and ties included',
-    ],
+    highlights: [],
   },
   {
     id: 'sticky-rolls',
     name: 'Sticky Rolls',
-    tagline: 'Continuous ribbon barriers for polyhouses and orchards',
+    tagline: 'Continuous sticky strips for effective pest monitoring in polyhouses and greenhouses',
     description:
-      'Long ribbons of the same sticky film, unrolled along polyhouse vents, boundaries or between orchard rows. They catch flying pests at the edge of the crop rather than inside it.',
+      'Ready-to-use sticky ribbons can be installed along openings and boundaries or suspended between crop rows, providing extended coverage for monitoring and capturing flying pests.',
     targetPests: ['Thrips', 'Whiteflies', 'Fungus gnats', 'Flying aphids', 'Leafhoppers'],
     suitableCrops: ['Polyhouses', 'Net houses', 'Orchards', 'Vegetable tunnels'],
     specs: [
       { label: 'Colours', value: 'Yellow and blue' },
-      { label: 'Length', value: '100 m and 150 m' },
+      { label: 'Length', value: '100 m' },
       { label: 'Width', value: '15 cm and 30 cm' },
-      { label: 'Field life', value: 'A full crop cycle' },
+      { label: 'Recommended', value: '2–3 per acre' },
     ],
     imageUrl: '/images/tool-sticky-rolls.webp',
-    highlights: [
-      'Unbroken run along the perimeter',
-      'Tough film that does not tear in wind',
-      'Large catching surface per acre',
-      'Cuts down on foliar sprays',
-    ],
+    highlights: [],
   },
   {
     id: 'sticky-pouches',
     name: 'Sticky Pouches',
-    tagline: 'Sealed, peel-and-hang sticky traps',
+    tagline: 'Convenient, reusable sticky pouches with ready-to-use glue',
     description:
-      'Individually sealed sticky traps for quick setup. Tear the pouch, peel the release paper and hang — no sticky fingers and no cutting to size in the field.',
-    targetPests: ['Whitefly', 'Thrips', 'Fruit flies', 'Leaf miners', 'Moths'],
+      'One side is open for easy application of the glue, while the other side remains sealed. Simply apply the glue and place or hang the pouch for pest monitoring. Each pouch can be used twice, offering a practical and economical solution.',
+    targetPests: [],
     suitableCrops: ['Vegetables', 'Flowers', 'Kitchen gardens', 'Plantations'],
-    specs: [
-      { label: 'Packing', value: 'Individually sealed' },
-      { label: 'Shelf life', value: '2 years sealed' },
-      { label: 'Field life', value: 'About 60 days' },
-      { label: 'Rate', value: '15–25 per acre' },
-    ],
+    specs: [],
     imageUrl: '/images/tool-sticky-pouches.webp',
-    highlights: [
-      'Moisture-sealed until the day of use',
-      'Clean peel-off film',
-      'Convenient dealer packing',
-      'Works for smallholdings and large clusters alike',
-    ],
+    highlights: [],
   },
   {
     id: 'glue-bottle',

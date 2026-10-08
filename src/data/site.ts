@@ -25,10 +25,18 @@ export const COMPANY = {
  */
 export const CONTACT = {
   phonePrimary: { display: '+91 93467 20617', dial: '+919346720617' },
-  phoneSecondary: { display: '+91 93467 20617', dial: '+919346720617' },
+  phoneSecondary: { display: '+91 70324 96243', dial: '+917032496243' },
   whatsapp: '919346720617',
   email: 'info@cropcarebiosolutions.com',
   addressLines: ['Crop Care Bio Solutions', 'Hyderabad – 500055, Telangana', 'India'],
+  /**
+   * TODO — the company is sending the full street addresses. A block with no
+   * lines is left off the page rather than shown empty.
+   */
+  addresses: [
+    { label: 'Office address', lines: ['Hyderabad – 500055, Telangana', 'India'] },
+    { label: 'Store address', lines: [] as string[] },
+  ],
   hours: 'Monday to Saturday, 9:00 am – 6:00 pm IST',
 } as const;
 

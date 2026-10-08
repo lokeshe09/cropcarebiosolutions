@@ -51,6 +51,12 @@ export interface Product {
   trapImageUrl?: string;
   /** Marks a companion product rather than a standalone lure. */
   companionTo?: string;
+  /** Lure-and-trap pairing copy shown on the Crop Solutions page. */
+  cropSolution?: {
+    title: string;
+    body: string[];
+    tagline: string;
+  };
 }
 
 export type TrapFamily =

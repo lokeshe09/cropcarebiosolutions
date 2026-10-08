@@ -85,7 +85,6 @@ export function Hero({ onNavigate, onZoom }: HeroProps) {
         <div className="mx-auto flex max-w-[1560px] items-center justify-between gap-6 px-5 py-4 sm:px-8 lg:px-14 xl:px-20">
           <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-paper/45">
             Pheromone Lures · Insect Traps
-            <span className="hidden sm:inline"> · Hyderabad, India</span>
           </p>
           <a
             href="#why"

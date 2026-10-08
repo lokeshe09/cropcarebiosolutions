@@ -4,7 +4,6 @@ import { PageIntro } from '../components/layout/PageIntro';
 import { PageHandoff } from '../components/layout/PageHandoff';
 import { SectionHeading } from '../components/ui/SectionHeading';
 import { Reveal } from '../components/ui/Reveal';
-import { Button } from '../components/ui/Button';
 import agronomist from '../assets/images/agronomist_field_inspection_1787652581807.webp';
 import harvest from '../assets/images/export_mango_harvest_1787652565787.webp';
 import farmer from '../assets/images/indian_farmer_field_1787640498872.webp';
@@ -151,28 +150,6 @@ export function AboutPage({ onNavigate }: AboutPageProps) {
               </p>
             </blockquote>
           </Reveal>
-        </div>
-      </section>
-
-      {/* Reserved: content supplied by the company. */}
-      <section className="bg-paper-2 py-16 lg:py-20">
-        <div className="mx-auto max-w-[1320px] px-5 sm:px-8">
-          <div className="flex flex-col gap-6 border border-dashed border-line-strong p-8 sm:flex-row sm:items-center sm:justify-between lg:p-12">
-            <div className="max-w-2xl">
-              <p className="eyebrow text-clay">In preparation</p>
-              <h2 className="mt-4 font-display text-[clamp(1.5rem,3vw,2.1rem)] text-pine">
-                Pheromone Longevity &amp; Safe Application Guide
-              </h2>
-              <p className="mt-3 text-[15px] leading-relaxed text-ink-2">
-                A practical guide to how long a lure stays active, what shortens it, and how
-                to handle and store lures safely on the farm. Being written now.
-              </p>
-            </div>
-
-            <Button variant="outline" size="sm" onClick={() => onNavigate('contact')} withArrow>
-              Ask our team meanwhile
-            </Button>
-          </div>
         </div>
       </section>
 

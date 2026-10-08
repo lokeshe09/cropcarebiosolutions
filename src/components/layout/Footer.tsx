@@ -1,6 +1,6 @@
 import { Mail, MapPin, Phone } from 'lucide-react';
 import type { PageId, Product } from '../../types';
-import { COMPANY, CONTACT, NAV_ITEMS, SERVICE_AREAS } from '../../data/site';
+import { COMPANY, CONTACT } from '../../data/site';
 import { PRODUCTS } from '../../data/products';
 import { productPath } from '../../lib/routes';
 import { RouteLink } from '../ui/RouteLink';
@@ -13,7 +13,30 @@ interface FooterProps {
 
 export function Footer({ onNavigate, onOpenProduct }: FooterProps) {
   const year = new Date().getFullYear();
-  const lureLinks = PRODUCTS.filter((product) => !product.companionTo).slice(0, 6);
+  /* The order the company asked for: the fruit fly and Tuta lures, then the
+     two palm lures, then the moth lures. */
+  const lureOrder = [
+    'melon-fly',
+    'oriental-fruit-fly',
+    'tuta-absoluta',
+    'rhinoceros-beetle',
+    'red-palm-weevil',
+    'shoot-borer',
+    'cotton-bollworm',
+    'tobacco-cutworm',
+  ];
+  const lureLinks = lureOrder
+    .map((id) => PRODUCTS.find((product) => product.id === id))
+    .filter((product): product is Product => Boolean(product));
+
+  const siteLinks: { id: PageId; label: string }[] = [
+    { id: 'home', label: 'Home' },
+    { id: 'about', label: 'About' },
+    { id: 'products', label: 'Pheromone Lures' },
+    { id: 'traps', label: 'Insect Traps' },
+    { id: 'crop-solutions', label: 'Crop Solutions' },
+    { id: 'contact', label: 'Contact' },
+  ];
 
   return (
     <footer className="relative overflow-hidden bg-pine text-paper">
@@ -30,35 +53,22 @@ export function Footer({ onNavigate, onOpenProduct }: FooterProps) {
             <p className="mt-6 max-w-sm text-[15px] leading-relaxed text-paper/65">
               {COMPANY.descriptorFull}
             </p>
-            <p className="mt-4 max-w-sm text-[14px] leading-relaxed text-paper/55">
-              Based in {SERVICE_AREAS.home.city}, {SERVICE_AREAS.home.state} — supplying farmers,
-              dealers and FPOs in {SERVICE_AREAS.focusStates.join(', ')} and across India.
-            </p>
           </div>
 
           <nav className="lg:col-span-2">
             <h3 className="eyebrow text-sage">Site</h3>
             <ul className="mt-5 space-y-3">
-              {NAV_ITEMS.map((item) => (
+              {siteLinks.map((item) => (
                 <li key={item.id}>
                   <RouteLink
                     to={item.id}
                     onNavigate={() => onNavigate(item.id)}
                     className="link-rule text-[15px] text-paper/70 transition-colors hover:text-paper"
                   >
-                    {item.id === 'products' ? 'Pheromone Lures' : item.label}
+                    {item.label}
                   </RouteLink>
                 </li>
               ))}
-              <li>
-                <RouteLink
-                  to="traps"
-                  onNavigate={() => onNavigate('traps')}
-                  className="link-rule text-[15px] text-paper/70 transition-colors hover:text-paper"
-                >
-                  Insect Traps
-                </RouteLink>
-              </li>
             </ul>
           </nav>
 
@@ -93,12 +103,17 @@ export function Footer({ onNavigate, onOpenProduct }: FooterProps) {
             <ul className="mt-5 space-y-4 text-[15px] text-paper/70">
               <li className="flex items-start gap-3">
                 <Phone className="mt-1 h-4 w-4 shrink-0 text-clay-soft" aria-hidden />
-                <a
-                  href={`tel:${CONTACT.phonePrimary.dial}`}
-                  className="link-rule transition-colors hover:text-paper"
-                >
-                  {CONTACT.phonePrimary.display}
-                </a>
+                <span className="flex flex-col gap-1">
+                  {[CONTACT.phonePrimary, CONTACT.phoneSecondary].map((phone) => (
+                    <a
+                      key={phone.dial}
+                      href={`tel:${phone.dial}`}
+                      className="link-rule self-start transition-colors hover:text-paper"
+                    >
+                      {phone.display}
+                    </a>
+                  ))}
+                </span>
               </li>
               <li className="flex items-start gap-3">
                 <Mail className="mt-1 h-4 w-4 shrink-0 text-clay-soft" aria-hidden />

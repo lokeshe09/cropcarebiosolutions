@@ -58,8 +58,6 @@ function Field({
   );
 }
 
-const COMPANY_LINE = 'Crop Care Bio Solutions manufactures in Hyderabad, Telangana.';
-
 export function ContactPage({ onNavigate, prefillProduct = '' }: ContactPageProps) {
   const [form, setForm] = useState<InquiryForm>({ ...EMPTY, product: prefillProduct });
   const [errors, setErrors] = useState<Errors>({});
@@ -148,21 +146,24 @@ export function ContactPage({ onNavigate, prefillProduct = '' }: ContactPageProp
 
                 <ul className="mt-6 space-y-px bg-line">
                   <li>
-                    <a
-                      href={`tel:${CONTACT.phonePrimary.dial}`}
-                      className="flex items-start gap-4 bg-paper p-6 transition-colors hover:bg-paper-2"
-                    >
+                    <div className="flex items-start gap-4 bg-paper p-6">
                       <Phone className="mt-1 h-4 w-4 shrink-0 text-clay" aria-hidden />
                       <span>
                         <span className="eyebrow block">Phone</span>
-                        <span className="mt-1.5 block text-[16px] text-pine">
-                          {CONTACT.phonePrimary.display}
-                        </span>
+                        {[CONTACT.phonePrimary, CONTACT.phoneSecondary].map((phone) => (
+                          <a
+                            key={phone.dial}
+                            href={`tel:${phone.dial}`}
+                            className="link-rule mt-1.5 block text-[16px] text-pine"
+                          >
+                            {phone.display}
+                          </a>
+                        ))}
                         <span className="mt-1 block text-[13px] text-ink-3">
                           {CONTACT.hours}
                         </span>
                       </span>
-                    </a>
+                    </div>
                   </li>
 
                   <li>
@@ -202,25 +203,24 @@ export function ContactPage({ onNavigate, prefillProduct = '' }: ContactPageProp
                     </a>
                   </li>
 
-                  <li className="flex items-start gap-4 bg-paper p-6">
-                    <MapPin className="mt-1 h-4 w-4 shrink-0 text-clay" aria-hidden />
-                    <span>
-                      <span className="eyebrow block">Address</span>
-                      <span className="mt-1.5 block text-[16px] leading-snug text-pine">
-                        {CONTACT.addressLines.map((line) => (
-                          <span key={line} className="block">
-                            {line}
+                  {CONTACT.addresses
+                    .filter((address) => address.lines.length > 0)
+                    .map((address) => (
+                      <li key={address.label} className="flex items-start gap-4 bg-paper p-6">
+                        <MapPin className="mt-1 h-4 w-4 shrink-0 text-clay" aria-hidden />
+                        <span>
+                          <span className="eyebrow block">{address.label}</span>
+                          <span className="mt-1.5 block text-[16px] leading-snug text-pine">
+                            {address.lines.map((line) => (
+                              <span key={line} className="block">
+                                {line}
+                              </span>
+                            ))}
                           </span>
-                        ))}
-                      </span>
-                    </span>
-                  </li>
+                        </span>
+                      </li>
+                    ))}
                 </ul>
-
-                <p className="mt-8 border-l-2 border-clay pl-4 text-[14px] leading-relaxed text-ink-2">
-                  Dealers and FPOs: ask for the bulk price list and the dealer margin
-                  structure when you write in.
-                </p>
               </div>
             </Reveal>
 
@@ -379,20 +379,21 @@ export function ContactPage({ onNavigate, prefillProduct = '' }: ContactPageProp
       <section className="bg-paper-2 py-16 lg:py-20">
         <div className="mx-auto max-w-[1320px] px-5 sm:px-8">
           <SectionHeading
-            eyebrow="Where we supply"
-            title="From Hyderabad to farms across India."
-            lead={`${COMPANY_LINE} We work directly with growers, dealers and FPOs in ${SERVICE_AREAS.focusStates.join(' and ')}, and dispatch pheromone lures and insect traps to every state.`}
+            eyebrow="Where We Supply"
+            title="From Hyderabad to customers across India and beyond."
+            lead="Crop Care Bio Solutions manufactures eco-friendly pest management solutions in Hyderabad, Telangana, and supplies pheromone lures and insect traps across India and to international markets. We serve customers across India and support international customers with reliable products and export supply."
           />
 
           <div className="mt-10 grid gap-10 lg:grid-cols-12">
             <div className="lg:col-span-4">
-              <h3 className="eyebrow text-clay">Our base</h3>
+              <h3 className="eyebrow text-clay">Our Manufacturing Base</h3>
               <p className="mt-3 font-display text-[22px] leading-snug text-pine">
-                {SERVICE_AREAS.home.city} – {SERVICE_AREAS.home.postalCode}, {SERVICE_AREAS.home.state}
+                {SERVICE_AREAS.home.city}, {SERVICE_AREAS.home.state}, India
               </p>
               <p className="mt-3 text-[15px] leading-relaxed text-ink-2">
-                Pheromone lures, fruit fly traps, funnel traps and sticky traps for{' '}
-                {SERVICE_AREAS.focusStates.join(' and ')} farmers, shipped from our Hyderabad unit.
+                From our Hyderabad manufacturing base, we supply pheromone lures, fruit fly
+                traps, funnel traps, sticky traps and other insect monitoring and management
+                solutions for agricultural and horticultural applications.
               </p>
             </div>
 

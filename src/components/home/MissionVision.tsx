@@ -2,7 +2,6 @@ import type { PageId } from '../../types';
 import { HOME } from '../../data/site';
 import { Button } from '../ui/Button';
 import { Reveal } from '../ui/Reveal';
-import fieldInspection from '../../assets/images/farm_field_inspection_1787649146636.webp';
 
 interface MissionVisionProps {
   onNavigate: (page: PageId) => void;
@@ -12,13 +11,16 @@ export function MissionVision({ onNavigate }: MissionVisionProps) {
   return (
     <section className="relative isolate overflow-hidden bg-pine text-paper">
       <img
-        src={fieldInspection}
+        src="/images/field/field-08-full.webp"
         alt=""
         aria-hidden
+        loading="lazy"
+        decoding="async"
         className="absolute inset-0 -z-20 h-full w-full object-cover"
       />
-      <div className="absolute inset-0 -z-10 bg-pine/88" aria-hidden />
-      <div className="blueprint absolute inset-0 -z-10 opacity-50" aria-hidden />
+      {/* Dark enough to keep the statement legible, light enough that the
+          crop still reads through. */}
+      <div className="absolute inset-0 -z-10 bg-pine-deep/70" aria-hidden />
 
       <div className="mx-auto max-w-[1320px] px-5 py-24 sm:px-8 lg:py-32">
         <Reveal>

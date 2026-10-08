@@ -6,7 +6,7 @@ interface PageHandoffProps {
   nextPage: PageId;
   label: string;
   title: string;
-  description: string;
+  description?: string;
   onNavigate: (page: PageId) => void;
 }
 
@@ -31,7 +31,9 @@ export function PageHandoff({
             <h2 className="mt-4 font-display text-[clamp(1.6rem,3.4vw,2.5rem)] text-pine">
               {title}
             </h2>
-            <p className="mt-3 max-w-xl text-[15px] leading-relaxed text-ink-2">{description}</p>
+            {description && (
+              <p className="mt-3 max-w-xl text-[15px] leading-relaxed text-ink-2">{description}</p>
+            )}
           </div>
 
           <span className="grid h-14 w-14 shrink-0 place-items-center rounded-full border border-line-strong text-pine transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:border-pine group-hover:bg-pine group-hover:text-paper">

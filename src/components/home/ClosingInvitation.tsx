@@ -10,8 +10,16 @@ interface ClosingInvitationProps {
 
 export function ClosingInvitation({ onNavigate }: ClosingInvitationProps) {
   return (
-    <section className="relative overflow-hidden bg-paper-3 py-24 lg:py-32">
-      <div className="grain absolute inset-0 opacity-50" aria-hidden />
+    <section className="relative isolate overflow-hidden bg-paper-3 py-24 lg:py-32">
+      <img
+        src="/images/field/field-07-full.webp"
+        alt=""
+        aria-hidden
+        loading="lazy"
+        decoding="async"
+        className="absolute inset-0 -z-20 h-full w-full object-cover"
+      />
+      <div className="absolute inset-0 -z-10 bg-paper/80" aria-hidden />
 
       <div className="relative mx-auto max-w-[1320px] px-5 sm:px-8">
         <Reveal className="mx-auto max-w-3xl text-center">
@@ -38,14 +46,19 @@ export function ClosingInvitation({ onNavigate }: ClosingInvitationProps) {
           delay={0.1}
           className="mx-auto mt-16 grid max-w-3xl gap-px overflow-hidden border border-line-strong bg-line-strong sm:grid-cols-3"
         >
-          <a
-            href={`tel:${CONTACT.phonePrimary.dial}`}
-            className="group flex flex-col gap-2 bg-paper p-7 transition-colors hover:bg-paper-2"
-          >
+          <div className="flex flex-col gap-2 bg-paper p-7">
             <Phone className="h-4 w-4 text-clay" aria-hidden />
             <span className="eyebrow">Call</span>
-            <span className="text-[15px] text-pine">{CONTACT.phonePrimary.display}</span>
-          </a>
+            {[CONTACT.phonePrimary, CONTACT.phoneSecondary].map((phone) => (
+              <a
+                key={phone.dial}
+                href={`tel:${phone.dial}`}
+                className="link-rule self-start text-[15px] text-pine"
+              >
+                {phone.display}
+              </a>
+            ))}
+          </div>
 
           <a
             href={buildWhatsAppUrl(

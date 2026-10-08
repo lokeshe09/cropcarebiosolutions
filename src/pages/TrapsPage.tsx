@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import type { PageId, TrapFamily } from '../types';
-import { BIO_TOOLS, TRAPS } from '../data/traps';
+import { BIO_TOOLS, STICKY_INTRO, TRAPS } from '../data/traps';
 import { PageIntro } from '../components/layout/PageIntro';
 import { PageHandoff } from '../components/layout/PageHandoff';
 import { SectionHeading } from '../components/ui/SectionHeading';
@@ -23,31 +23,31 @@ const FAMILIES: { id: TrapFamily | 'all'; label: string }[] = [
   { id: 'solar', label: 'Solar' },
 ];
 
-/** Practice notes drawn from the application instructions on the product sheets. */
+/** Field practice notes supplied by the company. */
 const FIELD_NOTES = [
   {
-    title: 'Hang in shade',
-    body: 'Direct midday sun shortens the life of a lure. Put traps in the shaded part of the canopy, or on the shaded side of a pole.',
+    title: 'Choose the Right Location',
+    body: 'Keep pheromone lures away from direct, strong sunlight. Place the trap in the shaded part of the crop canopy or on the shaded side of a support pole to help maintain lure performance.',
   },
   {
-    title: 'Keep above the crop',
-    body: 'Moth traps work at 30–45 cm above the canopy. Raise the stake as the crop grows, or the trap disappears into the foliage.',
+    title: 'Maintain the Recommended Height',
+    body: 'Install traps at the appropriate height according to the target pest, crop growth stage, and recommended application guidelines.',
   },
   {
-    title: 'One lure per trap',
-    body: 'Two lures in one trap do not double the catch. Spread traps across the field instead, and keep the spacing even.',
+    title: 'Use the Recommended Lure',
+    body: 'Use the appropriate lure for the target pest and follow the recommended lure-to-trap combination for effective monitoring and trapping.',
   },
   {
-    title: 'Replace on the calendar',
-    body: 'A lure that has run out looks exactly like one that is working. Note the date it went in and change it on schedule.',
+    title: 'Replace Lures on Schedule',
+    body: 'Lures have a defined active life. Replace them at the recommended interval to maintain consistent attraction.',
   },
   {
-    title: 'Empty and count',
-    body: 'Clear the catch every week or two. The count is what tells you whether pressure is rising and action is needed.',
+    title: 'Empty and Monitor Regularly',
+    body: 'Check and clear trapped insects regularly. Recording the catch helps monitor pest activity, identify increasing pest pressure, and decide when further action may be needed.',
   },
   {
-    title: 'Top up water traps',
-    body: 'Check the level after hot spells and heavy rain, and keep a thin film of oil or soap on the surface.',
+    title: 'Keep Traps Clean & Functional',
+    body: 'Remove trapped insects and debris regularly. For water-based traps, maintain the required water level and replace the trapping solution as needed.',
   },
 ];
 
@@ -176,9 +176,9 @@ export function TrapsPage({ onNavigate, onRequestQuote, onZoom }: TrapsPageProps
       <section className="bg-paper-2 py-20 lg:py-28">
         <div className="mx-auto max-w-[1320px] px-5 sm:px-8">
           <SectionHeading
-            eyebrow="Sticky traps & adhesives"
-            title="For the pests a pheromone will not call."
-            lead="Thrips, whiteflies and aphids answer to colour rather than scent. These sit alongside the lures in the same programme."
+            eyebrow={STICKY_INTRO.eyebrow}
+            title={STICKY_INTRO.title}
+            lead={STICKY_INTRO.lead}
           />
 
           <ul className="mt-14 grid gap-x-6 gap-y-14 sm:grid-cols-2 lg:grid-cols-4">
@@ -202,19 +202,23 @@ export function TrapsPage({ onNavigate, onRequestQuote, onZoom }: TrapsPageProps
                       {tool.description}
                     </p>
 
-                    <dl className="mt-5 space-y-2 border-t border-line pt-4 text-[13px]">
-                      {tool.specs.map((spec) => (
-                        <div key={spec.label} className="flex gap-3">
-                          <dt className="w-20 shrink-0 text-ink-3">{spec.label}</dt>
-                          <dd className="text-ink">{spec.value}</dd>
-                        </div>
-                      ))}
-                    </dl>
+                    {tool.specs.length > 0 && (
+                      <dl className="mt-5 space-y-2 border-t border-line pt-4 text-[13px]">
+                        {tool.specs.map((spec) => (
+                          <div key={spec.label} className="flex gap-3">
+                            <dt className="w-24 shrink-0 text-ink-3">{spec.label}</dt>
+                            <dd className="text-ink">{spec.value}</dd>
+                          </div>
+                        ))}
+                      </dl>
+                    )}
 
-                    <p className="mt-5 text-[13px] leading-relaxed text-ink-2">
-                      <span className="text-ink-3">Catches:</span>{' '}
-                      {tool.targetPests.join(', ')}
-                    </p>
+                    {tool.targetPests.length > 0 && (
+                      <p className="mt-5 text-[13px] leading-relaxed text-ink-2">
+                        <span className="text-ink-3">Catches:</span>{' '}
+                        {tool.targetPests.join(', ')}
+                      </p>
+                    )}
 
                     <button
                       type="button"
@@ -236,7 +240,7 @@ export function TrapsPage({ onNavigate, onRequestQuote, onZoom }: TrapsPageProps
         <div className="mx-auto max-w-[1320px] px-5 sm:px-8">
           <SectionHeading
             eyebrow="In the field"
-            title="Six things that decide whether a trap works."
+            title="Six factors that help traps work effectively"
             tone="dark"
           />
 

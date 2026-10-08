@@ -213,7 +213,6 @@ export function ProductsPage({
         nextPage="traps"
         label="Next"
         title="Insect Traps"
-        description="The housings the lures sit in, and the sticky traps that work alongside them."
         onNavigate={onNavigate}
       />
     </>

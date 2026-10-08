@@ -77,6 +77,15 @@ export const PRODUCTS: Product[] = [
     imageUrl: '/images/lure-melon-fly.webp',
     imageAlt: 'Melon Fly pheromone lure sachet',
     trapImageUrl: '/images/trap-fruit-fly.webp',
+    cropSolution: {
+      title: 'Bactrocera cucurbitae Lure & Fruit Fly Trap',
+      body: [
+        'Bactrocera cucurbitae Lure & Fruit Fly Trap is an effective solution for monitoring and managing melon fruit flies in cucurbit crops. The lure attracts adult fruit flies, while the trap captures them, helping reduce pest pressure. Easy to install, monitor and maintain as part of an Integrated Pest Management (IPM) program.',
+        'Suitable for crops such as bitter gourd, bottle gourd, ridge gourd, snake gourd and other cucurbits.',
+        'The lure can be used with different fruit fly trap types, including vertical fruit fly traps and glass traps, depending on the application.',
+      ],
+      tagline: 'Protect your cucurbit crops. Monitor early.',
+    },
   },
 
   {
@@ -121,6 +130,15 @@ export const PRODUCTS: Product[] = [
     imageUrl: '/images/lure-oriental-fruit-fly.webp',
     imageAlt: 'Oriental Fruit Fly pheromone lure sachet',
     trapImageUrl: '/images/trap-fruit-fly.webp',
+    cropSolution: {
+      title: 'Bactrocera dorsalis Lure & Fruit Fly Trap',
+      body: [
+        'Bactrocera dorsalis Lure & Fruit Fly Trap is an effective solution for monitoring and managing Oriental fruit flies in fruit crops. The lure attracts adult fruit flies, while the trap captures them, helping reduce pest pressure. Easy to install, monitor and maintain as part of an Integrated Pest Management (IPM) program.',
+        'Suitable for crops such as mango, guava, citrus, pomegranate and papaya.',
+        'The lure can be used with different fruit fly trap types, including vertical fruit fly traps and glass traps, depending on the application.',
+      ],
+      tagline: 'Protect your fruits. Monitor early.',
+    },
   },
 
   {
@@ -155,6 +173,14 @@ export const PRODUCTS: Product[] = [
     imageUrl: '/images/lure-tuta-absoluta.webp',
     imageAlt: 'Tuta absoluta pheromone lure sachet',
     trapImageUrl: '/images/trap-water-tuta.webp',
+    cropSolution: {
+      title: 'Tomato Leaf Miner Lure & Water Trap',
+      body: [
+        'Tomato Leaf Miner Lure & Water Trap is an effective solution for monitoring and managing tomato leaf miner infestations. The lure attracts adult moths, while the water trap helps capture them and monitor pest activity. Easy to install, monitor and maintain as part of an Integrated Pest Management (IPM) program.',
+        'Suitable for tomato and other susceptible vegetable crops.',
+      ],
+      tagline: 'Monitor early, manage effectively and protect your crop from leaf miner damage.',
+    },
   },
 
   {
@@ -188,7 +214,15 @@ export const PRODUCTS: Product[] = [
     recommendedTraps: ['Water Trap', 'Funnel Trap', 'Delta Trap', 'Pheroglo Trap'],
     imageUrl: '/images/lure-shoot-borer.webp',
     imageAlt: 'Brinjal fruit and shoot borer pheromone lure sachet',
-    trapImageUrl: '/images/trap-water-luci.webp',
+    trapImageUrl: '/images/trap-water-tuta.webp',
+    cropSolution: {
+      title: 'Eggplant Borer Lure & Water Trap',
+      body: [
+        'Eggplant Borer Lure & Water Trap provides a simple and efficient way to detect and track borer moth activity in the field. The lure attracts adult moths, which are then collected in the water trap for easy observation and monitoring. Regular monitoring supports timely crop-protection measures and better pest-management decisions.',
+        'Ideal for brinjal/eggplant crops, helping growers identify pest pressure at an early stage.',
+      ],
+      tagline: 'A practical tool for healthier crops and improved pest monitoring.',
+    },
   },
 
   {
@@ -232,6 +266,14 @@ export const PRODUCTS: Product[] = [
     imageUrl: '/images/lure-cotton-bollworm.webp',
     imageAlt: 'Cotton bollworm pheromone lure sachet',
     trapImageUrl: '/images/trap-funnel.webp',
+    cropSolution: {
+      title: 'Cotton Bollworm Lure & Funnel Trap',
+      body: [
+        'Cotton Bollworm Lure & Funnel Trap helps farmers monitor bollworm activity and detect pest presence in cotton fields. The pheromone lure attracts adult male moths, which are captured in the funnel trap for easy counting and observation. Regular field monitoring enables timely and informed pest-management decisions.',
+        'Suitable for cotton crops, supporting early identification of bollworm pressure.',
+      ],
+      tagline: 'A simple and effective tool for protecting cotton crops from bollworm damage.',
+    },
   },
 
   {
@@ -276,6 +318,14 @@ export const PRODUCTS: Product[] = [
     imageUrl: '/images/lure-tobacco-cutworm.webp',
     imageAlt: 'Tobacco cutworm pheromone lure sachet',
     trapImageUrl: '/images/trap-funnel.webp',
+    cropSolution: {
+      title: 'Tobacco Cutworm Lure & Funnel Trap',
+      body: [
+        'Tobacco Cutworm Lure & Funnel Trap helps monitor the presence and activity of tobacco cutworm moths in agricultural fields. The pheromone lure attracts adult male moths, which are captured in the funnel trap for convenient field observation. Regular monitoring provides useful information for timely and effective pest-management decisions.',
+        'Suitable for tobacco and other susceptible crops, helping identify pest activity at an early stage.',
+      ],
+      tagline: 'Early detection for better crop protection and healthier yields.',
+    },
   },
 
   {
@@ -312,6 +362,14 @@ export const PRODUCTS: Product[] = [
     imageUrl: '/images/lure-red-palm-weevil.webp',
     imageAlt: 'Red palm weevil pheromone lure sachet',
     trapImageUrl: '/images/trap-palm.webp',
+    cropSolution: {
+      title: 'Red Palm Weevil Lure & Palm Trap',
+      body: [
+        'Red Palm Weevil Lure & Palm Trap is designed to attract and monitor adult red palm weevils in palm plantations. The lure draws the weevils toward the trap, allowing growers to detect pest activity and assess infestation levels. Regular trapping supports early detection and helps farmers take timely management measures.',
+        'Suitable for coconut, date palm and other susceptible palm species.',
+      ],
+      tagline: 'A reliable tool for protecting palms from red palm weevil damage.',
+    },
   },
 
   {
@@ -340,6 +398,14 @@ export const PRODUCTS: Product[] = [
     imageUrl: '/images/lure-weevil-defender.webp',
     imageAlt: 'Weevil Defender bottle for Red Palm Weevil, with red cap and green label',
     trapImageUrl: '/images/trap-palm.webp',
+    cropSolution: {
+      title: 'Weevil Defender',
+      body: [
+        'Weevil Defender is a pheromone-based monitoring solution designed to detect and track weevil activity in stored-product and crop environments. It helps attract target adult weevils, making early detection of pest presence easier.',
+        'Regular monitoring helps identify infestations at an early stage and supports timely pest-management decisions.',
+      ],
+      tagline: 'Detect early. Monitor efficiently. Protect your valuable produce.',
+    },
   },
 
   {
@@ -375,6 +441,14 @@ export const PRODUCTS: Product[] = [
     imageUrl: '/images/lure-rhinoceros-beetle.webp',
     imageAlt: 'Rhinoceros beetle pheromone lure sachet',
     trapImageUrl: '/images/trap-palm.webp',
+    cropSolution: {
+      title: 'Rhinoceros Beetle Lure & Palm Trap',
+      body: [
+        'Rhinoceros Beetle Lure & Palm Trap helps attract and monitor rhinoceros beetle activity in palm plantations. The lure draws adult beetles into the trap, making pest detection and population monitoring easier. Regular trapping helps identify beetle activity early and supports timely pest-management practices.',
+        'Ideal for coconut, date palm and other susceptible palm crops.',
+      ],
+      tagline: 'A convenient solution for monitoring and protecting palm crops.',
+    },
   },
 
   {
@@ -409,6 +483,13 @@ export const PRODUCTS: Product[] = [
     imageUrl: '/images/lure-pink-bollworm.webp',
     imageAlt: 'Pink bollworm pheromone lure sachet',
     trapImageUrl: '/images/trap-funnel.webp',
+    cropSolution: {
+      title: 'Pink Bollworm Lure & Funnel Trap',
+      body: [
+        'Pink Bollworm Lure & Funnel Trap is designed for effective monitoring of pink bollworm activity in cotton fields. The pheromone lure attracts adult male moths, which are collected in the funnel trap for easy monitoring. It helps growers identify pest activity and assess infestation levels during the crop season. Regular monitoring supports timely and targeted pest-management practices.',
+      ],
+      tagline: 'Monitor smartly and protect your cotton crop from pink bollworm damage.',
+    },
   },
 
   {
@@ -443,6 +524,14 @@ export const PRODUCTS: Product[] = [
     imageUrl: '/images/lure-fall-armyworm.webp',
     imageAlt: 'Fall armyworm pheromone lure sachet',
     trapImageUrl: '/images/trap-funnel.webp',
+    cropSolution: {
+      title: 'Fall Armyworm Lure & Funnel Trap',
+      body: [
+        'Fall Armyworm Lure & Funnel Trap is a reliable monitoring tool for detecting fall armyworm moth activity in crop fields. The pheromone lure attracts adult male moths, which are collected in the funnel trap for easy counting and observation. Regular monitoring helps farmers identify increasing pest pressure and plan timely control measures.',
+        'Especially useful in maize and other susceptible crops for tracking pest populations.',
+      ],
+      tagline: 'Stay ahead of fall armyworm and protect your crop with smart pest monitoring.',
+    },
   },
 
   {
@@ -477,6 +566,14 @@ export const PRODUCTS: Product[] = [
     imageUrl: '/images/lure-yellow-stem-borer.webp',
     imageAlt: 'Yellow stem borer pheromone lure sachet',
     trapImageUrl: '/images/trap-funnel.webp',
+    cropSolution: {
+      title: 'Yellow Stem Borer Lure & Funnel Trap',
+      body: [
+        'Yellow Stem Borer Lure & Funnel Trap helps track the activity of yellow stem borer moths and assess pest presence in the field. The pheromone lure attracts adult male moths, which are trapped for convenient monitoring and population assessment. Regular observation can help farmers recognize pest build-up early and take appropriate management measures.',
+        'Particularly useful in rice/paddy crops to identify pest activity during the growing season.',
+      ],
+      tagline: 'Monitor pest activity early and support healthier, more productive crops.',
+    },
   },
 
   {
@@ -510,7 +607,15 @@ export const PRODUCTS: Product[] = [
     recommendedTraps: ['Water Trap', 'Funnel Trap', 'Delta Trap', 'Pheroglo Trap'],
     imageUrl: '/images/lure-diamondback-moth.webp',
     imageAlt: 'Diamondback moth pheromone lure sachet',
-    trapImageUrl: '/images/trap-water-dbm.webp',
+    trapImageUrl: '/images/trap-water-tuta.webp',
+    cropSolution: {
+      title: 'Diamondback Moth Lure & Water Trap',
+      body: [
+        'Diamondback Moth Lure & Water Trap helps detect and monitor diamondback moth activity in vegetable fields. The lure attracts adult moths, while the water trap collects them for convenient field observation. Regular trapping helps assess pest levels and supports timely crop-protection decisions.',
+        'Suitable for cabbage, cauliflower, broccoli and other cruciferous crops.',
+      ],
+      tagline: 'An easy and practical solution for effective pest monitoring.',
+    },
   },
 ];
 
