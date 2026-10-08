@@ -361,7 +361,7 @@ export const PRODUCTS: Product[] = [
     recommendedTraps: ['Palm Trap'],
     imageUrl: '/images/photos/lure-red-palm-weevil.webp',
     imageAlt: 'Red palm weevil pheromone lure sachet',
-    trapImageUrl: '/images/photos/trap-palm-square.webp',
+    trapImageUrl: '/images/photos/trap-palm-v2.webp',
     cropSolution: {
       title: 'Red Palm Weevil Lure & Palm Trap',
       body: [
@@ -404,7 +404,7 @@ export const PRODUCTS: Product[] = [
     recommendedTraps: ['Palm Trap'],
     imageUrl: '/images/photos/lure-rhinoceros-beetle.webp',
     imageAlt: 'Rhinoceros beetle pheromone lure sachet',
-    trapImageUrl: '/images/photos/trap-palm-square.webp',
+    trapImageUrl: '/images/photos/trap-palm-v2.webp',
     cropSolution: {
       title: 'Rhinoceros Beetle Lure & Palm Trap',
       body: [

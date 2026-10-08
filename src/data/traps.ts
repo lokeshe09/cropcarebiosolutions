@@ -121,7 +121,7 @@ export const TRAPS: TrapType[] = [
       'Stable & durable design',
       'Reusable & easy to maintain',
     ],
-    imageUrl: '/images/photos/trap-palm.webp',
+    imageUrl: '/images/photos/trap-palm-v2.webp',
     setupAdvice:
       'Bury to the side openings or hang on the trunk at 1–1.5 m. Place in shaded spots in the grove.',
     trapsPerAcre: '3–4 per acre',
