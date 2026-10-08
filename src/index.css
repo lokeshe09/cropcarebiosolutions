@@ -177,6 +177,32 @@
   }
 }
 
+/* Background slideshow: two photos plus a repeat of the first. Each holds,
+   then slides; the last step lands on the repeat, identical to the start. */
+.bg-slide {
+  animation: bg-slide 16s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+
+@keyframes bg-slide {
+  0%,
+  40% {
+    transform: translateX(0);
+  }
+  50%,
+  90% {
+    transform: translateX(-33.3333%);
+  }
+  100% {
+    transform: translateX(-66.6667%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bg-slide {
+    animation: none;
+  }
+}
+
 /* Seamless marquee: the track holds two identical halves and slides by -50%. */
 .marquee {
   display: flex;

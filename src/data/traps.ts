@@ -19,7 +19,7 @@ export const TRAPS: TrapType[] = [
       'Transparent trap body allows easy checking of the captured flies',
       'Reusable trap for repeated use across growing seasons',
     ],
-    imageUrl: '/images/trap-fruit-fly.webp',
+    imageUrl: '/images/photos/trap-fruit-fly.webp',
     trapsPerAcre: '10–15 per acre',
     servicing: FRUIT_FLY_SERVICING,
   },
@@ -39,7 +39,7 @@ export const TRAPS: TrapType[] = [
       'Suitable for fruit and vegetable crops in open fields, gardens, kitchen/terrace gardens, and greenhouses/polyhouses',
       'Reusable and easy to clean',
     ],
-    imageUrl: '/images/trap-bucket.webp',
+    imageUrl: '/images/photos/trap-vertical-fruit-fly.webp',
     trapsPerAcre: '10–15 per acre',
     servicing: FRUIT_FLY_SERVICING,
   },
@@ -57,7 +57,7 @@ export const TRAPS: TrapType[] = [
       'Twist-lock base for cleaning and re-baiting',
       'A steady reference trap for weekly records',
     ],
-    imageUrl: '/images/trap-glass.webp',
+    imageUrl: '/images/photos/trap-glass.webp',
     trapsPerAcre: '8–12 per acre',
     servicing: FRUIT_FLY_SERVICING,
   },
@@ -99,8 +99,7 @@ export const TRAPS: TrapType[] = [
       'Lightweight',
       'Low maintenance',
     ],
-    // TODO — replace with the water trap photo the company is sending.
-    imageUrl: '/images/trap-water-tuta.webp',
+    imageUrl: '/images/photos/trap-water.webp',
     setupAdvice:
       'Fill with clean water to about 2 cm below the rim and add a little oil or mild detergent so moths do not float off.',
     recommendedHeight: '20–30 cm above the crop canopy',
@@ -123,7 +122,7 @@ export const TRAPS: TrapType[] = [
       'Reusable and durable',
       'Simple field installation',
     ],
-    imageUrl: '/images/trap-funnel.webp',
+    imageUrl: '/images/photos/trap-funnel.webp',
     setupAdvice:
       'Tie to a bamboo stake by the top loop and keep the funnel mouth above the crop canopy. Raise the stake as the crop grows.',
     recommendedHeight: '30–45 cm above the crop canopy',
@@ -165,7 +164,7 @@ export const TRAPS: TrapType[] = [
       'Stable & durable design',
       'Reusable & easy to maintain',
     ],
-    imageUrl: '/images/trap-palm.webp',
+    imageUrl: '/images/photos/trap-palm.webp',
     setupAdvice:
       'Bury to the side openings or hang on the trunk at 1–1.5 m. Place in shaded spots in the grove.',
     recommendedHeight: '1–1.5 m on the trunk, or half-buried',
@@ -186,7 +185,7 @@ export const TRAPS: TrapType[] = [
       'Easy to count, so it suits weekly records',
       'Light enough to hang anywhere in the crop',
     ],
-    imageUrl: '/images/trap-delta.webp',
+    imageUrl: '/images/photos/trap-delta.webp',
     setupAdvice:
       'Fold into the triangle, lay the sticky liner face up, hang the lure from the ridge hook and suspend in the crop row.',
     recommendedHeight: 'Trellis height, or about 1 m above ground',

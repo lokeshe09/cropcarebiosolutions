@@ -74,9 +74,9 @@ export const PRODUCTS: Product[] = [
       'If stored well, the lure works effectively for 2 years.',
     ],
     recommendedTraps: ['Fruit Fly Trap', 'Vertical Fruit Fly Trap', 'Glass Trap', 'McPhail Trap'],
-    imageUrl: '/images/lure-melon-fly.webp',
+    imageUrl: '/images/photos/lure-melon-fly.webp',
     imageAlt: 'Melon Fly pheromone lure sachet',
-    trapImageUrl: '/images/trap-fruit-fly.webp',
+    trapImageUrl: '/images/photos/trap-fruit-fly-square.webp',
     cropSolution: {
       title: 'Bactrocera cucurbitae Lure & Fruit Fly Trap',
       body: [
@@ -127,9 +127,9 @@ export const PRODUCTS: Product[] = [
       'If stored well, the lure works effectively for 2 years.',
     ],
     recommendedTraps: ['Fruit Fly Trap', 'Vertical Fruit Fly Trap', 'Glass Trap', 'McPhail Trap'],
-    imageUrl: '/images/lure-oriental-fruit-fly.webp',
+    imageUrl: '/images/photos/lure-oriental-fruit-fly.webp',
     imageAlt: 'Oriental Fruit Fly pheromone lure sachet',
-    trapImageUrl: '/images/trap-fruit-fly.webp',
+    trapImageUrl: '/images/photos/trap-fruit-fly-square.webp',
     cropSolution: {
       title: 'Bactrocera dorsalis Lure & Fruit Fly Trap',
       body: [
@@ -170,9 +170,9 @@ export const PRODUCTS: Product[] = [
       'If stored well, it remains effective for 2 years.',
     ],
     recommendedTraps: ['Water Trap', 'Funnel Trap', 'Delta Trap', 'Pheroglo Trap'],
-    imageUrl: '/images/lure-tuta-absoluta.webp',
+    imageUrl: '/images/photos/lure-tuta-absoluta.webp',
     imageAlt: 'Tuta absoluta pheromone lure sachet',
-    trapImageUrl: '/images/trap-water-tuta.webp',
+    trapImageUrl: '/images/photos/trap-water.webp',
     cropSolution: {
       title: 'Tomato Leaf Miner Lure & Water Trap',
       body: [
@@ -212,9 +212,9 @@ export const PRODUCTS: Product[] = [
       'Effective for up to 2 years if stored well.',
     ],
     recommendedTraps: ['Water Trap', 'Funnel Trap', 'Delta Trap', 'Pheroglo Trap'],
-    imageUrl: '/images/lure-shoot-borer.webp',
+    imageUrl: '/images/photos/lure-shoot-borer.webp',
     imageAlt: 'Brinjal fruit and shoot borer pheromone lure sachet',
-    trapImageUrl: '/images/trap-water-tuta.webp',
+    trapImageUrl: '/images/photos/trap-water.webp',
     cropSolution: {
       title: 'Eggplant Borer Lure & Water Trap',
       body: [
@@ -263,9 +263,9 @@ export const PRODUCTS: Product[] = [
       'Effective for up to 2 years if stored well.',
     ],
     recommendedTraps: ['Funnel Trap', 'Delta Trap', 'Moth Trap'],
-    imageUrl: '/images/lure-cotton-bollworm.webp',
+    imageUrl: '/images/photos/lure-cotton-bollworm.webp',
     imageAlt: 'Cotton bollworm pheromone lure sachet',
-    trapImageUrl: '/images/trap-funnel.webp',
+    trapImageUrl: '/images/photos/trap-funnel-square.webp',
     cropSolution: {
       title: 'Cotton Bollworm Lure & Funnel Trap',
       body: [
@@ -315,9 +315,9 @@ export const PRODUCTS: Product[] = [
       'Effective for up to 2 years if stored well.',
     ],
     recommendedTraps: ['Funnel Trap', 'Delta Trap', 'Moth Trap'],
-    imageUrl: '/images/lure-tobacco-cutworm.webp',
+    imageUrl: '/images/photos/lure-tobacco-cutworm.webp',
     imageAlt: 'Tobacco cutworm pheromone lure sachet',
-    trapImageUrl: '/images/trap-funnel.webp',
+    trapImageUrl: '/images/photos/trap-funnel-square.webp',
     cropSolution: {
       title: 'Tobacco Cutworm Lure & Funnel Trap',
       body: [
@@ -359,9 +359,9 @@ export const PRODUCTS: Product[] = [
       'When stored properly, the lure remains effective for up to 2 years from the production date.',
     ],
     recommendedTraps: ['Palm Trap'],
-    imageUrl: '/images/lure-red-palm-weevil.webp',
+    imageUrl: '/images/photos/lure-red-palm-weevil.webp',
     imageAlt: 'Red palm weevil pheromone lure sachet',
-    trapImageUrl: '/images/trap-palm.webp',
+    trapImageUrl: '/images/photos/trap-palm-square.webp',
     cropSolution: {
       title: 'Red Palm Weevil Lure & Palm Trap',
       body: [
@@ -397,7 +397,7 @@ export const PRODUCTS: Product[] = [
     recommendedTraps: ['Palm Trap'],
     imageUrl: '/images/lure-weevil-defender.webp',
     imageAlt: 'Weevil Defender bottle for Red Palm Weevil, with red cap and green label',
-    trapImageUrl: '/images/trap-palm.webp',
+    trapImageUrl: '/images/photos/trap-palm-square.webp',
     cropSolution: {
       title: 'Weevil Defender',
       body: [
@@ -438,9 +438,9 @@ export const PRODUCTS: Product[] = [
       'Effective for up to 2 years if stored properly.',
     ],
     recommendedTraps: ['Palm Trap'],
-    imageUrl: '/images/lure-rhinoceros-beetle.webp',
+    imageUrl: '/images/photos/lure-rhinoceros-beetle.webp',
     imageAlt: 'Rhinoceros beetle pheromone lure sachet',
-    trapImageUrl: '/images/trap-palm.webp',
+    trapImageUrl: '/images/photos/trap-palm-square.webp',
     cropSolution: {
       title: 'Rhinoceros Beetle Lure & Palm Trap',
       body: [
@@ -480,9 +480,9 @@ export const PRODUCTS: Product[] = [
       'Effective for up to 2 years if stored well.',
     ],
     recommendedTraps: ['Funnel Trap', 'Moth Trap'],
-    imageUrl: '/images/lure-pink-bollworm.webp',
+    imageUrl: '/images/photos/lure-pink-bollworm.webp',
     imageAlt: 'Pink bollworm pheromone lure sachet',
-    trapImageUrl: '/images/trap-funnel.webp',
+    trapImageUrl: '/images/photos/trap-funnel-square.webp',
     cropSolution: {
       title: 'Pink Bollworm Lure & Funnel Trap',
       body: [
@@ -521,9 +521,9 @@ export const PRODUCTS: Product[] = [
       'Effective for up to 2 years if stored well.',
     ],
     recommendedTraps: ['Funnel Trap', 'Moth Trap'],
-    imageUrl: '/images/lure-fall-armyworm.webp',
+    imageUrl: '/images/photos/lure-fall-armyworm.webp',
     imageAlt: 'Fall armyworm pheromone lure sachet',
-    trapImageUrl: '/images/trap-funnel.webp',
+    trapImageUrl: '/images/photos/trap-funnel-square.webp',
     cropSolution: {
       title: 'Fall Armyworm Lure & Funnel Trap',
       body: [
@@ -563,9 +563,9 @@ export const PRODUCTS: Product[] = [
       'Effective for up to 2 years if stored well.',
     ],
     recommendedTraps: ['Funnel Trap', 'Moth Trap'],
-    imageUrl: '/images/lure-yellow-stem-borer.webp',
+    imageUrl: '/images/photos/lure-yellow-stem-borer.webp',
     imageAlt: 'Yellow stem borer pheromone lure sachet',
-    trapImageUrl: '/images/trap-funnel.webp',
+    trapImageUrl: '/images/photos/trap-funnel-square.webp',
     cropSolution: {
       title: 'Yellow Stem Borer Lure & Funnel Trap',
       body: [
@@ -605,9 +605,9 @@ export const PRODUCTS: Product[] = [
       'Effective for up to 2 years if stored well.',
     ],
     recommendedTraps: ['Water Trap', 'Funnel Trap', 'Delta Trap', 'Pheroglo Trap'],
-    imageUrl: '/images/lure-diamondback-moth.webp',
+    imageUrl: '/images/photos/lure-diamondback-moth.webp',
     imageAlt: 'Diamondback moth pheromone lure sachet',
-    trapImageUrl: '/images/trap-water-tuta.webp',
+    trapImageUrl: '/images/photos/trap-water.webp',
     cropSolution: {
       title: 'Diamondback Moth Lure & Water Trap',
       body: [
