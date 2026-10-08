@@ -214,34 +214,12 @@ export const BIO_TOOLS: BioToolItem[] = [
     name: 'Sticky Pouches',
     tagline: 'Convenient, reusable sticky pouches with ready-to-use glue',
     description:
-      'One side is open for easy application of the glue, while the other side remains sealed. Simply apply the glue and place or hang the pouch for pest monitoring. Each pouch can be used twice, offering a practical and economical solution.',
+      'Reusable Sticky Pouches are supplied with a ready-to-use sticky adhesive for easy pest monitoring. One side of the pouch is open for applying the adhesive, while the other side remains sealed. Simply apply the adhesive using the supplied pour bottle and place or hang the pouch in the crop.\n\nThe adhesive is provided in a convenient pour bottle for easy brush-on application. Each pouch can be reused twice, making it a practical and economical solution for pest monitoring.',
     targetPests: [],
     suitableCrops: ['Vegetables', 'Flowers', 'Kitchen gardens', 'Plantations'],
     specs: [],
-    imageUrl: '/images/tool-sticky-pouches.webp',
+    imageUrl: '/images/photos/tool-sticky-pouches.webp',
     highlights: [],
-  },
-  {
-    id: 'glue-bottle',
-    name: 'Insect Trapping Glue',
-    tagline: 'Brush-on adhesive for custom traps and trunk bands',
-    description:
-      'A brush-on sticky adhesive in a pour bottle. Use it on recycled bottles, painted boards or as a band around fruit tree trunks to stop crawling insects, ants and mealybug crawlers.',
-    targetPests: ['Crawling insects', 'Mealybug crawlers', 'Ants', 'Whiteflies', 'Thrips'],
-    suitableCrops: ['Mango, citrus and guava orchards', 'Coconut and palm groves', 'Custom farm traps'],
-    specs: [
-      { label: 'Form', value: 'Clear, viscous' },
-      { label: 'Bottles', value: '500 ml and 1000 ml' },
-      { label: 'Field life', value: 'Up to 3 months on surface' },
-      { label: 'Coverage', value: '40–50 boards per bottle' },
-    ],
-    imageUrl: '/images/tool-glue-bottle.webp',
-    highlights: [
-      'Apply by brush or roller',
-      'Holds up to rain and heat',
-      'Non-poisonous',
-      'Cost-effective for on-farm traps',
-    ],
   },
 ];
 

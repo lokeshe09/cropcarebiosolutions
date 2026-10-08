@@ -131,23 +131,17 @@ export function Footer({ onNavigate, onOpenProduct }: FooterProps) {
                   {CONTACT.email}
                 </a>
               </li>
-              {CONTACT.addresses
-                .filter((address) => address.lines.length > 0)
-                .map((address) => (
-                  <li key={address.label} className="flex items-start gap-3">
-                    <MapPin className="mt-1 h-4 w-4 shrink-0 text-clay-soft" aria-hidden />
-                    <span>
-                      <span className="mb-1 block font-mono text-[10px] uppercase tracking-[0.14em] text-sage">
-                        {address.label}
-                      </span>
-                      {address.lines.map((line) => (
-                        <span key={line} className="block text-[14px] leading-snug">
-                          {line}
-                        </span>
-                      ))}
+              {/* Short form here; the full addresses are on the Contact page. */}
+              <li className="flex items-start gap-3">
+                <MapPin className="mt-1 h-4 w-4 shrink-0 text-clay-soft" aria-hidden />
+                <span>
+                  {CONTACT.shortAddress.map((line) => (
+                    <span key={line} className="block">
+                      {line}
                     </span>
-                  </li>
-                ))}
+                  ))}
+                </span>
+              </li>
             </ul>
 
             <p className="mt-5 font-mono text-[11px] uppercase tracking-[0.14em] text-sage">

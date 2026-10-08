@@ -26,6 +26,8 @@ export const CONTACT = {
   phoneSecondary: { display: '+91 70324 96243', dial: '+917032496243' },
   whatsapp: '919346720617',
   email: 'cropcarebiosolutions@gmail.com',
+  /** Locality only, for the footer. */
+  shortAddress: ['Gajularamaram, Hyderabad', 'Telangana – 500055'],
   /** Registered office, used wherever a single address is shown. */
   addressLines: [
     'Plot No. 20/P, Deva Bhoomi Nagar',

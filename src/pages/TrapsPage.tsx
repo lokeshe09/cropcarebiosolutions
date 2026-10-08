@@ -198,9 +198,11 @@ export function TrapsPage({ onNavigate, onRequestQuote, onZoom }: TrapsPageProps
                       {tool.name}
                     </h3>
                     <p className="mt-1.5 text-[13px] text-ink-3">{tool.tagline}</p>
-                    <p className="mt-4 text-[14px] leading-relaxed text-ink-2">
-                      {tool.description}
-                    </p>
+                    <div className="mt-4 space-y-3 text-[14px] leading-relaxed text-ink-2">
+                      {tool.description.split('\n\n').map((paragraph) => (
+                        <p key={paragraph.slice(0, 32)}>{paragraph}</p>
+                      ))}
+                    </div>
 
                     {tool.specs.length > 0 && (
                       <dl className="mt-5 space-y-2 border-t border-line pt-4 text-[13px]">
