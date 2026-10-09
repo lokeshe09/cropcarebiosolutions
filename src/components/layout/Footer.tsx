@@ -37,8 +37,7 @@ export function Footer({ onNavigate, onOpenProduct }: FooterProps) {
   const siteLinks: { id: PageId; label: string }[] = [
     { id: 'home', label: 'Home' },
     { id: 'about', label: 'About' },
-    { id: 'products', label: 'Pheromone Lures' },
-    { id: 'traps', label: 'Insect Traps' },
+    { id: 'products', label: 'Products' },
     { id: 'crop-solutions', label: 'Crop Solutions' },
     { id: 'contact', label: 'Contact' },
   ];

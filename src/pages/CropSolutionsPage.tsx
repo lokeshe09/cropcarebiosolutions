@@ -177,7 +177,7 @@ export function CropSolutionsPage({
 
           <div className="mt-12 flex items-end justify-between gap-4 border-b border-line pb-4">
             <h2 className="font-display text-[clamp(1.4rem,2.2vw,1.8rem)] text-pine">
-              {activeProducts.length} matching {activeProducts.length === 1 ? 'lure' : 'lures'}
+              {activeProducts.length} Matching Pheromone {activeProducts.length === 1 ? 'lure and trap' : 'lures and traps'}
             </h2>
             <p className="hidden text-[13px] text-ink-3 sm:block">{active.name}</p>
           </div>

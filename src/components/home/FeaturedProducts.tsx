@@ -99,7 +99,6 @@ export function FeaturedProducts({ onNavigate, onOpenProduct }: FeaturedProducts
       <div className="mx-auto max-w-[1320px] px-5 sm:px-8">
         <SectionHeading
           index="03"
-          eyebrow="Crop Care Bio Solutions"
           title="Featured Products"
           action={
             <div className="flex items-center gap-2">

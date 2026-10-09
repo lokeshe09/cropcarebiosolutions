@@ -172,10 +172,10 @@ export const FIELD_GALLERY = [
     alt: 'Looking up through a bamboo trellis at bitter gourd and cucumber hanging among the vines',
   },
   {
-    src: '/images/field/field-05.webp',
-    full: '/images/field/field-05-full.webp',
-    caption: 'Counting the week’s catch',
-    alt: 'Two weathered hands opening the collection cup of a funnel trap, moths visible inside',
+    src: '/images/field/field-funnel-cotton.webp',
+    full: '/images/field/field-funnel-cotton-full.webp',
+    caption: 'Funnel traps standing above the cotton crop',
+    alt: 'Yellow funnel traps with clear collection bags staked in a cotton field with open bolls',
   },
   {
     src: '/images/field/field-palm-trap.webp',
@@ -184,10 +184,10 @@ export const FIELD_GALLERY = [
     alt: 'A white Crop Care Bio Solutions palm trap bucket hung on a palm trunk, coconut and date palms around it',
   },
   {
-    src: '/images/field/field-07.webp',
-    full: '/images/field/field-07-full.webp',
-    caption: 'Cotton at flowering',
-    alt: 'Rows of cotton in flower, white and pink blooms among green foliage on a clear morning',
+    src: '/images/field/field-cabbage.webp',
+    full: '/images/field/field-cabbage-full.webp',
+    caption: 'Cabbage and cauliflower rows',
+    alt: 'Rows of cabbage and cauliflower in a green vegetable field with hills and palms behind',
   },
   {
     src: '/images/field/field-08.webp',

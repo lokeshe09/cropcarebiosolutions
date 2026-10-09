@@ -19,7 +19,7 @@ export const TRAPS: TrapType[] = [
       'Transparent trap body allows easy checking of the captured flies',
       'Reusable trap for repeated use across growing seasons',
     ],
-    imageUrl: '/images/photos/trap-fruit-fly.webp',
+    imageUrl: '/images/photos/trap-fruit-fly-square.webp',
     trapsPerAcre: '10–15 per acre',
     servicing: FRUIT_FLY_SERVICING,
   },

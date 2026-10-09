@@ -67,7 +67,7 @@ export function AboutPage({ onNavigate }: AboutPageProps) {
             </Reveal>
 
             <div className="lg:col-span-7">
-              <SectionHeading index="01" eyebrow="Crop Care Bio Solutions" title="About the Company" />
+              <SectionHeading index="01" title="About the Company" />
 
               <div className="mt-10 space-y-6 text-[17px] leading-relaxed text-ink-2">
                 {ABOUT.company.map((paragraph) => (
@@ -125,7 +125,7 @@ export function AboutPage({ onNavigate }: AboutPageProps) {
         <div className="absolute inset-0 -z-10 bg-pine-deep/55" aria-hidden />
 
         <div className="mx-auto max-w-[1320px] px-5 sm:px-8">
-          <SectionHeading index="02" eyebrow="Crop Care Bio Solutions" title="Mission & Vision" tone="dark" />
+          <SectionHeading index="02" title="Mission & Vision" tone="dark" />
 
           <div className="mt-14 grid divide-y divide-white/25 overflow-hidden border border-white/25 lg:grid-cols-2 lg:divide-x lg:divide-y-0">
             <article className="bg-pine-deep/25 p-8 [text-shadow:0_1px_12px_rgba(0,0,0,0.55)] lg:p-12">
@@ -148,9 +148,9 @@ export function AboutPage({ onNavigate }: AboutPageProps) {
       {/* We stand for */}
       <section className="bg-paper py-14 lg:py-16">
         <div className="mx-auto max-w-[1320px] px-5 sm:px-8">
-          <SectionHeading index="03" eyebrow="Crop Care Bio Solutions" title="We Stand For" />
+          <SectionHeading index="03" title="We Stand For" />
 
-          <div className="mt-9 grid gap-8 lg:grid-cols-12 lg:gap-12">
+          <div className="mt-6 grid gap-8 lg:grid-cols-12 lg:gap-12">
             {/* Two across rather than a stacked list, so all five values sit in
                 one screen without scrolling. */}
             <ol className="grid gap-x-10 sm:grid-cols-2 lg:col-span-8">
@@ -159,7 +159,7 @@ export function AboutPage({ onNavigate }: AboutPageProps) {
                   as="li"
                   key={value.title}
                   delay={index * 0.04}
-                  className="group border-t border-line py-4"
+                  className="group border-t border-line py-2.5"
                 >
                   <div className="flex gap-4 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-1">
                     <span className="pt-1.5 font-mono text-[11px] text-ink-3 transition-colors group-hover:text-clay">
@@ -169,7 +169,7 @@ export function AboutPage({ onNavigate }: AboutPageProps) {
                       <h3 className="font-display text-[clamp(1.2rem,1.9vw,1.5rem)] text-pine">
                         {value.title}
                       </h3>
-                      <p className="mt-1.5 text-[15px] leading-relaxed text-ink-2">
+                      <p className="mt-1 text-[15px] leading-snug text-ink-2">
                         {value.body}
                       </p>
                     </div>
@@ -197,12 +197,42 @@ export function AboutPage({ onNavigate }: AboutPageProps) {
       </section>
 
       {/* Closing message */}
-      <section className="bg-paper-3 py-20 lg:py-28">
+      <section className="relative isolate overflow-hidden bg-pine py-24 lg:py-32">
+        {/* Hands, seed and growing crop behind the closing line. */}
+        {reduceMotion ? (
+          <img
+            src="/videos/closing-message-poster.webp"
+            alt=""
+            aria-hidden
+            loading="lazy"
+            decoding="async"
+            className="absolute inset-0 -z-20 h-full w-full object-cover"
+          />
+        ) : (
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            poster="/videos/closing-message-poster.webp"
+            aria-hidden
+            className="absolute inset-0 -z-20 h-full w-full object-cover"
+          >
+            <source src="/videos/closing-message.webm" type="video/webm" />
+            <source src="/videos/closing-message.mp4" type="video/mp4" />
+          </video>
+        )}
+        <div
+          className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_center,rgba(14,36,28,0.62)_0%,rgba(14,36,28,0.38)_55%,rgba(14,36,28,0.22)_100%)]"
+          aria-hidden
+        />
+
         <div className="mx-auto max-w-[1320px] px-5 sm:px-8">
           <Reveal className="mx-auto max-w-3xl text-center">
-            <p className="eyebrow">Closing Message</p>
+            <p className="eyebrow text-paper/80">Closing Message</p>
             <blockquote className="mt-8">
-              <p className="font-display text-[clamp(1.7rem,4vw,2.9rem)] leading-[1.16] text-pine">
+              <p className="font-display text-[clamp(1.7rem,4vw,2.9rem)] leading-[1.16] text-paper [text-shadow:0_2px_18px_rgba(0,0,0,0.35)]">
                 &ldquo;{ABOUT.closing}&rdquo;
               </p>
             </blockquote>
@@ -213,8 +243,8 @@ export function AboutPage({ onNavigate }: AboutPageProps) {
       <PageHandoff
         nextPage="products"
         label="Next"
-        title="Pheromone Lures"
-        description="Twelve species-specific lures, with field life, target crops, how to apply them and how to store them."
+        title="Our Products"
+        description="Pheromone lures and insect traps, with field life, target crops, how to apply them and how to store them."
         onNavigate={onNavigate}
       />
     </>

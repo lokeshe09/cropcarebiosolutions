@@ -17,7 +17,6 @@ export function WhyCropCare({ onNavigate }: WhyCropCareProps) {
       <div className="mx-auto max-w-[1320px] px-5 sm:px-8">
         <SectionHeading
           index="01"
-          eyebrow="Crop Care Bio Solutions"
           title="Why Crop Care"
           action={
             <Button variant="outline" size="sm" onClick={() => onNavigate('about')} withArrow>

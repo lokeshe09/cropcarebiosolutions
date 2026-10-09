@@ -1,6 +1,6 @@
 import { useCallback, useState } from 'react';
 import { ArrowRight } from 'lucide-react';
-import type { PageId, TrapFamily } from '../types';
+import type { PageId } from '../types';
 import { BIO_TOOLS, STICKY_INTRO, TRAPS } from '../data/traps';
 import { TRAP_PROTOCOLS } from '../data/trapProtocols';
 import { TrapSheet, type TrapSheetItem } from '../components/product/TrapSheet';
@@ -15,16 +15,6 @@ interface TrapsPageProps {
   onRequestQuote: (itemName: string) => void;
   onZoom: (src: string, alt: string) => void;
 }
-
-const FAMILIES: { id: TrapFamily | 'all'; label: string }[] = [
-  { id: 'all', label: 'All traps' },
-  { id: 'fruit-fly', label: 'Fruit fly' },
-  { id: 'funnel', label: 'Funnel' },
-  { id: 'water', label: 'Water' },
-  { id: 'delta', label: 'Delta' },
-  { id: 'palm', label: 'Palm' },
-  { id: 'solar', label: 'Solar' },
-];
 
 /** Field practice notes supplied by the company. */
 const FIELD_NOTES = [
@@ -55,8 +45,7 @@ const FIELD_NOTES = [
 ];
 
 export function TrapsPage({ onNavigate, onRequestQuote, onZoom }: TrapsPageProps) {
-  const [family, setFamily] = useState<TrapFamily | 'all'>('all');
-  const traps = family === 'all' ? TRAPS : TRAPS.filter((trap) => trap.family === family);
+  const traps = TRAPS;
   const [sheet, setSheet] = useState<TrapSheetItem | null>(null);
 
   const closeSheet = useCallback(() => setSheet(null), []);
@@ -76,33 +65,7 @@ export function TrapsPage({ onNavigate, onRequestQuote, onZoom }: TrapsPageProps
         onNavigate={onNavigate}
       />
 
-      <section className="bg-paper py-10">
-        <div className="mx-auto max-w-[1320px] px-5 sm:px-8">
-          <ul className="flex flex-wrap gap-2">
-            {FAMILIES.map((item) => {
-              const active = family === item.id;
-              return (
-                <li key={item.id}>
-                  <button
-                    type="button"
-                    onClick={() => setFamily(item.id)}
-                    aria-pressed={active}
-                    className={`rounded-full border px-4 py-2 text-[13px] transition-colors ${
-                      active
-                        ? 'border-pine bg-pine text-paper'
-                        : 'border-line-strong text-ink-2 hover:border-pine hover:text-pine'
-                    }`}
-                  >
-                    {item.label}
-                  </button>
-                </li>
-              );
-            })}
-          </ul>
-        </div>
-      </section>
-
-      <section className="bg-paper pb-20 lg:pb-28">
+      <section className="bg-paper pb-20 pt-12 lg:pb-28">
         <div className="mx-auto max-w-[1320px] px-5 sm:px-8">
           <ul className="grid gap-x-6 gap-y-14 md:grid-cols-2 lg:grid-cols-3">
             {traps.map((trap, index) => (
@@ -227,7 +190,7 @@ export function TrapsPage({ onNavigate, onRequestQuote, onZoom }: TrapsPageProps
       </section>
 
       {/* Field practice */}
-      <section className="bg-pine py-20 text-paper lg:py-28">
+      <section className="bg-pine py-14 text-paper lg:py-16">
         <div className="mx-auto max-w-[1320px] px-5 sm:px-8">
           <SectionHeading
             eyebrow="In the field"
@@ -235,14 +198,14 @@ export function TrapsPage({ onNavigate, onRequestQuote, onZoom }: TrapsPageProps
             tone="dark"
           />
 
-          <ol className="mt-14 grid gap-px overflow-hidden border border-white/12 bg-white/12 sm:grid-cols-2 lg:grid-cols-3">
+          <ol className="mt-8 grid gap-px overflow-hidden border border-white/12 bg-white/12 sm:grid-cols-2 lg:grid-cols-3">
             {FIELD_NOTES.map((note, index) => (
-              <li key={note.title} className="bg-pine p-8">
+              <li key={note.title} className="bg-pine p-6">
                 <span className="font-mono text-[12px] text-clay-soft">
                   {String(index + 1).padStart(2, '0')}
                 </span>
-                <h3 className="mt-4 font-display text-[21px] text-paper">{note.title}</h3>
-                <p className="mt-3 text-[14px] leading-relaxed text-paper/65">{note.body}</p>
+                <h3 className="mt-2.5 font-display text-[21px] text-paper">{note.title}</h3>
+                <p className="mt-2 text-[14px] leading-relaxed text-paper/65">{note.body}</p>
               </li>
             ))}
           </ol>

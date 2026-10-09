@@ -40,10 +40,10 @@ export function MissionVision({ onNavigate }: MissionVisionProps) {
           <p className="eyebrow flex items-center gap-3 text-sage">
             <span>02</span>
             <span aria-hidden className="h-px w-6 bg-current opacity-40" />
-            <span>Mission &amp; Vision</span>
           </p>
+          <h2 className="mt-4 text-[clamp(1.9rem,4vw,3.15rem)] text-paper">Mission &amp; Vision</h2>
 
-          <blockquote className="mt-9 max-w-5xl">
+          <blockquote className="mt-8 max-w-5xl">
             <p className="font-display text-[clamp(1.75rem,4.2vw,3.3rem)] leading-[1.14] text-paper">
               {HOME.missionVision}
             </p>

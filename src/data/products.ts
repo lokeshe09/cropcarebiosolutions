@@ -81,10 +81,10 @@ export const PRODUCTS: Product[] = [
       title: 'Bactrocera cucurbitae Lure & Fruit Fly Trap',
       body: [
         'Bactrocera cucurbitae Lure & Fruit Fly Trap is an effective solution for monitoring and managing melon fruit flies in cucurbit crops. The lure attracts adult fruit flies, while the trap captures them, helping reduce pest pressure. Easy to install, monitor and maintain as part of an Integrated Pest Management (IPM) program.',
-        'Suitable for crops such as bitter gourd, bottle gourd, ridge gourd, snake gourd and other cucurbits.',
+        'Suitable for crops such as bitter gourd, bottle gourd, ridge gourd, snake gourd and other cucurbits and melons.',
         'The lure can be used with different fruit fly trap types, including vertical fruit fly traps and glass traps, depending on the application.',
       ],
-      tagline: 'Protect your cucurbit crops. Monitor early.',
+      tagline: 'Protect your cucurbit and melon crops. Monitor early.',
     },
   },
 

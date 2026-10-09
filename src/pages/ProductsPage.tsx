@@ -82,7 +82,7 @@ export function ProductsPage({
       <section className="bg-paper pb-8 pt-8">
         <div className="mx-auto max-w-[1320px] px-5 sm:px-8">
           <p className="tnum font-mono text-[11px] uppercase tracking-[0.14em] text-ink-3">
-            {results.length} {results.length === 1 ? 'product' : 'products'}
+            {results.length} {results.length === 1 ? 'Pheromone lure' : 'Pheromone lures'}
           </p>
         </div>
       </section>
