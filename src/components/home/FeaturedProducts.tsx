@@ -4,6 +4,7 @@ import type { PageId, Product } from '../../types';
 import { FEATURED } from '../../data/site';
 import { PRODUCTS } from '../../data/products';
 import { BIO_TOOLS, TRAPS } from '../../data/traps';
+import { TRAP_PROTOCOLS } from '../../data/trapProtocols';
 import { PAGE_PATHS, productPath } from '../../lib/routes';
 import { RouteLink } from '../ui/RouteLink';
 import { Figure } from '../ui/Figure';
@@ -66,7 +67,7 @@ export function FeaturedProducts({ onNavigate, onOpenProduct }: FeaturedProducts
         key: trap.id,
         label: entry.label,
         name: trap.name,
-        blurb: trap.bestFor,
+        blurb: TRAP_PROTOCOLS[trap.id]?.heading ?? trap.bestFor,
         image: trap.imageUrl,
         alt: trap.name,
         open: () => onNavigate('traps'),
@@ -82,7 +83,7 @@ export function FeaturedProducts({ onNavigate, onOpenProduct }: FeaturedProducts
         key: tool.id,
         label: entry.label,
         name: tool.name,
-        blurb: tool.tagline,
+        blurb: TRAP_PROTOCOLS[tool.id]?.heading ?? tool.tagline,
         image: tool.imageUrl,
         alt: tool.name,
         open: () => onNavigate('traps'),

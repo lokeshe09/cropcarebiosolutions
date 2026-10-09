@@ -45,7 +45,7 @@ export const TRAPS: TrapType[] = [
   },
   {
     id: 'glass-trap',
-    name: 'Glass Trap',
+    name: 'Glass Fruit Fly Trap',
     family: 'fruit-fly',
     bestFor: 'Fruit fly monitoring in orchards',
     suitableLures: ['OFF', 'MF'],

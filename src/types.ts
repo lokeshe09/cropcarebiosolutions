@@ -114,3 +114,22 @@ export interface InquiryForm {
   acreage: string;
   message: string;
 }
+
+/** One titled block in a trap's protocol panel. */
+export interface ProtocolBlock {
+  label: string;
+  paragraphs?: string[];
+  /** Line shown just above the list, e.g. "Ideal for use along:". */
+  lead?: string;
+  items?: string[];
+  rows?: { label: string; value: string }[];
+  /** Small print under the block. */
+  note?: string;
+}
+
+/** The full protocol for a trap: heading on the card, the rest in the panel. */
+export interface Protocol {
+  heading: string;
+  intro: string[];
+  blocks: ProtocolBlock[];
+}

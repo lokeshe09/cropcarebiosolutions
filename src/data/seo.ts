@@ -1,6 +1,7 @@
 import type { PageId, Product } from '../types';
 import { PRODUCTS } from './products';
 import { TRAPS, BIO_TOOLS } from './traps';
+import { TRAP_PROTOCOLS } from './trapProtocols';
 import { COMPANY, CONTACT, SERVICE_AREAS, ABOUT, HOME } from './site';
 import { PAGE_ORDER, PAGE_PATHS, productPath, type Route } from '../lib/routes';
 
@@ -446,7 +447,11 @@ export function renderNoscript(route: Route): string {
     body = `<h1>About ${escapeHtml(COMPANY.name)}</h1>${ABOUT.company.map((p) => `<p>${escapeHtml(p)}</p>`).join('')}<h2>Mission</h2><p>${escapeHtml(ABOUT.mission)}</p><h2>Vision</h2><p>${escapeHtml(ABOUT.vision)}</p>`;
   } else if (route.page === 'traps') {
     body = `<h1>Insect Traps</h1><p>${escapeHtml(meta.description)}</p><ul>${[...TRAPS, ...BIO_TOOLS]
-      .map((item) => `<li><strong>${escapeHtml(item.name)}</strong> — ${escapeHtml(item.description)}</li>`)
+      .map((item) => {
+        const protocol = TRAP_PROTOCOLS[item.id];
+        const text = protocol ? `${protocol.heading}. ${protocol.intro.join(' ')}` : item.description;
+        return `<li><strong>${escapeHtml(item.name)}</strong> — ${escapeHtml(text)}</li>`;
+      })
       .join('')}</ul>`;
   } else {
     body = `<h1>${escapeHtml(meta.title.split(' | ')[0])}</h1><p>${escapeHtml(meta.description)}</p><p>${escapeHtml(COMPANY.descriptorFull)}</p>`;
