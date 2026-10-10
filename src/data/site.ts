@@ -25,7 +25,7 @@ export const CONTACT = {
   phonePrimary: { display: '+91 93467 20617', dial: '+919346720617' },
   phoneSecondary: { display: '+91 70324 96243', dial: '+917032496243' },
   whatsapp: '919346720617',
-  email: 'cropcarebiosolutions@gmail.com',
+  email: 'info@cropcarebiosolutions.com',
   /** Locality only, for the footer. */
   shortAddress: ['Gajularamaram, Hyderabad', 'Telangana – 500055'],
   /** Registered office, used wherever a single address is shown. */
@@ -37,7 +37,7 @@ export const CONTACT = {
   /** A block with no lines is left off the page rather than shown empty. */
   addresses: [
     {
-      label: 'Registered office',
+      label: 'Registered address',
       lines: [
         'Plot No. 20/P, Deva Bhoomi Nagar',
         'Gajularamaram, Quthbullapur',
@@ -160,10 +160,10 @@ export const FIELD_GALLERY = [
     alt: 'A farmer crouching in a brinjal field at sunrise, turning a leaf to check its underside',
   },
   {
-    src: '/images/field/field-03.webp',
-    full: '/images/field/field-03-full.webp',
-    caption: 'A funnel trap staked above the cotton canopy',
-    alt: 'A yellow funnel trap tied to a bamboo stake above flowering cotton at first light',
+    src: '/images/field/field-sticky-chilli.webp',
+    full: '/images/field/field-sticky-chilli-full.webp',
+    caption: 'Yellow sticky trap in a chilli crop',
+    alt: 'A yellow sticky sheet tied to a bamboo stake among chilli plants with green and red chillies',
   },
   {
     src: '/images/field/field-04.webp',
